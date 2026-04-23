@@ -1,0 +1,1721 @@
+{
+  "global": {
+    "siteName": "BirdsFly Sangstha",
+    "logo": null,
+    "defaultSeo": {
+      "metaTitle": "BirdsFly Sangstha - Empowering Coastal Communities",
+      "metaDescription": "A non-governmental organization based in Satkhira, Bangladesh, building resilience, sustainability, and social justice in coastal communities since 2022.",
+      "shareImage": null
+    },
+    "siteDescription": "Building resilience, sustainability, and social justice in Bangladesh's coastal communities. Climate resilience, WASH, agriculture, health, education, and empowerment programs.",
+    "favicon": null
+  },
+  "volunteerShifts": [
+    {
+      "id": "S-001",
+      "title": "Medical Camp Setup",
+      "date": "2026-03-01",
+      "startTime": "08:00",
+      "endTime": "12:00",
+      "location": "Khulna Center",
+      "volunteersRequired": 5,
+      "assigned": ["Sarah Ahmed", "Rahim Khan"],
+      "status": "Open",
+      "role": "Logistics"
+    },
+    {
+      "id": "S-002",
+      "title": "Relief Distribution",
+      "date": "2026-03-05",
+      "startTime": "14:00",
+      "endTime": "18:00",
+      "location": "Barisal Node",
+      "volunteersRequired": 10,
+      "assigned": [],
+      "status": "Open",
+      "role": "General"
+    },
+    {
+      "id": "S-003",
+      "title": "School Visit",
+      "date": "2026-03-10",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "location": "Dhaka School #4",
+      "volunteersRequired": 3,
+      "assigned": ["Fatima Ali"],
+      "status": "Filled",
+      "role": "Education"
+    }
+  ],
+  "heroContent": {
+    "badgeText": "Global Impact Initiative",
+    "title": "Building a Better Tomorrow",
+    "titleHighlight": "Impact.",
+    "subtitle": "Join us in our mission to empower communities through education, healthcare, and sustainable development initiatives",
+    "videoUrls": ["", "", "", ""],
+    "carouselImages": [
+      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070&auto=format&fit=crop",
+      "",
+      ""
+    ],
+    "stat1Value": "42+ Nations",
+    "stat1Label": "Global Reach",
+    "stat2Value": "12,500+",
+    "stat2Label": "Mission Control",
+    "featuredStoryLabel": "Featured Discovery",
+    "featuredStoryTitle": "Bringing sustainable change to remote communities.",
+    "donorAvatars": [
+      "https://i.pravatar.cc/100?img=1",
+      "https://i.pravatar.cc/100?img=2",
+      "https://i.pravatar.cc/100?img=3"
+    ],
+    "donorCount": "8k+"
+  },
+  "causesSection": {
+    "badgeText": "Active Causes",
+    "title": "Our Causes.",
+    "titleHighlight": "Causes.",
+    "subtitle": "Active humanitarian initiatives making real impact across Bangladesh."
+  },
+  "volunteersSection": {
+    "badgeText": "Global Field Officers",
+    "title": "Our Volunteers.",
+    "titleHighlight": "Volunteers.",
+    "subtitle": "Meet the dedicated individuals driving our mission on the ground. Professional expertise meets humanitarian passion."
+  },
+  "aboutHero": {
+    "title": "Empowering Coastal Communities.",
+    "subtitle": "BirdsFly Sangstha is a non-governmental organization based in Satkhira District, Bangladesh. Since 2022, we've been committed to building resilience, sustainability, and social justice in coastal communities."
+  },
+  "identitySection": {
+    "badge": "Who We Are",
+    "title": "Building Resilient Coastal Communities",
+    "description": "Located at Bosundhora Tower, 3rd Floor, Satkhira, we work across 12 key focus areas to create lasting impact in vulnerable coastal populations. Our integrated approach addresses climate resilience, public health, education, and social empowerment."
+  },
+
+  "donationStats": {
+    "goal": 500000,
+    "raised": 452222,
+    "donorCount": 1234,
+    "featuredDonation": {
+      "amount": "$1.2M+",
+      "donorName": "Bryan Vines",
+      "donorRole": "Founding Member",
+      "date": "Feb 11, 2026",
+      "cause": "Emergency Relief",
+      "location": "London, UK",
+      "quote": "Compassion is the primary architecture of a sustainable future. Proud to support our vision."
+    }
+  },
+  "eventHighlights": [
+    { "date": "4th MAY Monday", "title": "Strategic Relief Node", "sub": "Regional Logistics Sync" },
+    { "date": "12th JUN Tuesday", "title": "Digital Empowerment Hub", "sub": "Tactical IT Workshop" },
+    { "date": "04th NOV Monday", "title": "Humanitarian Command", "sub": "Annual Operative Summit" }
+  ],
+  "missionVision": {
+    "missionTitle": "Our Mission",
+    "missionDescription": "BirdsFly Sangstha is dedicated to building resilience, sustainability, and social justice in Bangladesh's coastal communities. We work across multiple sectors—climate resilience, WASH, agriculture, health, education, and empowerment—to directly impact vulnerable populations and create lasting change.",
+    "missionPoints": [
+      { "text": "Climate Change & Disaster Risk Reduction" },
+      { "text": "Water, Sanitation & Hygiene (WASH)" },
+      { "text": "Sustainable Agriculture & Food Security" },
+      { "text": "Public Health & Nutrition" }
+    ],
+    "missionImage": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070",
+    "visionTitle": "Our Vision",
+    "visionDescription": "We envision coastal communities where every individual has access to clean water, sustainable livelihoods, quality education, and the opportunity to thrive despite climate challenges. A future where social justice, environmental sustainability, and human dignity are realities for all.",
+    "visionPoints": [
+      { "text": "Women Empowerment & Gender Equality" },
+      { "text": "Child Protection & Rights" },
+      { "text": "Youth Development & Volunteerism" },
+      { "text": "Technology & Innovation" }
+    ],
+    "visionImage": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2613"
+  },
+  "aboutStats": [
+    {
+      "id": "stat-1",
+      "label": "Years of Service",
+      "value": "4+",
+      "icon": "shield",
+      "description": "Serving coastal communities since 2022"
+    },
+    {
+      "id": "stat-2",
+      "label": "Focus Areas",
+      "value": "12",
+      "icon": "target",
+      "description": "Comprehensive sector coverage"
+    },
+    {
+      "id": "stat-3",
+      "label": "Communities Reached",
+      "value": "50+",
+      "icon": "users",
+      "description": "Across Satkhira District"
+    },
+    {
+      "id": "stat-4",
+      "label": "Key Programs",
+      "value": "25+",
+      "icon": "zap",
+      "description": "Active initiatives running"
+    }
+  ],
+  "impactStats": [
+    {
+      "metric": "Children Educated",
+      "value": "12,500",
+      "change": "+18%",
+      "icon": "book-open",
+      "color": "blue"
+    },
+    {
+      "metric": "Healthcare Services",
+      "value": "35,000",
+      "change": "+25%",
+      "icon": "heart",
+      "color": "red"
+    },
+    {
+      "metric": "Clean Water Access",
+      "value": "8,200",
+      "change": "+32%",
+      "icon": "droplet",
+      "color": "cyan"
+    },
+    {
+      "metric": "Skills Training",
+      "value": "4,800",
+      "change": "+15%",
+      "icon": "briefcase",
+      "color": "green"
+    }
+  ],
+  "statsSection": {
+    "badgeText": "Our Impact",
+    "title": "Making a",
+    "titleHighlight": "Difference",
+    "subtitle": "Real numbers, real impact. See how your contributions are transforming lives."
+  },
+  "categories": [
+    { "name": "Global Education", "slug": "education", "description": "Developing decentralized learning nodes and digital literacy clusters for underserved youth sectors." },
+    { "name": "Public Healthcare", "slug": "healthcare", "description": "Deploying high-precision medical relief and sustainable health infrastructure in rural coordination zones." },
+    { "name": "Food Systems", "slug": "food-systems", "description": "Optimizing regional agriculture nodes and supply chain resilience for nutritional security." },
+    { "name": "Climate Resilience", "slug": "climate-resilience", "description": "Engineering adaptive environmental protocols and disaster mitigation architectures for coastal sectors." },
+    { "name": "Community Support", "slug": "community-support", "description": "Strengthening local governance nodes and social cohesion through tactical community empowerment." }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "Building resilience through community empowerment",
+      "slug": "resilience-community-empowerment",
+      "description": "How local leadership nodes are transforming disaster response protocols in coastal Bangladesh.",
+      "date": "2026-02-10",
+      "image": "https://images.unsplash.com/photo-1593113630400-ea4288922497?q=80&w=1200",
+      "author": { "name": "Ahmed Rahman", "role": "Field Coordinator" },
+      "category": { "name": "Community Support" },
+      "blocks": [
+        {
+          "__component": "shared.rich-text",
+          "body": "<p>The optimization of community-led initiatives has reached a critical milestone. By decentralizing resource distribution and empowering local coordinators, we've reduced response latency by 45%.</p><p>Our field findings suggest that tactical empowerment is not just about resources, but about agency. When local stakeholders own the mission, impact is non-linear.</p>"
+        },
+        {
+          "__component": "shared.quote",
+          "body": "Empowerment is the ultimate load-balancer for social equity.",
+          "author": "Ahmed Rahman"
+        },
+        {
+          "__component": "shared.media",
+          "file": { "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?q=80&w=1200" }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Sustainable solutions for clean water in rural areas",
+      "slug": "sustainable-water-solutions",
+      "description": "Deploying high-precision filtration nodes to ensure binary safe-water access in underserved sectors.",
+      "date": "2026-02-12",
+      "image": "https://images.unsplash.com/photo-1541810270-3882d634017f?q=80&w=1200",
+      "author": { "name": "Fatima Akter", "role": "Healthcare Lead" },
+      "category": { "name": "Public Healthcare" },
+      "blocks": [
+        {
+          "__component": "shared.rich-text",
+          "body": "<p>Clean water is the fundamental infrastructure for community health. Our medical relief teams have successfully deployed 15 solar-powered filtration units in the Barisal sector.</p>"
+        },
+        {
+          "__component": "shared.slider",
+          "files": [
+            { "url": "https://images.unsplash.com/photo-1594498257602-00x4f04f4721?q=80&w=800" },
+            { "url": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Empowering next generation through digital literacy",
+      "slug": "digital-literacy-empowerment",
+      "description": "Upgrading rural education nodes with tactical digital toolkits and remote learning architectures.",
+      "date": "2026-02-15",
+      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200",
+      "author": { "name": "Ayesha Siddique", "role": "Digital Trainer" },
+      "category": { "name": "Global Education" },
+      "blocks": [
+        {
+          "__component": "shared.rich-text",
+          "body": "<p>Digital literacy is the master-key for economic mobility in the 2026 digital landscape. Our curriculum focuses on synchronizing basic computing with specialized node-development skills.</p>"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How can I donate to Birdsfly Sangstha?",
+      "answer": "You can donate through our secure online donation portal, bank transfer, or by visiting our office. We accept one-time and recurring donations. All donations are tax-deductible and you will receive a receipt for your records.",
+      "category": "Donations",
+      "order": 1,
+      "serial": "FAQ-001"
+    },
+    {
+      "question": "Are my donations tax-deductible?",
+      "answer": "Yes, Birdsfly Sangstha is a registered non-profit organization. All donations are tax-deductible under applicable tax laws. You will receive a donation receipt that can be used for tax purposes.",
+      "category": "Donations",
+      "order": 2,
+      "serial": "FAQ-002"
+    },
+    {
+      "question": "How can I volunteer with your organization?",
+      "answer": "We welcome volunteers! You can apply through our volunteer registration form on the website. We offer various opportunities including field work, administrative support, event coordination, and professional skills-based volunteering.",
+      "category": "Volunteering",
+      "order": 3,
+      "serial": "FAQ-003"
+    },
+    {
+      "question": "What areas do you work in?",
+      "answer": "We work in education, healthcare, environmental conservation, women empowerment, and community development. Our programs span across rural and urban areas, focusing on underserved communities.",
+      "category": "Programs",
+      "order": 4,
+      "serial": "FAQ-004"
+    },
+    {
+      "question": "How do you ensure transparency in fund utilization?",
+      "answer": "We maintain complete transparency through regular financial audits, annual reports, and project updates. All financial statements are published on our website and we provide detailed breakdowns of how donations are utilized.",
+      "category": "Transparency",
+      "order": 5,
+      "serial": "FAQ-005"
+    },
+    {
+      "question": "Can I sponsor a specific project or child?",
+      "answer": "Yes, we offer project-specific and child sponsorship programs. You can choose to support a particular initiative or sponsor a child's education. We provide regular updates on the progress of sponsored projects and children.",
+      "category": "Sponsorship",
+      "order": 6,
+      "serial": "FAQ-006"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "title": "Annual Charity Gala 2026",
+      "slug": "annual-charity-gala-2026",
+      "titleLine1": "Annual Charity",
+      "titleLine2": "Gala 2026",
+      "description": "Join us for our flagship fundraising event featuring dinner, live entertainment, and inspiring stories from our beneficiaries.",
+      "category": "Fundraising",
+      "date": "2026-03-15",
+      "location": "Dhaka, Bangladesh",
+      "attendees": "350+",
+      "status": "Upcoming",
+      "time": "18:00",
+      "speaker": "Dr. Sarah Khan",
+      "timeline": [
+        { "title": "18:00 - Welcome", "desc": "Opening remarks by the Chairman." },
+        { "title": "18:30 - Keynote", "desc": "Address by Guest of Honor." },
+        { "title": "19:30 - Dinner", "desc": "Gala dinner and networking." },
+        { "title": "21:00 - Closing", "desc": "Vote of thanks and closing ceremony." }
+      ],
+      "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop",
+      "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "videoType": "youtube"
+    },
+    {
+      "id": 2,
+      "title": "Community Health Camp",
+      "slug": "community-health-camp",
+      "titleLine1": "Community",
+      "titleLine2": "Health Camp",
+      "description": "Free health screening and medical consultations for underserved communities in rural areas.",
+      "category": "Healthcare",
+      "date": "2026-02-28",
+      "location": "Khulna, Bangladesh",
+      "attendees": "500+",
+      "status": "Upcoming",
+      "time": "09:00",
+      "speaker": "Dr. Kamal Hassan",
+      "timeline": [
+        { "title": "09:00 - Registration", "desc": "Patient registration and triage." },
+        { "title": "10:00 - Consultations", "desc": "General and specialized consultations." },
+        { "title": "13:00 - Break", "desc": "Lunch break for volunteers." },
+        { "title": "14:00 - Resume", "desc": "Afternoon sessions continue." }
+      ],
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
+      "videoUrl": "",
+      "videoType": ""
+    },
+    {
+      "id": 3,
+      "title": "Youth Leadership Summit",
+      "slug": "youth-leadership-summit",
+      "titleLine1": "Youth Leadership",
+      "titleLine2": "Summit",
+      "description": "Empowering young leaders through workshops on leadership, social entrepreneurship, and community service.",
+      "category": "Education",
+      "date": "2026-04-20",
+      "location": "Sylhet, Bangladesh",
+      "attendees": 200,
+      "time": "10:00",
+      "speaker": "Ayesha Rahman",
+      "timeline": [
+        { "title": "10:00 - Opening", "desc": "Introduction to the summit goals." },
+        { "title": "10:30 - Workshop 1", "desc": "Leadership Logic and Strategy." },
+        { "title": "12:30 - Lunch", "desc": "Networking lunch." },
+        { "title": "14:00 - Workshop 2", "desc": "Social Entrepreneurship basics." }
+      ],
+      "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
+    }
+  ],
+  "causes": [
+    {
+      "id": 1,
+      "title": "Education for Every Child",
+      "slug": "education-for-every-child",
+      "description": "Provide quality education, school supplies, and scholarships to underprivileged children. Help us ensure that every child has access to learning opportunities regardless of their economic background.",
+      "progress": 68,
+      "raised": "$34,500",
+      "goal": "$50,000",
+      "category": "Education",
+      "tag": "URGENT",
+      "icon": "GraduationCap",
+      "tagColor": "red",
+      "gradient": "from-blue-500 to-purple-600",
+      "metric": "450 students supported",
+      "size": "large",
+      "glow": "blue",
+      "donors": 287,
+      "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop"
+    },
+    {
+      "id": 2,
+      "title": "Clean Water Initiative",
+      "slug": "clean-water-initiative",
+      "description": "Install water purification systems and wells in rural communities lacking access to clean drinking water. Your contribution can save lives and prevent waterborne diseases.",
+      "progress": 45,
+      "raised": "$22,500",
+      "goal": "$50,000",
+      "category": "Health",
+      "tag": "ACTIVE",
+      "icon": "Droplets",
+      "tagColor": "blue",
+      "gradient": "from-cyan-500 to-blue-600",
+      "metric": "12 villages served",
+      "size": "medium",
+      "glow": "cyan",
+      "donors": 156,
+      "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2613&auto=format&fit=crop"
+    },
+    {
+      "id": 3,
+      "title": "Women Empowerment Program",
+      "slug": "women-empowerment-program",
+      "description": "Provide vocational training, microfinance, and entrepreneurship support to women from marginalized communities. Empower women to become financially independent and community leaders.",
+      "progress": 82,
+      "raised": "$41,000",
+      "goal": "$50,000",
+      "category": "Empowerment",
+      "tag": "TRENDING",
+      "icon": "Users",
+      "tagColor": "purple",
+      "gradient": "from-pink-500 to-purple-600",
+      "metric": "320 women trained",
+      "size": "large",
+      "glow": "purple",
+      "donors": 412,
+      "image": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      "id": 4,
+      "title": "Emergency Medical Fund",
+      "slug": "emergency-medical-fund",
+      "description": "Support critical medical treatments for patients who cannot afford healthcare. This fund covers surgeries, medications, and emergency medical procedures for those in need.",
+      "progress": 55,
+      "raised": "$27,500",
+      "goal": "$50,000",
+      "category": "Healthcare",
+      "tag": "CRITICAL",
+      "icon": "Stethoscope",
+      "tagColor": "red",
+      "gradient": "from-red-500 to-pink-600",
+      "metric": "89 patients helped",
+      "size": "medium",
+      "glow": "red",
+      "donors": 234,
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop"
+    }
+  ],
+  "causesFaqs": [
+    {
+      "question": "How are funds allocated?",
+      "answer": "100% of public donations go directly to the designated cause. Operational costs are covered by private investors."
+    },
+    {
+      "question": "Can I track my impact?",
+      "answer": "Yes, every donor receives a personalized impact report showing exactly where and how their contribution was used."
+    },
+    {
+      "question": "Is my donation tax-deductible?",
+      "answer": "Absolutely. We are a verified 501(c)(3) organization. You will receive an instant tax receipt via email."
+    },
+    {
+      "question": "How do you select missions?",
+      "answer": "Our field teams conduct rigorous assessments to identify high-need areas where our resources can create the most sustainable long-term value."
+    }
+  ],
+  "teamMembers": [
+    {
+      "name": "Dr. Sarah Ahmed",
+      "role": "Executive Director",
+      "bio": "With over 20 years of experience in non-profit management and community development, Dr. Ahmed leads our organization's strategic vision and operations.",
+      "image": "https://i.pravatar.cc/300?u=sarah",
+      "email": "sarah.ahmed@birdsfly.org",
+      "linkedin": "https://linkedin.com/in/sarahahmed",
+      "twitter": "https://twitter.com/sarahahmed",
+      "order": 1
+    },
+    {
+      "name": "Mohammad Rahim",
+      "role": "Program Director",
+      "bio": "Mohammad oversees all field programs and ensures effective implementation of our community development initiatives across the country.",
+      "image": "https://i.pravatar.cc/300?u=rahim",
+      "email": "m.rahim@birdsfly.org",
+      "linkedin": "https://linkedin.com/in/mrahim",
+      "order": 2
+    },
+    {
+      "name": "Fatima Khan",
+      "role": "Finance Manager",
+      "bio": "Fatima manages our financial operations with a focus on transparency and accountability, ensuring every donation is utilized effectively.",
+      "image": "https://i.pravatar.cc/300?u=fatima",
+      "email": "fatima.khan@birdsfly.org",
+      "linkedin": "https://linkedin.com/in/fatimakhan",
+      "order": 3
+    },
+    {
+      "name": "Dr. Kamal Hassan",
+      "role": "Healthcare Coordinator",
+      "bio": "A medical professional with expertise in public health, Dr. Hassan coordinates our healthcare programs and medical camps.",
+      "image": "https://i.pravatar.cc/300?u=kamal",
+      "email": "kamal.hassan@birdsfly.org",
+      "order": 4
+    },
+    {
+      "name": "Ayesha Rahman",
+      "role": "Education Program Lead",
+      "bio": "Ayesha designs and implements our education initiatives, working closely with schools and communities to improve learning outcomes.",
+      "image": "https://i.pravatar.cc/300?u=ayesha",
+      "email": "ayesha.rahman@birdsfly.org",
+      "linkedin": "https://linkedin.com/in/ayesharahman",
+      "order": 5
+    },
+    {
+      "name": "Tariq Ali",
+      "role": "Volunteer Coordinator",
+      "bio": "Tariq manages our volunteer programs, recruitment, and training, building a strong community of dedicated volunteers.",
+      "image": "https://i.pravatar.cc/300?u=tariq",
+      "email": "tariq.ali@birdsfly.org",
+      "twitter": "https://twitter.com/tariqali",
+      "order": 6
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Amina Begum",
+      "role": "Program Beneficiary",
+      "organization": "Women Empowerment Program",
+      "text": "The vocational training I received changed my life. I now run my own tailoring business and can support my family. Birdsfly Sangstha gave me hope and the skills to build a better future.",
+      "rating": 5,
+      "order": 1
+    },
+    {
+      "name": "Rashid Ahmed",
+      "role": "Parent",
+      "organization": "Education Program",
+      "text": "Thanks to the scholarship program, my daughter is now attending school. The quality of education and support she receives is excellent. We are grateful for this opportunity.",
+      "rating": 5,
+      "order": 2
+    },
+    {
+      "name": "Dr. Nusrat Jahan",
+      "role": "Partner Organization Director",
+      "organization": "City Medical College",
+      "text": "Our partnership with Birdsfly Sangstha has been incredibly rewarding. Their professionalism, dedication, and impact-driven approach make them an ideal partner for community health initiatives.",
+      "rating": 5,
+      "order": 3
+    },
+    {
+      "name": "Karim Miah",
+      "role": "Village Elder",
+      "organization": "Clean Water Initiative",
+      "text": "The water purification system installed in our village has transformed our community. Waterborne diseases have decreased significantly, and our children are healthier.",
+      "rating": 5,
+      "order": 4
+    },
+    {
+      "name": "Sultana Akter",
+      "role": "Volunteer",
+      "organization": "Volunteer Program",
+      "text": "Volunteering with Birdsfly Sangstha has been the most fulfilling experience of my life. The organization is well-managed, and you can see the real impact of your efforts.",
+      "rating": 5,
+      "order": 5
+    },
+    {
+      "name": "Prof. Rahim Khan",
+      "role": "Education Consultant",
+      "organization": "National University",
+      "text": "Birdsfly Sangstha's education programs are evidence-based and highly effective. Their commitment to quality and measurable outcomes sets them apart in the non-profit sector.",
+      "rating": 5,
+      "order": 6
+    }
+  ],
+  "galleryImages": [
+    {
+      "title": "Community Health Camp",
+      "category": "Healthcare",
+      "description": "Free medical checkup and consultation at rural health camp",
+      "captureDate": "2025-12-15",
+      "location": "Mirpur, Dhaka",
+      "photographer": "Tariq Ali",
+      "order": 1,
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070"
+    },
+    {
+      "title": "School Children Receiving Books",
+      "category": "Education",
+      "description": "Distribution of educational materials to underprivileged students",
+      "captureDate": "2025-11-20",
+      "location": "Gazipur District",
+      "photographer": "Ayesha Rahman",
+      "order": 2,
+      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022"
+    },
+    {
+      "title": "Women's Vocational Training",
+      "category": "Empowerment",
+      "description": "Women learning tailoring skills at our training center",
+      "captureDate": "2025-10-08",
+      "location": "Training Center, Dhaka",
+      "photographer": "Fatima Khan",
+      "order": 3,
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2069"
+    },
+    {
+      "title": "Tree Plantation Drive",
+      "category": "Environment",
+      "description": "Volunteers planting trees as part of environmental initiative",
+      "captureDate": "2025-09-22",
+      "location": "Savar",
+      "photographer": "Mohammad Rahim",
+      "order": 4,
+      "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2613"
+    },
+    {
+      "title": "Clean Water Well Inauguration",
+      "category": "Infrastructure",
+      "description": "Community celebrating new water well installation",
+      "captureDate": "2025-08-30",
+      "location": "Tangail District",
+      "photographer": "Dr. Kamal Hassan",
+      "order": 5,
+      "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070"
+    },
+    {
+      "title": "Youth Leadership Workshop",
+      "category": "Education",
+      "description": "Young leaders participating in leadership development program",
+      "captureDate": "2025-07-18",
+      "location": "University Campus",
+      "photographer": "Tariq Ali",
+      "order": 6,
+      "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070"
+    }
+  ],
+  "successStories": [
+    {
+      "id": 1,
+      "slug": "from-beneficiary-to-entrepreneur",
+      "title": "From Beneficiary to Entrepreneur",
+      "name": "Amina Begum",
+      "category": "Women Empowerment",
+      "color": "rose",
+      "region": "Barisal Sector",
+      "story": "Amina joined our women's empowerment program three years ago with no source of income. Through vocational training and microfinance support, she started her own tailoring business.",
+      "fullStory": "<p>Amina's journey began with a single sewing machine. After 6 months of training in our vocational center, she received a micro-grant to purchase equipment. Today, she runs a collaborative workshop that employs 5 other women, creating a micro-economy within her village. Her success demonstrates the multiplier effect of targeted empowerment.</p>",
+      "impact": "5 jobs created",
+      "year": "2023",
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2069",
+      "videoUrl": "",
+      "videoType": "",
+      "order": 1
+    },
+    {
+      "id": 2,
+      "slug": "a-doctors-journey",
+      "title": "A Doctor's Journey",
+      "name": "Rashid Ahmed",
+      "category": "Education",
+      "color": "blue",
+      "region": "Sylhet Node",
+      "story": "Rashid was one of our first scholarship recipients in 2015. Despite financial hardships, he excelled in his studies. Today, he is a medical doctor serving in rural areas.",
+      "fullStory": "<p>Rashid walked 5 kilometers to school every day. Recognizing his potential, Birdsfly Sangstha provided a full scholarship for his medical studies. He now heads our mobile clinic unit in Sylhet, treating over 200 patients monthly. He is the embodiment of our 'pay it forward' philosophy.</p>",
+      "impact": "200+ patients/mo",
+      "year": "2024",
+      "image": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=2070",
+      "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "videoType": "youtube",
+      "order": 2
+    },
+    {
+      "id": 3,
+      "slug": "village-transformation",
+      "title": "Village Transformation",
+      "name": "Karimpur Village",
+      "category": "Community Development",
+      "color": "emerald",
+      "region": "Khulna District",
+      "story": "Karimpur was struggling with lack of clean water and basic healthcare. Through our integrated development program, we installed water systems and established a health clinic.",
+      "fullStory": "<p>The transformation of Karimpur is a case study in integrated development. By simultaneously addressing water security, healthcare, and education, we saw a synergistic effect. Waterborne diseases dropped to near zero, and school attendance reached 100%. The village committee now sustainably manages these resources.</p>",
+      "impact": "500 lives improved",
+      "year": "2025",
+      "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070",
+      "videoUrl": "",
+      "videoType": "",
+      "order": 3
+    }
+  ],
+  "programs": [
+    {
+      "id": "food",
+      "slug": "riverine-nutrition-support",
+      "category": "Nutrition Security",
+      "title": "Riverine Nutrition Support",
+      "description": "Combating food insecurity in riverine communities with climate-resilient agriculture and mobile nutrition labs.",
+      "stats": "2.5M Ration Cycles",
+      "beneficiaries": "50,000+",
+      "location": "Dhaka, Bangladesh",
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop",
+      "icon": "Soup",
+      "color": "rose",
+      "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "videoType": "youtube",
+      "milestones": [
+        { "title": "Phase 1: Assessment", "date": "2024-01-15", "status": "Completed" },
+        { "title": "Phase 2: Distribution", "date": "2024-06-20", "status": "In Progress" },
+        { "title": "Phase 3: Sustainability", "date": "2025-01-10", "status": "Pending" }
+      ],
+      "blocks": [
+        { "__component": "shared.rich-text", "body": "<p>Our Riverine Nutrition Support program addresses the critical challenge of food insecurity in Bangladesh's riverine communities. Through innovative climate-resilient agricultural practices and mobile nutrition laboratories, we ensure sustainable food access for vulnerable populations.</p>" },
+        { "__component": "shared.quote", "body": "No child should go to bed hungry. This program is our commitment to that promise.", "author": "Program Director" }
+      ],
+      "seo": {
+        "metaTitle": "Riverine Nutrition Support | Birdsfly Sangstha",
+        "metaDescription": "Combating food insecurity in riverine communities with climate-resilient agriculture and mobile nutrition labs."
+      },
+      "order": 1
+    },
+    {
+      "id": "medical",
+      "slug": "remote-medical-guardians",
+      "category": "Systemic Health",
+      "title": "Remote Medical Guardians",
+      "description": "Deploying rapid-response medical units to provide specialized care in hard-to-reach district clusters.",
+      "stats": "150k Field Surgeries",
+      "beneficiaries": "75,000+",
+      "location": "Sylhet, Bangladesh",
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
+      "icon": "Stethoscope",
+      "color": "orange",
+      "videoUrl": "",
+      "videoType": "",
+      "milestones": [
+        { "title": "Mobile Unit Deployment", "date": "2024-03-01", "status": "Completed" },
+        { "title": "Training Phase", "date": "2024-08-15", "status": "Completed" },
+        { "title": "Full Operations", "date": "2025-02-01", "status": "In Progress" }
+      ],
+      "blocks": [
+        { "__component": "shared.rich-text", "body": "<p>Remote Medical Guardians brings healthcare to the doorstep of underserved communities. Our rapid-response units are equipped with modern surgical facilities and staffed by experienced medical professionals.</p>" }
+      ],
+      "seo": {
+        "metaTitle": "Remote Medical Guardians | Birdsfly Sangstha",
+        "metaDescription": "Deploying rapid-response medical units to provide specialized care in hard-to-reach district clusters."
+      },
+      "order": 2
+    },
+    {
+      "id": "education",
+      "slug": "tech-enabled-literacy",
+      "category": "Human Capital",
+      "title": "Tech-Enabled Literacy",
+      "description": "Bridging the digital divide with solar-powered modular classrooms and localized educational content.",
+      "stats": "120 Smart Modules",
+      "beneficiaries": "25,000+",
+      "location": "Chittagong, Bangladesh",
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop",
+      "icon": "BookOpen",
+      "color": "rose",
+      "videoUrl": "https://vimeo.com/123456789",
+      "videoType": "vimeo",
+      "milestones": [
+        { "title": "Module Installation", "date": "2024-04-10", "status": "Completed" },
+        { "title": "Teacher Training", "date": "2024-09-01", "status": "In Progress" }
+      ],
+      "blocks": [
+        { "__component": "shared.rich-text", "body": "<p>Tech-Enabled Literacy transforms education in remote areas through innovative solar-powered classrooms. Each module is equipped with digital learning tools and localized content.</p>" },
+        { "__component": "shared.quote", "body": "Education is the most powerful weapon which you can use to change the world.", "author": "Nelson Mandela" }
+      ],
+      "seo": {
+        "metaTitle": "Tech-Enabled Literacy | Birdsfly Sangstha",
+        "metaDescription": "Bridging the digital divide with solar-powered modular classrooms and localized educational content."
+      },
+      "order": 3
+    },
+    {
+      "id": "environment",
+      "slug": "mangrove-coastal-guard",
+      "category": "Ecological Armor",
+      "title": "Mangrove Coastal Guard",
+      "description": "Restoring natural barriers through massive reforestation to shield coastline families from cyclone impacts.",
+      "stats": "1M Bio-Shield Trees",
+      "beneficiaries": "100,000+",
+      "location": "Khulna, Bangladesh",
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2613&auto=format&fit=crop",
+      "icon": "Leaf",
+      "color": "emerald",
+      "videoUrl": "",
+      "videoType": "",
+      "milestones": [
+        { "title": "Site Survey", "date": "2024-02-20", "status": "Completed" },
+        { "title": "Planting Phase 1", "date": "2024-07-15", "status": "Completed" },
+        { "title": "Community Handover", "date": "2025-06-01", "status": "Pending" }
+      ],
+      "blocks": [
+        { "__component": "shared.rich-text", "body": "<p>The Mangrove Coastal Guard initiative protects vulnerable coastal communities through strategic reforestation. Our bio-shield approach creates natural barriers against cyclones and rising sea levels.</p>" }
+      ],
+      "seo": {
+        "metaTitle": "Mangrove Coastal Guard | Birdsfly Sangstha",
+        "metaDescription": "Restoring natural barriers through massive reforestation to shield coastline families from cyclone impacts."
+      },
+      "order": 4
+    },
+    {
+      "id": "shelter",
+      "slug": "amphibious-safe-housing",
+      "category": "Infrastructure",
+      "title": "Amphibious Safe Housing",
+      "description": "Developing floating architectural solutions for flood-prone regions to ensure zero displacement.",
+      "stats": "5,000 Floating Units",
+      "beneficiaries": "30,000+",
+      "location": "Barisal, Bangladesh",
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=2070&auto=format&fit=crop",
+      "icon": "Home",
+      "color": "blue",
+      "videoUrl": "",
+      "videoType": "",
+      "milestones": [
+        { "title": "Design Phase", "date": "2024-05-01", "status": "Completed" },
+        { "title": "Pilot Construction", "date": "2024-11-15", "status": "In Progress" }
+      ],
+      "blocks": [
+        { "__component": "shared.rich-text", "body": "<p>Amphibious Safe Housing provides innovative floating homes designed to rise with flood waters. This ensures families remain safe and dry during Bangladesh's frequent flooding events.</p>" }
+      ],
+      "seo": {
+        "metaTitle": "Amphibious Safe Housing | Birdsfly Sangstha",
+        "metaDescription": "Developing floating architectural solutions for flood-prone regions to ensure zero displacement."
+      },
+      "order": 5
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "title": "Tactical Medical Response",
+      "slug": "tactical-medical-response",
+      "description": "Rapid deployment of mobile surgical units and emergency triage nodes in high-risk zones.",
+      "icon": "Stethoscope",
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070",
+      "missionTitle": "Critical Care",
+      "missionSubtitle": "Delivery Systems",
+      "missionDescription": "We bridge the gap between advanced medical capabilities and inaccessible regions through modular deployment.",
+      "directives": [
+        { "title": "Rapid Triage", "details": "Immediate assessment protocols for mass casualty capability." },
+        { "title": "Surgical Forward", "details": "Advanced life support and surgical intervention in field conditions." }
+      ],
+      "videoUrl": "",
+      "videoType": ""
+    },
+    {
+      "id": 2,
+      "title": "Nutritional Security Grid",
+      "slug": "nutritional-security-grid",
+      "description": "Optimizing regional food systems through sustainable agriculture and supply chain resilience.",
+      "icon": "Beef",
+      "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070",
+      "missionTitle": "Sustenance",
+      "missionSubtitle": "Architecture",
+      "missionDescription": "Ensuring caloric and nutritional sufficiency through decentralized agricultural nodes.",
+      "directives": [
+        { "title": "Crop Resilience", "details": "Introducing climate-adaptive variations of staple crops." },
+        { "title": "Supply Chain", "details": "Minimizing loss through direct farm-to-table logistics." }
+      ],
+      "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "videoType": "youtube"
+    },
+    {
+      "id": 3,
+      "title": "Education Uplink",
+      "slug": "education-uplink",
+      "description": "Digital literacy and vocational training modules for next-generation leadership.",
+      "icon": "GraduationCap",
+      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022",
+      "missionTitle": "Knowledge",
+      "missionSubtitle": "Transfer",
+      "missionDescription": "Empowering youth with the digital tools required for the 2026 economic landscape.",
+      "directives": [
+        { "title": "Digital Literacy", "details": "Core coding and digital navigation skills." },
+        { "title": "Leadership", "details": "Training the next generation of community architects." }
+      ],
+      "videoUrl": "",
+      "videoType": ""
+    },
+    {
+      "id": 4,
+      "title": "Hydration Infrastructure",
+      "slug": "hydration-infrastructure",
+      "description": "Engineering sustainable water purification and distribution networks.",
+      "icon": "Droplets",
+      "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2613",
+      "missionTitle": "Aqua",
+      "missionSubtitle": "Security",
+      "missionDescription": "Guaranteeing access to pathogen-free water sources for all verified residents.",
+      "directives": [
+        { "title": "Filtration", "details": "Solar-powered reverse osmosis units." },
+        { "title": "Distribution", "details": "Gravity-fed pipe networks for village-wide access." }
+      ],
+      "videoUrl": "",
+      "videoType": ""
+    }
+  ],
+  "volunteers": [
+    {
+      "id": 1,
+      "name": "Sarah Ahmed",
+      "role": "Medical Lead",
+      "slug": "sarah-ahmed",
+      "location": "Dhaka, Bangladesh",
+      "phone": "+880 171 234 5678",
+      "email": "sarah.ahmed@birdsfly.org",
+      "bio": "Dr. Sarah Ahmed leads our medical response teams with over 15 years of trauma surgery experience in conflict zones.",
+      "impact": "Led 50+ medical missions across disaster zones, treating over 10,000 patients",
+      "skills": ["Emergency Medicine", "Surgery", "Team Leadership", "Crisis Management"],
+      "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070",
+      "experienceTitle": "Trauma",
+      "experienceSubtitle": "Response",
+      "experienceDescription": "<p>Dr. Ahmed has coordinated relief efforts in 12 major disaster zones. Her expertise lies in setting up rapid response surgical units.</p>",
+      "fundingPhases": [
+        { "title": "Phase 1: Deployment", "details": "Initial rapid response team setup." },
+        { "title": "Phase 2: Stabilization", "details": "Establishing long-term care protocols." }
+      ],
+      "blocks": [
+        { "__component": "shared.rich-text", "body": "<p>Dr. Sarah Ahmed brings unparalleled expertise in trauma surgery and emergency medical response. Her leadership has been instrumental in establishing medical facilities in remote areas.</p>" },
+        { "__component": "shared.quote", "body": "Every life saved is a victory against adversity. We don't just treat patients; we restore hope to communities.", "author": "Dr. Sarah Ahmed" }
+      ],
+      "socialLinks": { "linkedin": "https://linkedin.com/in/sarah-ahmed", "twitter": "https://twitter.com/sarahahmed" },
+      "status": "active",
+      "order": 1,
+      "seo": {
+        "metaTitle": "Dr. Sarah Ahmed - Medical Lead | Birdsfly Sangstha",
+        "metaDescription": "Dr. Sarah Ahmed leads medical response teams at Birdsfly Sangstha with 15+ years of trauma surgery experience.",
+        "keywords": ["medical volunteer", "trauma surgeon", "disaster response", "healthcare volunteer"]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Rahim Khan",
+      "role": "Logistics Officer",
+      "slug": "rahim-khan",
+      "location": "Chittagong, Bangladesh",
+      "phone": "+880 181 987 6543",
+      "email": "rahim.khan@birdsfly.org",
+      "bio": "Rahim specializes in supply chain optimization, ensuring that resources reach the most remote nodes of our network.",
+      "impact": "Optimized delivery routes reducing response time by 40%",
+      "skills": ["Logistics", "Supply Chain", "Route Optimization", "Inventory Management"],
+      "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=2070",
+      "experienceTitle": "Supply",
+      "experienceSubtitle": "Chain",
+      "experienceDescription": "<p>Rahim has managed logistics for UN missions and brings military-grade precision to our humanitarian operations.</p>",
+      "fundingPhases": [
+        { "title": "Phase 1: Mapping", "details": "Identifying optimal supply routes." },
+        { "title": "Phase 2: Transport", "details": "Securing vehicle fleets for distribution." }
+      ],
+      "blocks": [
+        { "__component": "shared.rich-text", "body": "<p>With extensive experience in humanitarian logistics, Rahim ensures that aid reaches even the most inaccessible communities efficiently and reliably.</p>" }
+      ],
+      "socialLinks": { "linkedin": "https://linkedin.com/in/rahim-khan", "twitter": "https://twitter.com/rahimkhan" },
+      "status": "active",
+      "order": 2,
+      "seo": {
+        "metaTitle": "Rahim Khan - Logistics Officer | Birdsfly Sangstha",
+        "metaDescription": "Rahim Khan manages supply chain operations ensuring resources reach remote communities at Birdsfly Sangstha.",
+        "keywords": ["logistics volunteer", "supply chain", "humanitarian aid", "distribution"]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Fatima Ali",
+      "role": "Education Coordinator",
+      "slug": "fatima-ali",
+      "location": "Sylhet, Bangladesh",
+      "phone": "+880 191 112 2334",
+      "email": "fatima.ali@birdsfly.org",
+      "bio": "Fatima architects our digital literacy curriculum, adapting global standards for local implementation.",
+      "impact": "Developed curriculum adopted by 50+ schools across Bangladesh",
+      "skills": ["Curriculum Development", "Digital Literacy", "Teaching", "Program Management"],
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2069",
+      "experienceTitle": "Curriculum",
+      "experienceSubtitle": "Design",
+      "experienceDescription": "<p>Fatima's programs have been adopted by 50+ schools. She focuses on scalable, tech-enabled learning models.</p>",
+      "fundingPhases": [
+        { "title": "Phase 1: Development", "details": "Creating localized digital content." },
+        { "title": "Phase 2: Training", "details": "Training the trainers workshops." }
+      ],
+      "blocks": [
+        { "__component": "shared.rich-text", "body": "<p>Fatima believes that education is the key to breaking the cycle of poverty. Her innovative approaches combine traditional learning with modern technology.</p>" },
+        { "__component": "shared.quote", "body": "Education transforms lives. When we empower a child with knowledge, we empower entire communities.", "author": "Fatima Ali" }
+      ],
+      "socialLinks": { "linkedin": "https://linkedin.com/in/fatima-ali", "instagram": "https://instagram.com/fatimaali" },
+      "status": "active",
+      "order": 3,
+      "seo": {
+        "metaTitle": "Fatima Ali - Education Coordinator | Birdsfly Sangstha",
+        "metaDescription": "Fatima Ali leads education programs and curriculum development at Birdsfly Sangstha.",
+        "keywords": ["education volunteer", "curriculum developer", "teaching", "digital literacy"]
+      }
+    }
+  ],
+  "timelineEvents": [
+    {
+      "id": "tl-1",
+      "year": "2022",
+      "title": "Foundation Established",
+      "description": "BirdsFly Sangstha was founded in Satkhira District with a mission to empower coastal communities facing climate challenges and social vulnerabilities.",
+      "icon": "flag",
+      "order": 1
+    },
+    {
+      "id": "tl-2",
+      "year": "2022",
+      "title": "WASH Initiative Launch",
+      "description": "Started our first Water, Sanitation & Hygiene programs, including saline water purification (RO Plant), rainwater harvesting, and arsenic-free water supply initiatives.",
+      "icon": "globe",
+      "order": 2
+    },
+    {
+      "id": "tl-3",
+      "year": "2023",
+      "title": "Climate Resilience Programs",
+      "description": "Launched comprehensive Climate Change & Disaster Risk Reduction programs: cyclone preparedness, sustainable embankment protection, and coastal afforestation.",
+      "icon": "layout",
+      "order": 3
+    },
+    {
+      "id": "tl-4",
+      "year": "2023",
+      "title": "Agriculture & Food Security",
+      "description": "Implemented sustainable agriculture initiatives including salt-tolerant rice cultivation, cage fish farming, and promotion of organic fertilizers.",
+      "icon": "trending",
+      "order": 4
+    },
+    {
+      "id": "tl-5",
+      "year": "2024",
+      "title": "Women Empowerment Focus",
+      "description": "Expanded programs for women: prevention of child marriage, legal aid support, and small entrepreneurship development for women's self-reliance.",
+      "icon": "star",
+      "order": 5
+    },
+    {
+      "id": "tl-6",
+      "year": "2024",
+      "title": "Technology & Innovation",
+      "description": "Introduced technology initiatives including drone usage in agriculture, e-learning platforms, and expanding digital services to marginalized communities.",
+      "icon": "clock",
+      "order": 6
+    },
+    {
+      "id": "tl-7",
+      "year": "2025",
+      "title": "Sundarbans Conservation",
+      "description": "Strengthened environmental protection programs: safeguarding Sundarbans honey and fish collectors, plastic pollution control, and local ecosystem preservation.",
+      "icon": "globe",
+      "order": 7
+    }
+  ],
+  "about": {
+    "title": "About BirdsFly Sangstha",
+    "blocks": [
+      {
+        "__component": "shared.rich-text",
+        "body": "## Our Story\n\nBirdsFly Sangstha is a non-governmental organization based in Satkhira District, Bangladesh. We started our journey in 2022, with our office located at Bosundhora Tower, 3rd Floor, Satkhira.\n\n**Contact Us**\n- Phone: 01727009448\n- Email: birdsfly.sangstha@gmail.com\n\n## Our Mission\n\nWe are committed to building resilience, sustainability, and social justice in coastal communities. Our work spans across multiple sectors that directly impact vulnerable populations.\n\n## Our Key Focus Areas\n\n**Climate Change & Disaster Risk Reduction (DRR)**\n- Cyclone preparedness and response\n- Sustainable embankment protection\n- Coastal afforestation\n- Rehabilitation of climate refugees\n\n**Water, Sanitation & Hygiene (WASH)**\n- Saline water purification (RO Plant)\n- Rainwater harvesting\n- Arsenic-free water supply\n- Installation of improved latrines\n\n**Sustainable Agriculture & Food Security**\n- Salt-tolerant rice and vegetable cultivation\n- Cage fish farming\n- Promotion of organic fertilizers\n\n**Public Health & Nutrition**\n- Reproductive health protection for coastal women\n- Maternal and child nutrition programs\n- Prevention of infectious diseases"
+      },
+      {
+        "__component": "shared.quote",
+        "title": "BirdsFly Sangstha",
+        "body": "We envision coastal communities where every individual has access to clean water, sustainable livelihoods, quality education, and the opportunity to thrive despite climate challenges."
+      },
+      {
+        "__component": "shared.rich-text",
+        "body": "## More Focus Areas\n\n**Education & Skill Development**\n- Non-formal education to reduce dropouts\n- ICT training\n- Technical and vocational skill enhancement\n\n**Women Empowerment & Gender Equality**\n- Prevention of child marriage\n- Legal aid for women\n- Small entrepreneurship development for women's self-reliance\n\n**Environment & Biodiversity Conservation**\n- Protection of Sundarbans honey and fish collectors\n- Plastic pollution control\n- Safeguarding local ecosystems\n\n**Child Protection & Rights**\n- Elimination of child labor\n- Rehabilitation of street children\n- Promoting children's mental development\n\n**Governance & Human Rights**\n- Ensuring access to government services\n- Promoting transparency and accountability\n- Protecting land rights\n\n**Youth Development & Volunteerism**\n- Engaging youth in social work\n- Anti-drug campaigns\n- Leadership development\n\n**Technology & Innovation**\n- Use of drones and apps in agriculture\n- E-learning initiatives\n- Expanding digital services to marginalized communities"
+      }
+    ]
+  },
+  "serviceCategories": [
+    {
+      "name": "Education & Learning",
+      "description": "Comprehensive educational programs providing quality learning opportunities, scholarships, and skill development for children and adults",
+      "icon": "book",
+      "color": "blue",
+      "order": 1
+    },
+    {
+      "name": "Healthcare & Wellness",
+      "description": "Medical services, health camps, and wellness programs ensuring accessible healthcare for underserved communities",
+      "icon": "heart",
+      "color": "rose",
+      "order": 2
+    },
+    {
+      "name": "Community Development",
+      "description": "Infrastructure projects, clean water initiatives, and sustainable development programs building stronger communities",
+      "icon": "users",
+      "color": "purple",
+      "order": 3
+    },
+    {
+      "name": "Environmental Conservation",
+      "description": "Tree plantation drives, waste management, and environmental awareness programs protecting our planet",
+      "icon": "leaf",
+      "color": "emerald",
+      "order": 4
+    },
+    {
+      "name": "Women Empowerment",
+      "description": "Vocational training, microfinance, and leadership programs empowering women to achieve economic independence",
+      "icon": "shield",
+      "color": "amber",
+      "order": 5
+    }
+  ],
+  "donations": [
+    {
+      "name": "Mohammad Ali",
+      "email": "m.ali@example.com",
+      "phone": "+880 1712-111111",
+      "amount": 5000.00,
+      "paymentMethod": "BANK TRANSFER",
+      "motivation": "Supporting education for underprivileged children",
+      "status": "completed",
+      "transactionId": "TXN-2026-001",
+      "receiptUrl": "/receipts/TXN-2026-001.pdf",
+      "date": "2026-01-15T10:30:00Z",
+      "donorId": "D-101"
+    },
+    {
+      "name": "Fatima Rahman",
+      "email": "fatima.r@example.com",
+      "phone": "+880 1723-222222",
+      "amount": 10000.00,
+      "paymentMethod": "PAYONEER",
+      "motivation": "Healthcare support for rural communities",
+      "status": "completed",
+      "transactionId": "TXN-2026-002",
+      "receiptUrl": "/receipts/TXN-2026-002.pdf",
+      "date": "2026-01-20T14:45:00Z",
+      "donorId": "D-102"
+    },
+    {
+      "name": "Karim Hassan",
+      "email": "k.hassan@example.com",
+      "phone": "+880 1734-333333",
+      "amount": 3000.00,
+      "paymentMethod": "OFFLINE DONATE",
+      "motivation": "Clean water initiative",
+      "status": "completed",
+      "transactionId": "TXN-2026-003",
+      "date": "2026-02-05T09:15:00Z",
+      "donorId": "D-103"
+    },
+    {
+      "name": "Nusrat Jahan",
+      "email": "nusrat.j@example.com",
+      "phone": "+880 1745-444444",
+      "amount": 7500.00,
+      "paymentMethod": "BANK TRANSFER",
+      "motivation": "Women empowerment program",
+      "status": "pending",
+      "transactionId": "TXN-2026-004",
+      "date": "2026-02-10T11:20:00Z",
+      "donorId": "D-102"
+    },
+    {
+      "name": "Ahmed Khan",
+      "email": "ahmed.k@example.com",
+      "phone": "+880 1756-555555",
+      "amount": 15000.00,
+      "paymentMethod": "PAYONEER",
+      "motivation": "General donation to support all programs",
+      "status": "completed",
+      "transactionId": "TXN-2026-005",
+      "receiptUrl": "/receipts/TXN-2026-005.pdf",
+      "date": "2026-02-12T16:00:00Z",
+      "donorId": "D-104"
+    },
+    {
+      "name": "Sultana Begum",
+      "email": "sultana.b@example.com",
+      "phone": "+880 1767-666666",
+      "amount": 2000.00,
+      "paymentMethod": "OFFLINE DONATE",
+      "motivation": "Tree plantation drive",
+      "status": "completed",
+      "transactionId": "TXN-2026-006",
+      "date": "2026-02-14T08:50:00Z",
+      "donorId": "D-101"
+    },
+    {
+      "name": "Rahim Ahmed",
+      "email": "rahim.a@example.com",
+      "phone": "+880 1778-777777",
+      "amount": 8000.00,
+      "paymentMethod": "BANK TRANSFER",
+      "motivation": "Emergency medical fund",
+      "status": "completed",
+      "transactionId": "TXN-2026-007",
+      "receiptUrl": "/receipts/TXN-2026-007.pdf",
+      "date": "2026-02-18T13:10:00Z",
+      "donorId": "D-101"
+    },
+    {
+      "name": "Ayesha Siddique",
+      "email": "ayesha.s@example.com",
+      "phone": "+880 1789-888888",
+      "amount": 4500.00,
+      "paymentMethod": "PAYONEER",
+      "motivation": "Digital literacy program",
+      "status": "pending",
+      "transactionId": "TXN-2026-008",
+      "date": "2026-02-19T15:30:00Z",
+      "donorId": "D-102"
+    }
+  ],
+  "reports": [
+    {
+      "id": "R001",
+      "title": "Annual Impact Assessment",
+      "description": "Comprehensive analysis of yearly mission outcomes, beneficiary statistics, and geographical reach.",
+      "type": "PDF",
+      "date": "Generated 2 days ago",
+      "size": "4.2 MB",
+      "color": "bg-teal-500"
+    },
+    {
+      "id": "R002",
+      "title": "Q1 Financial Audit",
+      "description": "Detailed breakdown of Q1 donations, expenditure, and operational costs for audit compliance.",
+      "type": "CSV",
+      "date": "Generated 1 week ago",
+      "size": "1.8 MB",
+      "color": "bg-emerald-500"
+    },
+    {
+      "id": "R003",
+      "title": "Volunteer Activity Log",
+      "description": "Summary of volunteer hours, field deployments, and skills utilization for the last quarter.",
+      "type": "XLSX",
+      "date": "Generated 3 days ago",
+      "size": "850 KB",
+      "color": "bg-indigo-500"
+    },
+    {
+      "id": "R004",
+      "title": "Donor Retention Report",
+      "description": "Analysis of donor churn, recurring donation patterns, and campaign efficiency.",
+      "type": "PDF",
+      "date": "Generated yesterday",
+      "size": "2.5 MB",
+      "color": "bg-amber-500"
+    }
+  ],
+  "newsletterStats": {
+    "subscribersCount": 4520,
+    "lastBroadcastDate": "2026-02-15"
+  },
+  "subscribers": [
+    { "email": "john.doe@example.com", "subscribedAt": "2025-01-15T10:00:00Z" },
+    { "email": "jane.smith@example.com", "subscribedAt": "2025-02-20T14:30:00Z" },
+    { "email": "ahmed.rahman@example.com", "subscribedAt": "2025-03-10T09:15:00Z" },
+    { "email": "fatima.khan@example.com", "subscribedAt": "2025-04-05T16:45:00Z" },
+    { "email": "mohammad.ali@example.com", "subscribedAt": "2025-05-12T11:20:00Z" }
+  ],
+  "alertTemplates": [
+    {
+      "id": "cyclone",
+      "title": "Cyclone Warning",
+      "body": "URGENT: Cyclone Alert Level 4. Please proceed to designated shelter points immediately. Safe zones: [LINK]",
+      "color": "bg-red-500"
+    },
+    {
+      "id": "flood",
+      "title": "Flood Evacuation",
+      "body": "ALERT: Water levels rising in your sector. Evacuation protocols initiated. Contact regional HQ if stranded.",
+      "color": "bg-teal-500"
+    },
+    {
+      "id": "relief",
+      "title": "Relief Distribution",
+      "body": "UPDATE: Relief supplies arriving at Sector 7 distribution node at 14:00 today. Bring ID card.",
+      "color": "bg-emerald-500"
+    }
+  ],
+  "donationSection": {
+    "badgeText": "Live humanitarian updates",
+    "title": "Impact Collections.",
+    "subtitle": "Resource Mobilization",
+    "description": "Providing resources to high-priority humanitarian needs. Your intervention is the catalyst for systemic change.",
+    "impactStats": [
+      { "label": "Capital Deployed", "value": "$1.2M+" },
+      { "label": "Citizens Secured", "value": "50k+" }
+    ]
+  },
+  "programsSection": {
+    "badgeText": "Holistic Interventions",
+    "title": "Programs Driving",
+    "titleHighlight": "Systemic Change",
+    "subtitle": "Comprehensive initiatives creating lasting impact across communities."
+  },
+  "testimonialsSection": {
+    "badgeText": "Impact Frequency Verification",
+    "title": "Trusted by global",
+    "titleHighlight": "changemakers.",
+    "subtitle": "Systemic validation of mission impact through the lens of national facilitators and community catalysts."
+  },
+  "newsletterSection": {
+    "badgeText": "Intelligence Synchronization Hub",
+    "title": "Authorize Your",
+    "titleHighlight": "Impact Frequency.",
+    "subtitle": "Subscribe to receive system-wide operational updates, field intelligence, and structural transformation reports."
+  },
+  "footerSection": {
+    "description": "Birdsfly Sangstha is a premier national NGO dedicated to impactful humanitarian work, fostering sustainable resilience across the Delta."
+  },
+  "blogSection": {
+    "badgeText": "Latest Articles",
+    "title": "Field",
+    "titleHighlight": "Articles",
+    "subtitle": "Professional reporting on global impact. Insightful narratives from our humanitarian clusters."
+  },
+  "eventsSection": {
+    "badgeText": "Upcoming Missions",
+    "title": "Tactical",
+    "titleHighlight": "Operations.",
+    "subtitle": "Join our synchronized field operations and community-driven initiatives. Every event is a node in our global humanitarian network."
+  },
+  "footer": {
+      "contact": {
+        "address": "House #123, Road #45, Sector #7, Uttara, Dhaka-1230",
+        "phone": "+880 1234 567890",
+        "email": "info@birdsfly.org"
+      },
+      "social": {
+        "facebook": "https://facebook.com/birdsfly",
+        "twitter": "https://twitter.com/birdsfly",
+        "instagram": "https://instagram.com/birdsfly",
+        "linkedin": "https://linkedin.com/company/birdsfly"
+      }
+    },
+    "volunteerApplications": [
+      {
+        "id": "VOL-001",
+        "firstName": "Tanvir",
+        "lastName": "Hossain",
+        "email": "tanvir.h@example.com",
+        "phone": "01711223344",
+        "city": "Dhaka",
+        "country": "Bangladesh",
+        "interests": ["Medical", "Disaster Relief"],
+        "motivation": "I am a medical student and want to help people in rural areas.",
+        "status": "pending",
+        "date": "2026-01-10T09:00:00Z"
+      },
+      {
+        "id": "VOL-002",
+        "firstName": "Sadia",
+        "lastName": "Islam",
+        "email": "sadia.i@example.com",
+        "phone": "01811223344",
+        "city": "Chittagong",
+        "country": "Bangladesh",
+        "interests": ["Education"],
+        "motivation": "I love teaching children and have some experience with NGO schools.",
+        "status": "approved",
+        "date": "2026-02-01T10:00:00Z"
+      },
+      {
+        "id": "VOL-003",
+        "firstName": "Rafiqul",
+        "lastName": "Islam",
+        "email": "rafiqul.i@example.com",
+        "phone": "01911223344",
+        "city": "Sylhet",
+        "country": "Bangladesh",
+        "interests": ["Logistics", "General"],
+        "motivation": "I want to serve my country during disasters and help with distribution.",
+        "status": "rejected",
+        "date": "2026-02-15T11:00:00Z"
+      },
+      {
+        "id": "VOL-004",
+        "firstName": "Ayesha",
+        "lastName": "Sultana",
+        "email": "ayesha.s@example.com",
+        "phone": "01611223344",
+        "city": "Khulna",
+        "country": "Bangladesh",
+        "interests": ["Environment"],
+        "motivation": "Passionate about climate change and community gardening.",
+        "status": "pending",
+        "date": "2026-02-20T14:30:00Z"
+      }
+    ],    "donors": [
+      {
+        "id": "D-101",
+        "name": "Mohammad Ali",
+        "email": "m.ali@example.com",
+        "phone": "+880 1712-111111",
+        "type": "Individual",
+        "status": "Active",
+        "joinDate": "2024-05-12",
+        "totalLifetimeValue": 15000.00,
+        "lastDonationDate": "2026-01-15",
+        "tags": ["Education", "Recurring"],
+        "notes": [
+          { "id": 1, "date": "2025-12-10", "author": "Sarah Ahmed", "content": "Called to thank him for the year-end donation. He is interested in visiting the school." },
+          { "id": 2, "date": "2024-06-01", "author": "System", "content": "Welcome packet sent." }
+        ]
+      },
+      {
+        "id": "D-102",
+        "name": "Fatima Rahman",
+        "email": "fatima.r@example.com",
+        "phone": "+880 1723-222222",
+        "type": "Major Donor",
+        "status": "Active",
+        "joinDate": "2023-11-20",
+        "totalLifetimeValue": 55000.00,
+        "lastDonationDate": "2026-01-20",
+        "tags": ["Healthcare", "VIP"],
+        "notes": [
+          { "id": 1, "date": "2026-01-21", "author": "Dr. Kamal", "content": "Fatima pledged to support the new clinic wing." }
+        ]
+      },
+      {
+        "id": "D-103",
+        "name": "TechCorp Ltd.",
+        "email": "csr@techcorp.bd",
+        "phone": "+880 9666-777888",
+        "type": "Corporate",
+        "status": "Active",
+        "joinDate": "2022-03-15",
+        "totalLifetimeValue": 120000.00,
+        "lastDonationDate": "2025-12-25",
+        "tags": ["Corporate", "Sponsor"],
+        "notes": []
+      },
+      {
+        "id": "D-104",
+        "name": "Ahmed Khan",
+        "email": "ahmed.k@example.com",
+        "phone": "+880 1756-555555",
+        "type": "Individual",
+        "status": "Lapsed",
+        "joinDate": "2024-01-10",
+        "totalLifetimeValue": 15000.00,
+        "lastDonationDate": "2026-02-12",
+        "tags": ["General"],
+        "notes": [
+          { "id": 1, "date": "2025-06-01", "author": "Tariq Ali", "content": "Sent re-engagement email." }
+        ]
+      }
+    ],
+    "contactSettings": {
+      "phone": "+880 1727-009448",
+      "email": "birdsfly.sangstha@gmail.com",
+      "headquarters": {
+        "line1": "Bosundhora Tower, 3rd Floor",
+        "line2": "Satkhira District, Bangladesh",
+        "mapsUrl": "https://maps.google.com/?q=Bosundhora+Tower+Satkhira"
+      },
+      "regionalHubs": [
+        "Satkhira District",
+        "Khulna",
+        "Coastal Bangladesh"
+      ],
+      "services": [
+        "General Inquiry",
+        "Volunteer Opportunities",
+        "Donation Support",
+        "Partnership",
+        "Media Request",
+        "Climate Resilience Programs",
+        "WASH Programs",
+        "Education Support"
+      ],
+      "socials": {
+        "facebook": "https://facebook.com/birdsflysangstha",
+        "twitter": "https://twitter.com/birdsflysangstha",
+        "instagram": "https://instagram.com/birdsflysangstha",
+        "linkedin": "https://linkedin.com/company/birdsflysangstha",
+        "youtube": "https://youtube.com/birdsflysangstha"
+      }
+    },
+    "contactFaqs": [
+      {
+        "question": "How quickly do you respond?",
+        "answer": "Our command center operates 24/7. Expect a response within 2-4 hours for urgent matters."
+      },
+      {
+        "question": "Can I visit the headquarters?",
+        "answer": "Visits are by appointment only to ensure operational security. Please schedule via email."
+      },
+      {
+        "question": "Where can I drop off donations?",
+        "answer": "Donation drop-points are available in all major districts linked on the map above."
+      }
+    ],
+    "admins": [
+      {
+        "id": 1,
+        "name": "Dr. Sarah Ahmed",
+        "email": "sarah.ahmed@birdsfly.org",
+        "role": "Super Admin",
+        "status": "Active",
+        "lastActive": "2 mins ago",
+        "avatar": "https://i.pravatar.cc/300?u=sarah"
+      },
+      {
+        "id": 2,
+        "name": "Rahim Khan",
+        "email": "rahim.khan@birdsfly.org",
+        "role": "Editor",
+        "status": "Active",
+        "lastActive": "1 hour ago",
+        "avatar": "https://i.pravatar.cc/300?u=rahim"
+      },
+      {
+        "id": 3,
+        "name": "Fatima Ali",
+        "email": "fatima.ali@birdsfly.org",
+        "role": "Viewer",
+        "status": "Inactive",
+        "lastActive": "2 days ago",
+        "avatar": "https://i.pravatar.cc/300?u=fatima"
+      }
+    ],
+    "dashboard-activities": [
+      {
+        "id": 1,
+        "user": { "name": "Dr. Sarah Ahmed", "image": "https://i.pravatar.cc/300?u=sarah" },
+        "action": "Updated global",
+        "target": "Contact Settings",
+        "time": "2026-02-25T14:30:00Z"
+      },
+      {
+        "id": 2,
+        "user": { "name": "Rahim Khan", "image": "https://i.pravatar.cc/300?u=rahim" },
+        "action": "Created campaign",
+        "target": "Winter Relief 2026",
+        "time": "2026-02-25T12:00:00Z"
+      }
+    ],
+    "dashboardMeta": {
+      "efficiencyGains": "42%",
+      "totalDataPoints": "25M"
+    },
+    "media": [
+      {
+        "id": "img_1",
+        "url": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070",
+        "name": "Community Support Banner",
+        "type": "image",
+        "size": "2.4 MB",
+        "date": "2024-01-15",
+        "mimeType": "image/jpeg"
+      },
+      {
+        "id": "img_2",
+        "url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070",
+        "name": "Medical Outreach",
+        "type": "image",
+        "size": "1.8 MB",
+        "date": "2024-02-20",
+        "mimeType": "image/jpeg"
+      },
+      {
+        "id": "img_3",
+        "url": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022",
+        "name": "Education Program",
+        "type": "image",
+        "size": "2.1 MB",
+        "date": "2024-03-10",
+        "mimeType": "image/jpeg"
+      },
+      {
+        "id": "img_4",
+        "url": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2613",
+        "name": "Environmental Project",
+        "type": "image",
+        "size": "3.2 MB",
+        "date": "2024-04-05",
+        "mimeType": "image/jpeg"
+      },
+      {
+        "id": "img_5",
+        "url": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070",
+        "name": "Healthcare Team",
+        "type": "image",
+        "size": "1.5 MB",
+        "date": "2024-05-12",
+        "mimeType": "image/jpeg"
+      },
+      {
+        "id": "img_6",
+        "url": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=2070",
+        "name": "Doctor Portrait",
+        "type": "image",
+        "size": "1.9 MB",
+        "date": "2024-06-18",
+        "mimeType": "image/jpeg"
+      },
+      {
+        "id": "img_7",
+        "url": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=2070",
+        "name": "Housing Initiative",
+        "type": "image",
+        "size": "2.6 MB",
+        "date": "2024-07-22",
+        "mimeType": "image/jpeg"
+      },
+      {
+        "id": "img_8",
+        "url": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070",
+        "name": "Volunteer Team",
+        "type": "image",
+        "size": "2.0 MB",
+        "date": "2024-08-30",
+        "mimeType": "image/jpeg"
+      }
+    ],
+    "navigation": [
+      {
+        "label": "Causes",
+        "href": "/causes",
+        "icon": "HandHeart",
+        "children": [
+          {
+            "label": "Sustainability",
+            "href": "/causes/sustainability",
+            "tag": "Critical",
+            "description": "Implementing long-term solutions for environmental and community resilience in rural Bangladesh."
+          },
+          {
+            "label": "Strategic Education",
+            "href": "/causes/education",
+            "tag": "Active",
+            "description": "Breaking cycles of poverty through accessible, quality learning for children across all 64 districts."
+          },
+          {
+            "label": "Healthcare Equity",
+            "href": "/causes/medical",
+            "tag": "Vital",
+            "description": "Ensuring life-saving medical care reaches the most remote communities in the Delta."
+          },
+          {
+            "label": "Food Systems",
+            "href": "/causes/food",
+            "description": "Building sustainable food security and supporting local livelihoods for small-scale farmers."
+          }
+        ]
+      },
+      {
+        "label": "Explore",
+        "href": "#",
+        "icon": "LayoutGrid",
+        "children": [
+          {
+            "label": "Events",
+            "href": "/events",
+            "description": "Participate in our impact summits, field visits, and national forums."
+          },
+          {
+            "label": "Gallery",
+            "href": "/gallery",
+            "description": "See the impact of your contributions through our project field photos."
+          },
+          {
+            "label": "Volunteers",
+            "href": "/volunteers",
+            "description": "Meet our dedicated volunteers working across Bangladesh."
+          },
+          {
+            "label": "Become a Volunteer",
+            "href": "/become-a-volunteer",
+            "description": "Join our mission and make a difference in your community."
+          },
+          {
+            "label": "Impact Stories",
+            "href": "/success-stories",
+            "description": "Real stories of people whose lives were changed by your help in Bangladesh."
+          }
+        ]
+      },
+      {
+        "label": "Services",
+        "href": "/service"
+      },
+      {
+        "label": "News",
+        "href": "/blog"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      }
+    ]
+  }

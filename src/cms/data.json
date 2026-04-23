@@ -1,0 +1,889 @@
+{
+  "global": {
+    "siteName": "BFS Foundation",
+    "logo": null,
+    "defaultSeo": {
+      "metaTitle": "BFS Foundation - Empowering Coastal Communities in Satkhira, Bangladesh",
+      "metaDescription": "BFS Foundation is a non-governmental organization based in Satkhira District, Bangladesh. Since 2022, we build resilience, sustainability, and social justice in coastal communities. Contact: 01727009448 | Bosundhora Tower, 3rd Floor, Satkhira.",
+      "shareImage": null
+    },
+    "siteDescription": "Building resilience, sustainability, and social justice in Bangladesh's coastal communities. Based in Satkhira since 2022, we work across Climate Resilience, WASH, Agriculture, Health, Education, Women Empowerment, and Environmental Conservation.",
+    "favicon": null
+  },
+  "heroContent": {
+    "badgeText": "BFS Foundation - Since 2022",
+    "title": "Building Resilience in Coastal Communities",
+    "titleHighlight": "Satkhira, Bangladesh",
+    "subtitle": "A non-governmental organization dedicated to sustainability, social justice, and climate resilience across 12 key sectors. Located at Bosundhora Tower, 3rd Floor, Satkhira. Contact us: 01727009448.",
+    "videoUrls": ["", "", "", ""],
+    "carouselImages": [
+      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070",
+      "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2070",
+      "https://images.unsplash.com/photo-1593113630400-ea4288922497?q=80&w=2070",
+      "https://images.unsplash.com/photo-1536617621572-1d5f1e6269a0?q=80&w=2070"
+    ],
+    "stat1Value": "12",
+    "stat1Label": "Focus Areas",
+    "stat2Value": "50+",
+    "stat2Label": "Communities Reached",
+    "featuredStoryLabel": "Our Mission",
+    "featuredStoryTitle": "Committed to building resilience, sustainability, and social justice in coastal communities.",
+    "donorAvatars": [],
+    "donorCount": "0"
+  },
+  "identitySection": {
+    "badge": "Who We Are",
+    "title": "Empowering Coastal Communities in Satkhira",
+    "description": "BFS Foundation is a non-governmental organization based in Satkhira District, Bangladesh. We started our journey in 2022, with our office located at Bosundhora Tower, 3rd Floor, Satkhira. We are committed to building resilience, sustainability, and social justice in coastal communities. Our work spans across multiple sectors that directly impact vulnerable populations."
+  },
+  "services": [
+    {
+      "name": "Climate Change & Disaster Risk Reduction",
+      "slug": "climate-disaster-risk-reduction",
+      "description": "Cyclone preparedness and response, sustainable embankment protection, coastal afforestation, and rehabilitation of climate refugees in Satkhira's vulnerable coastal belt.",
+      "icon": "shield",
+      "color": "blue",
+      "badge": "CRITICAL",
+      "order": 1
+    },
+    {
+      "name": "Water, Sanitation & Hygiene (WASH)",
+      "slug": "wash-programs",
+      "description": "Saline water purification (RO Plant), rainwater harvesting, arsenic-free water supply, and installation of improved latrines for healthy communities.",
+      "icon": "droplets",
+      "color": "cyan",
+      "badge": "URGENT",
+      "order": 2
+    },
+    {
+      "name": "Sustainable Agriculture & Food Security",
+      "slug": "sustainable-agriculture",
+      "description": "Salt-tolerant rice and vegetable cultivation, cage fish farming, and promotion of organic fertilizers to ensure food security for coastal farmers.",
+      "icon": "sprout",
+      "color": "emerald",
+      "badge": "ACTIVE",
+      "order": 3
+    },
+    {
+      "name": "Public Health & Nutrition",
+      "slug": "public-health",
+      "description": "Reproductive health protection for coastal women, maternal and child nutrition programs, and prevention of infectious diseases.",
+      "icon": "heart-pulse",
+      "color": "rose",
+      "badge": "VITAL",
+      "order": 4
+    },
+    {
+      "name": "Education & Skill Development",
+      "slug": "education-skills",
+      "description": "Non-formal education to reduce dropouts, ICT training, and technical and vocational skill enhancement for coastal youth.",
+      "icon": "book-open",
+      "color": "indigo",
+      "badge": "FUTURE",
+      "order": 5
+    },
+    {
+      "name": "Women Empowerment & Gender Equality",
+      "slug": "women-empowerment",
+      "description": "Prevention of child marriage, legal aid for women, and small entrepreneurship development for women's self-reliance.",
+      "icon": "users",
+      "color": "pink",
+      "badge": "EMPOWER",
+      "order": 6
+    },
+    {
+      "name": "Environment & Biodiversity Conservation",
+      "slug": "environment-conservation",
+      "description": "Protection of Sundarbans honey and fish collectors, plastic pollution control, and safeguarding local ecosystems.",
+      "icon": "leaf",
+      "color": "green",
+      "badge": "PROTECT",
+      "order": 7
+    },
+    {
+      "name": "Child Protection & Rights",
+      "slug": "child-protection",
+      "description": "Elimination of child labor, rehabilitation of street children, and promoting children's mental development.",
+      "icon": "heart",
+      "color": "amber",
+      "badge": "CARE",
+      "order": 8
+    },
+    {
+      "name": "Governance & Human Rights",
+      "slug": "governance-rights",
+      "description": "Ensuring access to government services, promoting transparency and accountability, and protecting land rights.",
+      "icon": "shield-check",
+      "color": "violet",
+      "badge": "RIGHTS",
+      "order": 9
+    },
+    {
+      "name": "Youth Development & Volunteerism",
+      "slug": "youth-development",
+      "description": "Engaging youth in social work, anti-drug campaigns, and leadership development for next-generation change makers.",
+      "icon": "users",
+      "color": "sky",
+      "badge": "YOUTH",
+      "order": 10
+    },
+    {
+      "name": "Technology & Innovation",
+      "slug": "technology-innovation",
+      "description": "Use of drones and apps in agriculture, e-learning initiatives, and expanding digital services to marginalized communities.",
+      "icon": "monitor",
+      "color": "cyan",
+      "badge": "INNOVATE",
+      "order": 11
+    },
+    {
+      "name": "Cyber Security Awareness",
+      "slug": "cyber-security",
+      "description": "Raising awareness about online safety, training communities in secure digital practices, and protecting vulnerable groups from cyber threats.",
+      "icon": "shield",
+      "color": "slate",
+      "badge": "SECURE",
+      "order": 12
+    }
+  ],
+  "impactStats": [
+    {
+      "metric": "Communities Served",
+      "value": "50+",
+      "change": "Growing",
+      "icon": "users",
+      "color": "blue",
+      "description": "Villages across Satkhira District"
+    },
+    {
+      "metric": "Focus Areas",
+      "value": "12",
+      "change": "Comprehensive",
+      "icon": "shield",
+      "color": "emerald",
+      "description": "Sectors covering all aspects of coastal life"
+    },
+    {
+      "metric": "Years of Service",
+      "value": "4+",
+      "change": "Since 2022",
+      "icon": "globe",
+      "color": "amber",
+      "description": "Dedicated service to Satkhira's coastal belt"
+    },
+    {
+      "metric": "Office Location",
+      "value": "Bosundhora Tower",
+      "change": "3rd Floor",
+      "icon": "home",
+      "color": "indigo",
+      "description": "Satkhira District, Bangladesh"
+    }
+  ],
+  "statsSection": {
+    "badgeText": "Our Impact in Satkhira",
+    "title": "Building Resilient",
+    "titleHighlight": "Coastal Communities",
+    "subtitle": "Since 2022, we've been working across 12 sectors to create lasting change in Satkhira's vulnerable coastal populations. Join us in our mission."
+  },
+  "causesSection": {
+    "badgeText": "OUR PROGRAMS",
+    "title": "Our 12 Focus Areas",
+    "titleHighlight": "Making Real Impact",
+    "subtitle": "Working across Climate Resilience, WASH, Agriculture, Health, Education, Women Empowerment, Environment, Child Protection, Governance, Youth Development, Technology, and Cyber Security."
+  },
+  "volunteersSection": {
+    "badgeText": "JOIN OUR MISSION",
+    "title": "Become a Volunteer",
+    "titleHighlight": "Change Maker",
+    "subtitle": "Join our team of dedicated volunteers working across Satkhira's coastal communities. Together, we can build a more resilient future."
+  },
+  "aboutHero": {
+    "title": "BFS Foundation - Empowering Coastal Communities Since 2022",
+    "subtitle": "BFS Foundation is a non-governmental organization based in Satkhira District, Bangladesh. Our office is located at Bosundhora Tower, 3rd Floor, Satkhira. Contact us: 01727009448. We are committed to building resilience, sustainability, and social justice in coastal communities through our 12 focus areas.",
+    "backgroundImage": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070",
+    "overlayOpacity": 60,
+    "overlayColor": "bg-slate-900",
+    "ctaText": "Learn More",
+    "ctaLink": "#mission",
+    "showScrollIndicator": true,
+    "secondaryCtaText": "",
+    "secondaryCtaLink": "",
+    "badgeText": "Who We Are",
+    "showBadge": true,
+    "titleHighlight": "Since 2022"
+  },
+  "missionVision": {
+    "missionTitle": "Our Mission",
+    "missionDescription": "BFS Foundation is dedicated to building resilience, sustainability, and social justice in Bangladesh's coastal communities. We work across 12 key sectors - Climate Change & DRR, WASH, Sustainable Agriculture, Public Health, Education, Women Empowerment, Environment Conservation, Child Protection, Governance, Youth Development, Technology & Innovation, and Cyber Security - to directly impact vulnerable populations and create lasting change in Satkhira District.",
+    "missionPoints": [
+      { "text": "Climate Change & Disaster Risk Reduction" },
+      { "text": "Water, Sanitation & Hygiene (WASH)" },
+      { "text": "Sustainable Agriculture & Food Security" },
+      { "text": "Public Health & Nutrition" },
+      { "text": "Education & Skill Development" },
+      { "text": "Women Empowerment & Gender Equality" }
+    ],
+    "missionImage": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070",
+    "visionTitle": "Our Vision",
+    "visionDescription": "We envision coastal communities where every individual has access to clean water, sustainable livelihoods, quality education, and the opportunity to thrive despite climate challenges. A future where social justice, environmental sustainability, human dignity, digital inclusion, and cyber safety are realities for all in Satkhira's coastal belt.",
+    "visionPoints": [
+      { "text": "Environment & Biodiversity Conservation" },
+      { "text": "Child Protection & Rights" },
+      { "text": "Governance & Human Rights" },
+      { "text": "Youth Development & Volunteerism" },
+      { "text": "Technology & Innovation" },
+      { "text": "Cyber Security Awareness" }
+    ],
+    "visionImage": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2613"
+  },
+  "aboutStats": [
+    {
+      "id": "stat-1",
+      "label": "Years of Service",
+      "value": "4+",
+      "icon": "shield",
+      "description": "Serving coastal communities since 2022"
+    },
+    {
+      "id": "stat-2",
+      "label": "Focus Areas",
+      "value": "12",
+      "icon": "target",
+      "description": "Comprehensive sector coverage"
+    },
+    {
+      "id": "stat-3",
+      "label": "Communities Reached",
+      "value": "50+",
+      "icon": "users",
+      "description": "Across Satkhira District"
+    },
+    {
+      "id": "stat-4",
+      "label": "Location",
+      "value": "Bosundhora Tower",
+      "icon": "map-pin",
+      "description": "3rd Floor, Satkhira"
+    }
+  ],
+  "eventHighlights": [
+    {
+      "date": "15th MAR Friday",
+      "title": "Cyclone Preparedness Drill",
+      "sub": "Shyamnagar Coastal Area"
+    },
+    {
+      "date": "22nd APR Tuesday",
+      "title": "Women Entrepreneurs Meet",
+      "sub": "Satkhira Sadar"
+    },
+    {
+      "date": "05th JUN Thursday",
+      "title": "World Environment Day",
+      "sub": "Mangrove Plantation Drive"
+    }
+  ],
+  "donationStats": {
+    "goal": 50000,
+    "raised": 0,
+    "donorCount": 0,
+    "featuredDonation": null
+  },
+  "contactSettings": {
+    "phone": "01727009448",
+    "email": "info@birdsfly.org",
+    "headquarters": {
+      "line1": "BFS Foundation",
+      "line2": "Bosundhora Tower, 3rd Floor, Satkhira 9400, Bangladesh"
+    },
+    "social": {
+      "facebook": "#",
+      "twitter": "#",
+      "instagram": "#",
+      "youtube": "#"
+    }
+  },
+  "footerSection": {
+    "description": "BFS Foundation is a non-governmental organization based in Satkhira District, Bangladesh. Since 2022, we've been committed to building resilience, sustainability, and social justice in coastal communities. Located at Bosundhora Tower, 3rd Floor, Satkhira. Contact: 01727009448."
+  },
+  "categories": [
+    {
+      "name": "Climate Resilience",
+      "slug": "climate-resilience",
+      "description": "Cyclone preparedness, sustainable embankment protection, coastal afforestation, and rehabilitation of climate refugees in Satkhira's vulnerable coastal belt."
+    },
+    {
+      "name": "WASH Programs",
+      "slug": "wash",
+      "description": "Water, Sanitation and Hygiene initiatives including saline water purification, rainwater harvesting, arsenic-free water supply, and improved latrines."
+    },
+    {
+      "name": "Agriculture",
+      "slug": "agriculture",
+      "description": "Sustainable agriculture and food security programs including salt-tolerant crop cultivation, cage fish farming, and organic fertilizer promotion."
+    },
+    {
+      "name": "Public Health",
+      "slug": "public-health",
+      "description": "Healthcare initiatives focusing on reproductive health for coastal women, maternal and child nutrition, and infectious disease prevention."
+    },
+    {
+      "name": "Education",
+      "slug": "education",
+      "description": "Educational support including non-formal education, ICT training, and technical vocational skill development for coastal youth."
+    },
+    {
+      "name": "Women Empowerment",
+      "slug": "women-empowerment",
+      "description": "Gender equality initiatives including prevention of child marriage, legal aid for women, and small entrepreneurship development."
+    },
+    {
+      "name": "Environment",
+      "slug": "environment",
+      "description": "Biodiversity conservation including protection of Sundarbans honey and fish collectors, and plastic pollution control."
+    },
+    {
+      "name": "Child Protection",
+      "slug": "child-protection",
+      "description": "Child rights initiatives including elimination of child labor, rehabilitation of street children, and mental development programs."
+    },
+    {
+      "name": "Governance",
+      "slug": "governance",
+      "description": "Access to government services, transparency, accountability, and protection of land rights for marginalized communities."
+    },
+    {
+      "name": "Youth Development",
+      "slug": "youth-development",
+      "description": "Youth engagement in social work, anti-drug campaigns, and leadership development for coastal communities."
+    },
+    {
+      "name": "Technology & Innovation",
+      "slug": "technology",
+      "description": "Use of drones and apps in agriculture, e-learning initiatives, and expanding digital services to marginalized communities."
+    },
+    {
+      "name": "Cyber Security",
+      "slug": "cyber-security",
+      "description": "Raising awareness about online safety, training communities in secure digital practices, and protecting from cyber threats."
+    }
+  ],
+  "causes": [
+    {
+      "id": 1,
+      "title": "Cyclone Preparedness & Early Warning Systems",
+      "slug": "cyclone-preparedness-satkhira",
+      "description": "Help us establish cyclone shelters, early warning systems, and evacuation protocols to protect families in Satkhira's coastal belt from devastating cyclones and storm surges.",
+      "progress": 0,
+      "raised": 0,
+      "goal": 15000,
+      "category": "Climate Resilience",
+      "tag": "URGENT",
+      "icon": "CloudLightning",
+      "tagColor": "red",
+      "gradient": "from-blue-600 to-cyan-500",
+      "metric": "Coastal villages coverage",
+      "size": "large",
+      "glow": "blue",
+      "donors": 0,
+      "image": "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2070",
+      "location": "Shyamnagar, Kaliganj, Ashashuni, Satkhira",
+      "impact": "Life-saving early warning and safe evacuation"
+    },
+    {
+      "id": 2,
+      "title": "Clean Water for Saline-Affected Communities",
+      "slug": "clean-water-satkhira",
+      "description": "Install RO plants and rainwater harvesting systems to provide safe drinking water to families suffering from saline water intrusion in Satkhira's coastal areas.",
+      "progress": 0,
+      "raised": 0,
+      "goal": 20000,
+      "category": "WASH",
+      "tag": "CRITICAL",
+      "icon": "Droplets",
+      "tagColor": "cyan",
+      "gradient": "from-cyan-500 to-blue-600",
+      "metric": "RO plants installation",
+      "size": "large",
+      "glow": "cyan",
+      "donors": 0,
+      "image": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=2070",
+      "location": "Ashashuni, Tala, Satkhira Sadar",
+      "impact": "Families with clean drinking water"
+    },
+    {
+      "id": 3,
+      "title": "Women Entrepreneurship Development",
+      "slug": "women-entrepreneurship-satkhira",
+      "description": "Empower women in coastal Satkhira with skills training, seed capital, and mentorship to start small businesses - from livestock rearing to handicrafts and food processing.",
+      "progress": 0,
+      "raised": 0,
+      "goal": 10000,
+      "category": "Women Empowerment",
+      "tag": "TRENDING",
+      "icon": "Users",
+      "tagColor": "purple",
+      "gradient": "from-pink-500 to-purple-600",
+      "metric": "Women entrepreneurs to support",
+      "size": "medium",
+      "glow": "purple",
+      "donors": 0,
+      "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070",
+      "location": "Multiple unions across Satkhira",
+      "impact": "Sustainable livelihoods for women"
+    },
+    {
+      "id": 4,
+      "title": "Maternal & Child Health Program",
+      "slug": "maternal-health-satkhira",
+      "description": "Support mobile clinics, antenatal care, safe delivery kits, and nutrition programs to reduce maternal and infant mortality in remote coastal villages.",
+      "progress": 0,
+      "raised": 0,
+      "goal": 12500,
+      "category": "Public Health",
+      "tag": "URGENT",
+      "icon": "Heart",
+      "tagColor": "rose",
+      "gradient": "from-teal-500 to-pink-600",
+      "metric": "Villages to be covered",
+      "size": "medium",
+      "glow": "rose",
+      "donors": 0,
+      "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070",
+      "location": "Gabura, Padmapukur, Burigoalini, Shyamnagar",
+      "impact": "Healthcare for mothers & children"
+    },
+    {
+      "id": 5,
+      "title": "Salt-Tolerant Agriculture Training",
+      "slug": "agriculture-training-satkhira",
+      "description": "Help farmers adapt to climate change with salt-tolerant rice varieties (BRRI dhan-47, BRRI dhan-61), organic fertilizers, and sustainable farming techniques.",
+      "progress": 0,
+      "raised": 0,
+      "goal": 7500,
+      "category": "Agriculture",
+      "tag": "ACTIVE",
+      "icon": "Sprout",
+      "tagColor": "green",
+      "gradient": "from-green-500 to-emerald-600",
+      "metric": "Farmers to be trained",
+      "size": "medium",
+      "glow": "green",
+      "donors": 0,
+      "image": "https://images.unsplash.com/photo-1536617621572-1d5f1e6269a0?q=80&w=2070",
+      "location": "Kalaroa, Tala, Satkhira Sadar",
+      "impact": "Climate-resilient farming"
+    },
+    {
+      "id": 6,
+      "title": "Education for Coastal Children",
+      "slug": "education-satkhira",
+      "description": "Support non-formal education centers, provide school supplies, and offer scholarships to reduce dropout rates among coastal children in Satkhira.",
+      "progress": 0,
+      "raised": 0,
+      "goal": 8000,
+      "category": "Education",
+      "tag": "FUTURE",
+      "icon": "BookOpen",
+      "tagColor": "indigo",
+      "gradient": "from-indigo-500 to-purple-600",
+      "metric": "Children to be educated",
+      "size": "medium",
+      "glow": "indigo",
+      "donors": 0,
+      "image": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2070",
+      "location": "Satkhira District",
+      "impact": "Brighter future for children"
+    },
+    {
+      "id": 7,
+      "title": "Sundarbans Ecosystem Protection",
+      "slug": "sundarbans-protection",
+      "description": "Protect honey collectors and fishers in the Sundarbans, promote sustainable practices, and combat plastic pollution in this vital ecosystem.",
+      "progress": 0,
+      "raised": 0,
+      "goal": 12000,
+      "category": "Environment",
+      "tag": "CRITICAL",
+      "icon": "Leaf",
+      "tagColor": "emerald",
+      "gradient": "from-emerald-500 to-green-600",
+      "metric": "Ecosystem protection",
+      "size": "medium",
+      "glow": "emerald",
+      "donors": 0,
+      "image": "https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=2070",
+      "location": "Sundarbans Coastal Area",
+      "impact": "Preserve biodiversity"
+    },
+    {
+      "id": 8,
+      "title": "Child Protection & Anti-Child Labor",
+      "slug": "child-protection-satkhira",
+      "description": "Eliminate child labor, rehabilitate street children, and promote mental development through safe spaces and educational support.",
+      "progress": 0,
+      "raised": 0,
+      "goal": 9000,
+      "category": "Child Protection",
+      "tag": "URGENT",
+      "icon": "Shield",
+      "tagColor": "amber",
+      "gradient": "from-amber-500 to-orange-600",
+      "metric": "Children to be protected",
+      "size": "medium",
+      "glow": "amber",
+      "donors": 0,
+      "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070",
+      "location": "Satkhira District",
+      "impact": "Safe childhood for all"
+    },
+    {
+      "id": 9,
+      "title": "Youth Leadership Development",
+      "slug": "youth-leadership-satkhira",
+      "description": "Engage youth in social work, conduct anti-drug campaigns, and develop leadership skills for the next generation of change makers.",
+      "progress": 0,
+      "raised": 0,
+      "goal": 6000,
+      "category": "Youth Development",
+      "tag": "ACTIVE",
+      "icon": "Users",
+      "tagColor": "sky",
+      "gradient": "from-sky-500 to-blue-600",
+      "metric": "Youth to be trained",
+      "size": "small",
+      "glow": "sky",
+      "donors": 0,
+      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2070",
+      "location": "Satkhira District",
+      "impact": "Future leaders"
+    },
+    {
+      "id": 10,
+      "title": "Digital Literacy & Cyber Security",
+      "slug": "digital-literacy-satkhira",
+      "description": "Provide ICT training, e-learning initiatives, and cyber security awareness to protect vulnerable communities from online threats.",
+      "progress": 0,
+      "raised": 0,
+      "goal": 7000,
+      "category": "Technology",
+      "tag": "NEW",
+      "icon": "Monitor",
+      "tagColor": "cyan",
+      "gradient": "from-cyan-500 to-teal-600",
+      "metric": "People to be trained",
+      "size": "small",
+      "glow": "cyan",
+      "donors": 0,
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070",
+      "location": "Satkhira District",
+      "impact": "Digital empowerment"
+    },
+    {
+      "id": 11,
+      "title": "Legal Aid & Governance Support",
+      "slug": "legal-aid-satkhira",
+      "description": "Provide legal aid services, ensure access to government schemes, and promote transparency and accountability in local governance.",
+      "progress": 0,
+      "raised": 0,
+      "goal": 5500,
+      "category": "Governance",
+      "tag": "VITAL",
+      "icon": "Scale",
+      "tagColor": "violet",
+      "gradient": "from-violet-500 to-purple-600",
+      "metric": "Families to be supported",
+      "size": "small",
+      "glow": "violet",
+      "donors": 0,
+      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070",
+      "location": "Satkhira District",
+      "impact": "Justice for all"
+    },
+    {
+      "id": 12,
+      "title": "Embankment Protection & Afforestation",
+      "slug": "embankment-protection",
+      "description": "Protect vulnerable embankments, conduct coastal afforestation, and rehabilitate climate refugees affected by river erosion and sea-level rise.",
+      "progress": 0,
+      "raised": 0,
+      "goal": 11000,
+      "category": "Climate Resilience",
+      "tag": "CRITICAL",
+      "icon": "TreePine",
+      "tagColor": "green",
+      "gradient": "from-green-600 to-emerald-500",
+      "metric": "Kilometers protected",
+      "size": "medium",
+      "glow": "green",
+      "donors": 0,
+      "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2070",
+      "location": "Coastal Satkhira",
+      "impact": "Protection from erosion"
+    }
+  ],
+  "causesFaqs": [
+    {
+      "question": "How are funds allocated?",
+      "answer": "100% of public donations go directly to the designated cause. Operational costs are covered by private investors."
+    },
+    {
+      "question": "Can I track my impact?",
+      "answer": "Yes, every donor receives a personalized impact report showing exactly where and how their contribution was used."
+    },
+    {
+      "question": "Is my donation tax-deductible?",
+      "answer": "Absolutely. We are a verified 501(c)(3) organization. You will receive an instant tax receipt via email."
+    },
+    {
+      "question": "How do you select missions?",
+      "answer": "Our field teams conduct rigorous assessments to identify high-need areas where our resources can create the most sustainable long-term value."
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "title": "Cyclone Preparedness Training Workshop",
+      "date": "2026-03-15",
+      "time": "09:00 AM - 02:00 PM",
+      "location": "Shyamnagar Community Center, Satkhira",
+      "description": "Join us for a comprehensive training workshop on cyclone preparedness, early warning systems, and emergency response protocols. Open to all community volunteers and residents.",
+      "image": "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2070",
+      "category": "Climate Resilience",
+      "status": "upcoming",
+      "seatsAvailable": 100,
+      "registrationLink": "/events/cyclone-preparedness-march-2026"
+    },
+    {
+      "id": 2,
+      "title": "Women Entrepreneurs Network Meeting",
+      "date": "2026-04-22",
+      "time": "02:00 PM - 05:00 PM",
+      "location": "Bosundhora Tower, 3rd Floor, Satkhira",
+      "description": "Monthly gathering of women entrepreneurs to share experiences, network, and learn about new business opportunities. This month's focus: Digital marketing and financial management.",
+      "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070",
+      "category": "Women Empowerment",
+      "status": "upcoming",
+      "seatsAvailable": 50,
+      "registrationLink": "/events/women-entrepreneurs-april-2026"
+    },
+    {
+      "id": 3,
+      "title": "World Environment Day Celebration",
+      "date": "2026-06-05",
+      "time": "08:00 AM - 12:00 PM",
+      "location": "Sundarbans Coastal Belt, Satkhira",
+      "description": "Join our mangrove plantation drive to celebrate World Environment Day. Help us plant 1,000 mangrove saplings to protect our coastal ecosystem and combat climate change.",
+      "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2070",
+      "category": "Environment",
+      "status": "upcoming",
+      "seatsAvailable": 200,
+      "registrationLink": "/events/world-environment-day-2026"
+    }
+  ],
+  "volunteers": [
+    {
+      "id": 1,
+      "name": "Community Volunteers",
+      "role": "Field Coordinators",
+      "image": "https://images.unsplash.com/photo-1559027615-4811f8ac6275?q=80&w=800",
+      "bio": "Dedicated volunteers working across Satkhira's coastal communities in climate resilience, WASH, agriculture, health, and education programs.",
+      "location": "Satkhira District",
+      "focusAreas": ["Climate Resilience", "WASH", "Agriculture", "Health"]
+    }
+  ],
+  "footerLinks": [
+    {
+      "title": "Organization",
+      "links": [
+        { "name": "Our Mission", "href": "/about" },
+        { "name": "Our Impact", "href": "/gallery" },
+        { "name": "Focus Areas", "href": "/service" },
+        { "name": "News & Stories", "href": "/blog" },
+        { "name": "Transparency", "href": "/faq" }
+      ]
+    },
+    {
+      "title": "Programs",
+      "links": [
+        { "name": "Climate & DRR", "href": "/causes" },
+        { "name": "WASH Programs", "href": "/causes" },
+        { "name": "Women Empowerment", "href": "/causes" },
+        { "name": "Education", "href": "/causes" },
+        { "name": "Health", "href": "/causes" }
+      ]
+    },
+    {
+      "title": "Get Involved",
+      "links": [
+        { "name": "Donate Now", "href": "/donate" },
+        { "name": "Become Volunteer", "href": "/become-a-volunteer" },
+        { "name": "Partner With Us", "href": "/contact" },
+        { "name": "Contact Us", "href": "/contact" },
+        { "name": "FAQs", "href": "/faq" }
+      ]
+    }
+  ],
+  "social": {
+    "facebook": "#",
+    "twitter": "#",
+    "instagram": "#",
+    "youtube": "#"
+  },
+  "navigation": [
+    {
+      "label": "Causes",
+      "href": "/causes",
+      "icon": "HandHeart",
+      "children": [
+        {
+          "label": "Climate & DRR",
+          "href": "/causes/climate-disaster-risk-reduction",
+          "tag": "Critical",
+          "description": "Cyclone preparedness and coastal resilience in Satkhira."
+        },
+        {
+          "label": "WASH Programs",
+          "href": "/causes/wash-programs",
+          "tag": "Urgent",
+          "description": "Clean water and sanitation for saline-affected communities."
+        },
+        {
+          "label": "Women Empowerment",
+          "href": "/causes/women-empowerment",
+          "tag": "Active",
+          "description": "Supporting women entrepreneurs in coastal Satkhira."
+        },
+        {
+          "label": "Education",
+          "href": "/causes/education-skills",
+          "description": "Non-formal education and skill development programs."
+        }
+      ]
+    },
+    {
+      "label": "Services",
+      "href": "/service",
+      "icon": "LayoutGrid"
+    },
+    {
+      "label": "Events",
+      "href": "/events",
+      "icon": "Calendar"
+    },
+    {
+      "label": "About",
+      "href": "/about",
+      "icon": "Heart"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact",
+      "icon": "Phone"
+    }
+  ],
+  "volunteerShifts": [
+    {
+      "id": "S-001",
+      "title": "Cyclone Preparedness Training",
+      "date": "2026-03-15",
+      "startTime": "09:00",
+      "endTime": "14:00",
+      "location": "Shyamnagar Community Center",
+      "volunteersRequired": 10,
+      "assigned": [],
+      "status": "Open",
+      "role": "Training Support"
+    },
+    {
+      "id": "S-002",
+      "title": "RO Plant Installation Support",
+      "date": "2026-03-20",
+      "startTime": "08:00",
+      "endTime": "16:00",
+      "location": "Ashashuni, Satkhira",
+      "volunteersRequired": 5,
+      "assigned": [],
+      "status": "Open",
+      "role": "Technical Support"
+    },
+    {
+      "id": "S-003",
+      "title": "Women Entrepreneurs Workshop",
+      "date": "2026-04-22",
+      "startTime": "13:00",
+      "endTime": "17:00",
+      "location": "Bosundhora Tower, Satkhira",
+      "volunteersRequired": 8,
+      "assigned": [],
+      "status": "Open",
+      "role": "Event Coordination"
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "Launching BFS Foundation: A New Chapter for Satkhira's Coastal Communities",
+      "slug": "birdsfly-sangstha-launch-satkhira",
+      "description": "Introducing BFS Foundation, a new NGO based in Satkhira District, Bangladesh, committed to building resilience, sustainability, and social justice across 12 focus areas.",
+      "content": "We are excited to announce the official launch of BFS Foundation, a non-governmental organization based at Bosundhora Tower, 3rd Floor, Satkhira. Since 2022, we have been working quietly to understand the needs of our coastal communities and develop programs that create real impact.\n\nOur 12 focus areas cover the full spectrum of coastal life:\n\n1. Climate Change & Disaster Risk Reduction - Cyclone preparedness, embankment protection, coastal afforestation\n2. Water, Sanitation & Hygiene (WASH) - RO plants, rainwater harvesting, arsenic-free water\n3. Sustainable Agriculture & Food Security - Salt-tolerant crops, cage fish farming, organic fertilizers\n4. Public Health & Nutrition - Maternal health, child nutrition, disease prevention\n5. Education & Skill Development - Non-formal education, ICT training, vocational skills\n6. Women Empowerment & Gender Equality - Anti-child marriage, legal aid, entrepreneurship\n7. Environment & Biodiversity Conservation - Sundarbans protection, plastic pollution control\n8. Child Protection & Rights - Eliminating child labor, rehabilitating street children\n9. Governance & Human Rights - Access to services, transparency, land rights\n10. Youth Development & Volunteerism - Social work engagement, anti-drug campaigns\n11. Technology & Innovation - Drones in agriculture, e-learning, digital services\n12. Cyber Security Awareness - Online safety, secure digital practices\n\nWe invite you to join us in our mission. Whether through volunteering, donations, or partnerships, together we can build resilient coastal communities in Satkhira.\n\nContact us: 01727009448\nEmail: info@birdsfly.org\nAddress: Bosundhora Tower, 3rd Floor, Satkhira, Bangladesh",
+      "date": "2026-04-11",
+      "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200",
+      "author": {
+        "name": "BFS Foundation Team",
+        "image": "https://i.pravatar.cc/150?u=birdsfly",
+        "role": "Founding Team"
+      },
+      "category": {
+        "name": "Organization News"
+      },
+      "tags": [
+        "launch",
+        "satkhira",
+        "coastal-communities",
+        "ngo",
+        "bangladesh"
+      ],
+      "status": "published",
+      "featured": true,
+      "views": 500,
+      "commentsCount": 5
+    }
+  ],
+  "donations": [],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Community Member",
+      "role": "Satkhira Resident",
+      "content": "BFS Foundation has brought hope to our coastal community. Their dedication to building resilience and sustainability is truly inspiring.",
+      "image": "https://i.pravatar.cc/150?u=community1",
+      "rating": 5
+    }
+  ],
+  "galleryImages": [
+    {
+      "id": 1,
+      "src": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200",
+      "alt": "Community support",
+      "category": "Community"
+    },
+    {
+      "id": 2,
+      "src": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200",
+      "alt": "Environmental work",
+      "category": "Environment"
+    },
+    {
+      "id": 3,
+      "src": "https://images.unsplash.com/photo-1593113630400-ea4288922497?q=80&w=1200",
+      "alt": "Volunteer activities",
+      "category": "Volunteers"
+    }
+  ],
+  "subscribers": [],
+  "contactMessages": [],
+  "reports": [],
+  "admins": []
+}
