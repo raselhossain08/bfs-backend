@@ -32,17 +32,14 @@ services:
       - web
 
   backend:
-    image: node:22-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bfs-backend:latest
     container_name: bfs-backend
     restart: unless-stopped
-    working_dir: /app
-    command: >
-      sh -lc "npm ci && npm run build && npm run start:prod"
     env_file:
       - ./.env
-    volumes:
-      - ./:/app
-      - backend-node-modules:/app/node_modules
     labels:
       - "traefik.enable=true"
       # HTTP -> HTTPS redirect (keep port 80 free for ACME httpChallenge)
@@ -67,4 +64,3 @@ networks:
 
 volumes:
   traefik-letsencrypt:
-  backend-node-modules:
