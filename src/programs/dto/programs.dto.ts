@@ -1,239 +1,394 @@
-import { IsOptional, IsString, IsNumber, IsEnum, IsBoolean, IsArray } from 'class-validator';
+import {
+  IsOptional,
+  IsString,
+  IsNumber,
+  IsEnum,
+  IsBoolean,
+  IsArray,
+  IsDate,
+} from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateProgramDto {
-    @IsString()
-    title: string;
+  @IsString()
+  title: string;
 
-    @IsOptional()
-    @IsString()
-    slug?: string;
+  @IsOptional()
+  @IsString()
+  slug?: string;
 
-    @IsOptional()
-    @IsString()
-    shortDescription?: string;
+  @IsOptional()
+  @IsString()
+  shortDescription?: string;
 
-    @IsOptional()
-    @IsString()
-    description?: string;
+  @IsOptional()
+  @IsString()
+  description?: string;
 
-    @IsOptional()
-    @IsString()
-    content?: string;
+  @IsOptional()
+  @IsString()
+  content?: string;
 
-    @IsOptional()
-    @IsString()
-    image?: string;
+  @IsOptional()
+  @IsString()
+  image?: string;
 
-    @IsOptional()
-    @IsArray()
-    gallery?: string[];
+  @IsOptional()
+  @IsArray()
+  gallery?: string[];
 
-    @IsOptional()
-    @IsString()
-    icon?: string;
+  @IsOptional()
+  @IsString()
+  icon?: string;
 
-    @IsOptional()
-    @IsString()
-    color?: string;
+  @IsOptional()
+  @IsString()
+  color?: string;
 
-    @IsOptional()
-    @IsString()
-    category?: string;
+  @IsOptional()
+  @IsString()
+  category?: string;
 
-    @IsOptional()
-    @IsString()
-    location?: string;
+  @IsOptional()
+  @IsString()
+  location?: string;
 
-    @IsOptional()
-    @IsString()
-    beneficiaries?: string;
+  @IsOptional()
+  @IsString()
+  beneficiaries?: string;
 
-    @IsOptional()
-    @IsString()
-    impact?: string;
+  @IsOptional()
+  @IsString()
+  impact?: string;
 
-    @IsOptional()
-    @IsString()
-    metric?: string;
+  @IsOptional()
+  @IsString()
+  metric?: string;
 
-    @IsOptional()
-    @IsArray()
-    milestones?: { title: string; date: string; status: string }[];
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  goal?: number;
 
-    @IsOptional()
-    @IsString()
-    videoUrl?: string;
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  raised?: number;
 
-    @IsOptional()
-    @IsString()
-    videoType?: string;
+  @IsOptional()
+  @IsDate()
+  @Type(() => Date)
+  startDate?: Date;
 
-    @IsOptional()
-    @IsArray()
-    contentBlocks?: any[];
+  @IsOptional()
+  @IsDate()
+  @Type(() => Date)
+  endDate?: Date;
 
-    @IsOptional()
-    @IsString()
-    metaTitle?: string;
+  @IsOptional()
+  @IsArray()
+  milestones?: { title: string; date: string; status: string }[];
 
-    @IsOptional()
-    @IsString()
-    metaDescription?: string;
+  @IsOptional()
+  @IsString()
+  videoUrl?: string;
 
-    @IsOptional()
-    @IsString()
-    metaKeywords?: string;
+  @IsOptional()
+  @IsString()
+  videoType?: string;
 
-    @IsOptional()
-    @IsEnum(['active', 'completed', 'pending', 'on-hold', 'draft'])
-    status?: string;
+  @IsOptional()
+  @IsArray()
+  contentBlocks?: any[];
 
-    @IsOptional()
-    @IsBoolean()
-    isFeatured?: boolean;
+  @IsOptional()
+  @IsString()
+  metaTitle?: string;
 
-    @IsOptional()
-    @IsNumber()
-    order?: number;
+  @IsOptional()
+  @IsString()
+  metaDescription?: string;
+
+  @IsOptional()
+  @IsString()
+  metaKeywords?: string;
+
+  @IsOptional()
+  @IsEnum(['active', 'completed', 'pending', 'on-hold', 'draft'])
+  status?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isFeatured?: boolean;
+
+  @IsOptional()
+  @IsNumber()
+  order?: number;
 }
 
 export class UpdateProgramDto {
-    @IsOptional()
-    @IsString()
-    title?: string;
+  @IsOptional()
+  @IsString()
+  title?: string;
 
-    @IsOptional()
-    @IsString()
-    slug?: string;
+  @IsOptional()
+  @IsString()
+  slug?: string;
 
-    @IsOptional()
-    @IsString()
-    shortDescription?: string;
+  @IsOptional()
+  @IsString()
+  shortDescription?: string;
 
-    @IsOptional()
-    @IsString()
-    description?: string;
+  @IsOptional()
+  @IsString()
+  description?: string;
 
-    @IsOptional()
-    @IsString()
-    content?: string;
+  @IsOptional()
+  @IsString()
+  content?: string;
 
-    @IsOptional()
-    @IsString()
-    image?: string;
+  @IsOptional()
+  @IsString()
+  image?: string;
 
-    @IsOptional()
-    @IsArray()
-    gallery?: string[];
+  @IsOptional()
+  @IsArray()
+  gallery?: string[];
 
-    @IsOptional()
-    @IsString()
-    icon?: string;
+  @IsOptional()
+  @IsString()
+  icon?: string;
 
-    @IsOptional()
-    @IsString()
-    color?: string;
+  @IsOptional()
+  @IsString()
+  color?: string;
 
-    @IsOptional()
-    @IsString()
-    category?: string;
+  @IsOptional()
+  @IsString()
+  category?: string;
 
-    @IsOptional()
-    @IsString()
-    location?: string;
+  @IsOptional()
+  @IsString()
+  location?: string;
 
-    @IsOptional()
-    @IsString()
-    beneficiaries?: string;
+  @IsOptional()
+  @IsString()
+  beneficiaries?: string;
 
-    @IsOptional()
-    @IsString()
-    impact?: string;
+  @IsOptional()
+  @IsString()
+  impact?: string;
 
-    @IsOptional()
-    @IsString()
-    metric?: string;
+  @IsOptional()
+  @IsString()
+  metric?: string;
 
-    @IsOptional()
-    @IsArray()
-    milestones?: { title: string; date: string; status: string }[];
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  goal?: number;
 
-    @IsOptional()
-    @IsString()
-    videoUrl?: string;
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  raised?: number;
 
-    @IsOptional()
-    @IsString()
-    videoType?: string;
+  @IsOptional()
+  @IsDate()
+  @Type(() => Date)
+  startDate?: Date;
 
-    @IsOptional()
-    @IsArray()
-    contentBlocks?: any[];
+  @IsOptional()
+  @IsDate()
+  @Type(() => Date)
+  endDate?: Date;
 
-    @IsOptional()
-    @IsString()
-    metaTitle?: string;
+  @IsOptional()
+  @IsArray()
+  milestones?: { title: string; date: string; status: string }[];
 
-    @IsOptional()
-    @IsString()
-    metaDescription?: string;
+  @IsOptional()
+  @IsString()
+  videoUrl?: string;
 
-    @IsOptional()
-    @IsString()
-    metaKeywords?: string;
+  @IsOptional()
+  @IsString()
+  videoType?: string;
 
-    @IsOptional()
-    @IsString()
-    status?: string;
+  @IsOptional()
+  @IsArray()
+  contentBlocks?: any[];
 
-    @IsOptional()
-    @IsBoolean()
-    isFeatured?: boolean;
+  @IsOptional()
+  @IsString()
+  metaTitle?: string;
 
-    @IsOptional()
-    @IsNumber()
-    order?: number;
+  @IsOptional()
+  @IsString()
+  metaDescription?: string;
+
+  @IsOptional()
+  @IsString()
+  metaKeywords?: string;
+
+  @IsOptional()
+  @IsString()
+  status?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isFeatured?: boolean;
+
+  @IsOptional()
+  @IsNumber()
+  order?: number;
 }
 
 export class ProgramQueryDto {
-    @IsOptional()
-    @IsNumber()
-    page?: number;
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  page?: number;
 
-    @IsOptional()
-    @IsNumber()
-    limit?: number;
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  limit?: number;
 
-    @IsOptional()
-    @IsString()
-    status?: string;
+  @IsOptional()
+  @IsString()
+  status?: string;
 
-    @IsOptional()
-    @IsString()
-    category?: string;
+  @IsOptional()
+  @IsString()
+  category?: string;
 
-    @IsOptional()
-    @IsString()
-    search?: string;
+  @IsOptional()
+  @IsString()
+  search?: string;
 
-    @IsOptional()
-    @IsEnum(['title', 'order', 'createdAt', 'views'])
-    sortBy?: string;
+  @IsOptional()
+  @IsEnum(['title', 'order', 'createdAt', 'views'])
+  sortBy?: string;
 
-    @IsOptional()
-    @IsEnum(['ASC', 'DESC'])
-    sortOrder?: 'ASC' | 'DESC';
+  @IsOptional()
+  @IsEnum(['ASC', 'DESC'])
+  sortOrder?: 'ASC' | 'DESC';
 }
 
 export class BulkProgramStatusDto {
-    @IsArray()
-    ids: number[];
+  @IsArray()
+  ids: number[];
 
-    @IsString()
-    status: string;
+  @IsString()
+  status: string;
 }
 
 export class ReorderProgramsDto {
-    @IsArray()
-    orders: { id: number; order: number }[];
+  @IsArray()
+  orders: { id: number; order: number }[];
+}
+
+// Category DTOs
+export class CreateProgramCategoryDto {
+  @IsString()
+  name: string;
+
+  @IsOptional()
+  @IsString()
+  slug?: string;
+
+  @IsOptional()
+  @IsString()
+  description?: string;
+
+  @IsOptional()
+  @IsString()
+  icon?: string;
+
+  @IsOptional()
+  @IsString()
+  color?: string;
+
+  @IsOptional()
+  @IsNumber()
+  order?: number;
+
+  @IsOptional()
+  @IsEnum(['active', 'inactive'])
+  status?: string;
+}
+
+export class UpdateProgramCategoryDto {
+  @IsOptional()
+  @IsString()
+  name?: string;
+
+  @IsOptional()
+  @IsString()
+  slug?: string;
+
+  @IsOptional()
+  @IsString()
+  description?: string;
+
+  @IsOptional()
+  @IsString()
+  icon?: string;
+
+  @IsOptional()
+  @IsString()
+  color?: string;
+
+  @IsOptional()
+  @IsNumber()
+  order?: number;
+
+  @IsOptional()
+  @IsString()
+  status?: string;
+}
+
+export class ProgramCategoryQueryDto {
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  page?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  limit?: number;
+
+  @IsOptional()
+  @IsString()
+  status?: string;
+
+  @IsOptional()
+  @IsString()
+  search?: string;
+}
+
+export class ReorderProgramCategoriesDto {
+  @IsArray()
+  orders: { id: number; order: number }[];
+}
+
+// Section Config DTO
+export class UpdateProgramsSectionDto {
+  @IsOptional()
+  @IsString()
+  badgeText?: string;
+
+  @IsOptional()
+  @IsString()
+  title?: string;
+
+  @IsOptional()
+  @IsString()
+  titleHighlight?: string;
+
+  @IsOptional()
+  @IsString()
+  subtitle?: string;
 }

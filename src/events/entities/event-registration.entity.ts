@@ -1,58 +1,58 @@
 import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    CreateDateColumn,
-    UpdateDateColumn,
-    ManyToOne,
-    JoinColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Event } from './event.entity';
 import { User } from '../../users/entities/user.entity';
 
 @Entity()
 export class EventRegistration {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    eventId: number;
+  @Column()
+  eventId: number;
 
-    @ManyToOne(() => Event, (event) => event.registrations)
-    @JoinColumn({ name: 'eventId' })
-    event: Event;
+  @ManyToOne(() => Event, (event) => event.registrations)
+  @JoinColumn({ name: 'eventId' })
+  event: Event;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    email: string;
+  @Column()
+  email: string;
 
-    @Column({ nullable: true })
-    phone: string;
+  @Column({ nullable: true })
+  phone: string;
 
-    @Column({ nullable: true })
-    organization: string;
+  @Column({ nullable: true })
+  organization: string;
 
-    @Column({ nullable: true, type: 'text' })
-    notes: string;
+  @Column({ nullable: true, type: 'text' })
+  notes: string;
 
-    @Column({ default: 1 })
-    numberOfAttendees: number;
+  @Column({ default: 1 })
+  numberOfAttendees: number;
 
-    @Column({ default: 'registered' })
-    status: string;
+  @Column({ default: 'registered' })
+  status: string;
 
-    @Column({ nullable: true })
-    registeredBy: number;
+  @Column({ nullable: true })
+  registeredBy: number;
 
-    @ManyToOne(() => User, { nullable: true })
-    @JoinColumn({ name: 'registeredBy' })
-    user: User;
+  @ManyToOne(() => User, { nullable: true })
+  @JoinColumn({ name: 'registeredBy' })
+  user: User;
 
-    @CreateDateColumn()
-    createdAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

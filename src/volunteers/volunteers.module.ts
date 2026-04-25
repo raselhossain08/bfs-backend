@@ -8,12 +8,12 @@ import { User } from '../users/entities/user.entity';
 import { EmailModule } from '../email/email.module';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([VolunteerApplication, Volunteer, User]),
-        EmailModule,
-    ],
-    controllers: [VolunteersController],
-    providers: [VolunteersService],
-    exports: [VolunteersService],
+  imports: [
+    TypeOrmModule.forFeature([VolunteerApplication, Volunteer, User]),
+    EmailModule,
+  ],
+  controllers: [VolunteersController],
+  providers: [VolunteersService],
+  exports: [VolunteersService],
 })
 export class VolunteersModule {}

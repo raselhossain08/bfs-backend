@@ -1,48 +1,55 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 
 @Entity()
 export class Session {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    userId: number;
+  @Column()
+  userId: number;
 
-    @ManyToOne(() => User)
-    @JoinColumn({ name: 'userId' })
-    user: User;
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'userId' })
+  user: User;
 
-    @Column()
-    token: string;
+  @Column()
+  token: string;
 
-    @Column()
-    refreshToken: string;
+  @Column()
+  refreshToken: string;
 
-    @Column({ nullable: true })
-    ipAddress: string;
+  @Column({ nullable: true })
+  ipAddress: string;
 
-    @Column({ nullable: true })
-    userAgent: string;
+  @Column({ nullable: true })
+  userAgent: string;
 
-    @Column({ nullable: true })
-    deviceName: string;
+  @Column({ nullable: true })
+  deviceName: string;
 
-    @Column({ nullable: true })
-    browser: string;
+  @Column({ nullable: true })
+  browser: string;
 
-    @Column({ nullable: true })
-    os: string;
+  @Column({ nullable: true })
+  os: string;
 
-    @Column({ default: false })
-    isRevoked: boolean;
+  @Column({ default: false })
+  isRevoked: boolean;
 
-    @Column({ type: 'timestamp', nullable: true })
-    revokedAt: Date;
+  @Column({ type: 'timestamp', nullable: true })
+  revokedAt: Date;
 
-    @Column({ type: 'timestamp' })
-    expiresAt: Date;
+  @Column({ type: 'timestamp' })
+  expiresAt: Date;
 
-    @CreateDateColumn()
-    createdAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 }

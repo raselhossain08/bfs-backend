@@ -7,12 +7,9 @@ import { User } from '../users/entities/user.entity';
 import { EmailModule } from '../email/email.module';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([Referral, User]),
-        EmailModule,
-    ],
-    controllers: [ReferralController],
-    providers: [ReferralService],
-    exports: [ReferralService],
+  imports: [TypeOrmModule.forFeature([Referral, User]), EmailModule],
+  controllers: [ReferralController],
+  providers: [ReferralService],
+  exports: [ReferralService],
 })
 export class ReferralModule {}

@@ -7,9 +7,11 @@ import { ServiceCategory } from './entities/service-category.entity';
 import { ServiceInquiry } from './entities/service-inquiry.entity';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Service, ServiceCategory, ServiceInquiry])],
-    controllers: [ServicesController],
-    providers: [ServicesService],
-    exports: [ServicesService],
+  imports: [
+    TypeOrmModule.forFeature([Service, ServiceCategory, ServiceInquiry]),
+  ],
+  controllers: [ServicesController],
+  providers: [ServicesService],
+  exports: [ServicesService],
 })
 export class ServicesModule {}

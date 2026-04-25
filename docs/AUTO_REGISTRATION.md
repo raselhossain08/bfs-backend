@@ -47,7 +47,7 @@ Return success
 
 ## Email Template
 
-Subject: "Welcome to BFS Foundation - Your Donation & Account Details"
+Subject: "Welcome to Birdsfly Sangstha - Your Donation & Account Details"
 
 Body includes:
 - Thank you message

@@ -10,22 +10,24 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ReferralModule } from '../referral/referral.module';
 
 @Module({
-    imports: [
-        UsersModule,
-        PassportModule,
-        ConfigModule,
-        JwtModule.registerAsync({
-            imports: [ConfigModule],
-            useFactory: async (configService: ConfigService) => ({
-                secret: configService.get<string>('JWT_SECRET') || 'super-secret-key-change-this-in-production',
-                signOptions: { expiresIn: '60m' },
-            }),
-            inject: [ConfigService],
-        }),
-        forwardRef(() => ReferralModule),
-    ],
-    providers: [AuthService, LocalStrategy, JwtStrategy],
-    controllers: [AuthController],
-    exports: [AuthService],
+  imports: [
+    UsersModule,
+    PassportModule,
+    ConfigModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret:
+          configService.get<string>('JWT_SECRET') ||
+          'super-secret-key-change-this-in-production',
+        signOptions: { expiresIn: '60m' },
+      }),
+      inject: [ConfigService],
+    }),
+    forwardRef(() => ReferralModule),
+  ],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
+  controllers: [AuthController],
+  exports: [AuthService],
 })
-export class AuthModule { }
+export class AuthModule {}

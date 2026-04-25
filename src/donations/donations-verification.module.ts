@@ -5,9 +5,7 @@ import { Donation } from '../causes/entities/donation.entity';
 import { User } from '../users/entities/user.entity';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([Donation, User]),
-    ],
-    controllers: [DonationVerificationController],
+  imports: [TypeOrmModule.forFeature([Donation, User])],
+  controllers: [DonationVerificationController],
 })
 export class DonationsVerificationModule {}

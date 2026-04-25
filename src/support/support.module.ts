@@ -8,11 +8,16 @@ import { AnonymousSession } from './entities/anonymous-session.entity';
 import { TicketReply } from './entities/ticket-reply.entity';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([ChatMessage, SupportTicket, AnonymousSession, TicketReply]),
-    ],
-    controllers: [SupportController],
-    providers: [SupportService],
-    exports: [SupportService],
+  imports: [
+    TypeOrmModule.forFeature([
+      ChatMessage,
+      SupportTicket,
+      AnonymousSession,
+      TicketReply,
+    ]),
+  ],
+  controllers: [SupportController],
+  providers: [SupportService],
+  exports: [SupportService],
 })
-export class SupportModule { }
+export class SupportModule {}

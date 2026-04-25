@@ -7,9 +7,9 @@ import { EventType } from './entities/event-type.entity';
 import { EventRegistration } from './entities/event-registration.entity';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Event, EventType, EventRegistration])],
-    controllers: [EventsController],
-    providers: [EventsService],
-    exports: [EventsService],
+  imports: [TypeOrmModule.forFeature([Event, EventType, EventRegistration])],
+  controllers: [EventsController],
+  providers: [EventsService],
+  exports: [EventsService],
 })
 export class EventsModule {}

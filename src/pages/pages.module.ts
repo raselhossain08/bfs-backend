@@ -6,9 +6,9 @@ import { Page } from './entities/page.entity';
 import { Section } from './entities/section.entity';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Page, Section])],
-    controllers: [PagesController],
-    providers: [PagesService],
-    exports: [PagesService],
+  imports: [TypeOrmModule.forFeature([Page, Section])],
+  controllers: [PagesController],
+  providers: [PagesService],
+  exports: [PagesService],
 })
 export class PagesModule {}

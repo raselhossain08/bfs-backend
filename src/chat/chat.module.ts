@@ -12,24 +12,24 @@ import { ChatAgent } from './entities/chat-agent.entity';
 import { ChatAnalytics } from './entities/chat-analytics.entity';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([
-            ChatSession,
-            ChatMessageEntity,
-            ChatAgent,
-            ChatAnalytics,
-        ]),
-        JwtModule.registerAsync({
-            imports: [ConfigModule],
-            useFactory: (configService: ConfigService) => ({
-                secret: configService.get<string>('JWT_SECRET') || 'your-secret-key',
-                signOptions: { expiresIn: '7d' },
-            }),
-            inject: [ConfigService],
-        }),
-    ],
-    controllers: [ChatController],
-    providers: [ChatGateway, ChatService, BotService],
-    exports: [ChatService, BotService],
+  imports: [
+    TypeOrmModule.forFeature([
+      ChatSession,
+      ChatMessageEntity,
+      ChatAgent,
+      ChatAnalytics,
+    ]),
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET') || 'your-secret-key',
+        signOptions: { expiresIn: '7d' },
+      }),
+      inject: [ConfigService],
+    }),
+  ],
+  controllers: [ChatController],
+  providers: [ChatGateway, ChatService, BotService],
+  exports: [ChatService, BotService],
 })
 export class ChatModule {}

@@ -6,9 +6,9 @@ import { SavedCampaignsService } from './saved-campaigns.service';
 import { Cause } from '../causes/entities/cause.entity';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([SavedCampaign, Cause])],
-    controllers: [SavedCampaignsController],
-    providers: [SavedCampaignsService],
-    exports: [SavedCampaignsService],
+  imports: [TypeOrmModule.forFeature([SavedCampaign, Cause])],
+  controllers: [SavedCampaignsController],
+  providers: [SavedCampaignsService],
+  exports: [SavedCampaignsService],
 })
 export class SavedCampaignsModule {}

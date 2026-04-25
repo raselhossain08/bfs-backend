@@ -10,10 +10,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Enable validation and transformation for all incoming requests
-  app.useGlobalPipes(new ValidationPipe({
-    transform: true,
-    whitelist: true,
-  }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+    }),
+  );
 
   // Parse cookies from incoming requests
   app.use(cookieParser());
@@ -21,18 +23,23 @@ async function bootstrap() {
   // Security headers with Helmet
   // CSP is disabled for the API backend — it only returns JSON, not HTML.
   // CSP protection belongs on the frontend. Keeping other security headers.
-  app.use(helmet({
-    contentSecurityPolicy: false,
-    crossOriginResourcePolicy: { policy: 'cross-origin' },
-    // Enable XSS filter
-    xssFilter: true,
-    // Enable HSTS in production
-    hsts: process.env.NODE_ENV === 'production' ? {
-      maxAge: 31536000,
-      includeSubDomains: true,
-      preload: true,
-    } : false,
-  }));
+  app.use(
+    helmet({
+      contentSecurityPolicy: false,
+      crossOriginResourcePolicy: { policy: 'cross-origin' },
+      // Enable XSS filter
+      xssFilter: true,
+      // Enable HSTS in production
+      hsts:
+        process.env.NODE_ENV === 'production'
+          ? {
+              maxAge: 31536000,
+              includeSubDomains: true,
+              preload: true,
+            }
+          : false,
+    }),
+  );
 
   // Raw body parsing for Stripe webhooks - must be before body-parser.json()
   app.use('/api/webhooks/stripe', bodyParser.raw({ type: 'application/json' }));
@@ -53,14 +60,18 @@ async function bootstrap() {
     ].filter(Boolean),
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'X-Requested-With',
+      'Accept',
+      'Origin',
+    ],
     exposedHeaders: ['Set-Cookie'],
   });
 
   // Configure Socket.io adapter
-  app.useWebSocketAdapter(
-    new IoAdapter(app)
-  );
+  app.useWebSocketAdapter(new IoAdapter(app));
 
   // Set global prefix for all routes
   app.setGlobalPrefix('api');

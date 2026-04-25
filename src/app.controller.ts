@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Put, Patch, Delete, Body, Param, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Patch,
+  Delete,
+  Body,
+  Param,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AppService } from './app.service';
 import { CmsService } from './cms/cms.service';
@@ -29,7 +39,7 @@ export class AppController {
   @UseGuards(AuthGuard('jwt'))
   @Patch('contactSettings')
   async updateContactSettings(@Body() body: any) {
-    const existing = await this.cmsService.getData('contactSettings') || {};
+    const existing = (await this.cmsService.getData('contactSettings')) || {};
     const updated = await this.cmsService.updateData('contactSettings', {
       ...existing,
       ...body,
@@ -123,7 +133,7 @@ export class AppController {
 
   @Post('testimonials')
   async createTestimonial(@Body() body: any) {
-    const testimonials = await this.cmsService.getData('testimonials') || [];
+    const testimonials = (await this.cmsService.getData('testimonials')) || [];
     const newTestimonial = {
       id: Date.now().toString(),
       ...body,
@@ -138,9 +148,9 @@ export class AppController {
 
   @Put('testimonials/:id')
   async updateTestimonial(@Param('id') id: string, @Body() body: any) {
-    const testimonials = await this.cmsService.getData('testimonials') || [];
+    const testimonials = (await this.cmsService.getData('testimonials')) || [];
     const updated = testimonials.map((t: any) =>
-      t.id === id ? { ...t, ...body } : t
+      t.id === id ? { ...t, ...body } : t,
     );
     await this.cmsService.updateData('testimonials', updated);
     return { data: updated.find((t: any) => t.id === id) };
@@ -148,9 +158,9 @@ export class AppController {
 
   @Patch('testimonials/:id')
   async patchTestimonial(@Param('id') id: string, @Body() body: any) {
-    const testimonials = await this.cmsService.getData('testimonials') || [];
+    const testimonials = (await this.cmsService.getData('testimonials')) || [];
     const updated = testimonials.map((t: any) =>
-      t.id === id ? { ...t, ...body } : t
+      t.id === id ? { ...t, ...body } : t,
     );
     await this.cmsService.updateData('testimonials', updated);
     return { data: updated.find((t: any) => t.id === id) };
@@ -158,7 +168,7 @@ export class AppController {
 
   @Delete('testimonials/:id')
   async deleteTestimonial(@Param('id') id: string) {
-    const testimonials = await this.cmsService.getData('testimonials') || [];
+    const testimonials = (await this.cmsService.getData('testimonials')) || [];
     const filtered = testimonials.filter((t: any) => t.id !== id);
     await this.cmsService.updateData('testimonials', filtered);
     return { success: true, message: 'Testimonial deleted' };
@@ -174,5 +184,18 @@ export class AppController {
   async getNewsletter() {
     const data = await this.cmsService.getData('newsletter');
     return { data: data || {} };
+  }
+
+  @Get('navigation')
+  async getNavigation() {
+    const data = await this.cmsService.getData('navigation');
+    return { data: data || [] };
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Patch('navigation')
+  async updateNavigation(@Body() body: any) {
+    const updated = await this.cmsService.updateData('navigation', body);
+    return { data: updated };
   }
 }

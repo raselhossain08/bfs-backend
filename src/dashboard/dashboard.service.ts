@@ -80,7 +80,15 @@ export class DashboardService {
       successStories,
     ] = await Promise.all([
       this.donationRepository.find({
-        select: ['id', 'amount', 'status', 'donorId', 'causeId', 'causeName', 'createdAt'],
+        select: [
+          'id',
+          'amount',
+          'status',
+          'donorId',
+          'causeId',
+          'causeName',
+          'createdAt',
+        ],
         order: { createdAt: 'DESC' },
       }),
       this.causeRepository.find({
@@ -92,7 +100,16 @@ export class DashboardService {
         order: { createdAt: 'DESC' },
       }),
       this.userRepository.find({
-        select: ['id', 'firstName', 'lastName', 'email', 'role', 'status', 'lastActive', 'avatar'],
+        select: [
+          'id',
+          'firstName',
+          'lastName',
+          'email',
+          'role',
+          'status',
+          'lastActive',
+          'avatar',
+        ],
         order: { createdAt: 'DESC' },
       }),
       this.eventRepository.find({
@@ -113,34 +130,56 @@ export class DashboardService {
     ]);
 
     // Calculate totals from real data - parse decimal amounts properly
-    const totalDonations = donations.reduce((sum, d) => sum + (parseFloat(d.amount as any) || 0), 0);
-    const completedDonations = donations.filter(d => d.status === 'completed');
-    const completedDonationsTotal = completedDonations.reduce((sum, d) => sum + (parseFloat(d.amount as any) || 0), 0);
+    const totalDonations = donations.reduce(
+      (sum, d) => sum + (parseFloat(d.amount as any) || 0),
+      0,
+    );
+    const completedDonations = donations.filter(
+      (d) => d.status === 'completed',
+    );
+    const completedDonationsTotal = completedDonations.reduce(
+      (sum, d) => sum + (parseFloat(d.amount as any) || 0),
+      0,
+    );
 
     // Debug logging - remove in production
-    console.log(`Dashboard Debug: Found ${donations.length} donations, total: ${totalDonations}, completed: ${completedDonations.length}`);
+    console.log(
+      `Dashboard Debug: Found ${donations.length} donations, total: ${totalDonations}, completed: ${completedDonations.length}`,
+    );
 
     // Calculate monthly revenue (current month)
     const now = new Date();
     const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-    const monthlyDonations = completedDonations.filter(d =>
-      d.createdAt >= monthStart
+    const monthlyDonations = completedDonations.filter(
+      (d) => d.createdAt >= monthStart,
     );
-    const monthlyRevenue = monthlyDonations.reduce((sum, d) => sum + (parseFloat(d.amount as any) || 0), 0);
+    const monthlyRevenue = monthlyDonations.reduce(
+      (sum, d) => sum + (parseFloat(d.amount as any) || 0),
+      0,
+    );
 
     // Count unique donors
-    const uniqueDonors = new Set(donations.map(d => d.donorId).filter(Boolean));
+    const uniqueDonors = new Set(
+      donations.map((d) => d.donorId).filter(Boolean),
+    );
 
     // Count pending volunteer applications
-    const pendingApplications = volunteers.filter(v => v.status === 'pending').length;
+    const pendingApplications = volunteers.filter(
+      (v) => v.status === 'pending',
+    ).length;
 
     // Count active users (logged in within last 30 days)
     const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-    const activeUsers = users.filter(u => u.lastActive && new Date(u.lastActive) >= thirtyDaysAgo).length;
+    const activeUsers = users.filter(
+      (u) => u.lastActive && new Date(u.lastActive) >= thirtyDaysAgo,
+    ).length;
 
     // Calculate causes progress and totals - parse decimal raised amounts
-    const causesTotalRaised = causes.reduce((sum, c) => sum + (parseFloat(c.raised as any) || 0), 0);
-    const activeCauses = causes.filter(c => c.status !== 'completed').length;
+    const causesTotalRaised = causes.reduce(
+      (sum, c) => sum + (parseFloat(c.raised as any) || 0),
+      0,
+    );
+    const activeCauses = causes.filter((c) => c.status !== 'completed').length;
 
     // Build stats array with real data
     const stats: StatCard[] = [
@@ -156,7 +195,9 @@ export class DashboardService {
       },
       {
         label: 'Active Volunteers',
-        value: (volunteers.filter(v => v.status === 'active').length || 0).toString(),
+        value: (
+          volunteers.filter((v) => v.status === 'active').length || 0
+        ).toString(),
         change: volunteers.length > 0 ? '+8.2%' : '0%',
         trend: volunteers.length > 0 ? 'up' : 'down',
         icon: 'Users',
@@ -166,7 +207,10 @@ export class DashboardService {
       },
       {
         label: 'Lives Impacted',
-        value: causes.reduce((sum, c) => sum + (c.beneficiaries || 0), 0).toString() || '0',
+        value:
+          causes
+            .reduce((sum, c) => sum + (c.beneficiaries || 0), 0)
+            .toString() || '0',
         change: causes.length > 0 ? '+15.3%' : '0%',
         trend: causes.length > 0 ? 'up' : 'down',
         icon: 'Heart',
@@ -176,7 +220,7 @@ export class DashboardService {
       },
       {
         label: 'Success Rate',
-        value: `${causes.filter(c => c.status === 'completed').length > 0 ? Math.round((causes.filter(c => c.status === 'completed').length / causes.length) * 100) : 0}%`,
+        value: `${causes.filter((c) => c.status === 'completed').length > 0 ? Math.round((causes.filter((c) => c.status === 'completed').length / causes.length) * 100) : 0}%`,
         change: 'Stable',
         trend: 'up',
         icon: 'ShieldCheck',
@@ -187,15 +231,21 @@ export class DashboardService {
     ];
 
     // Build missions from causes
-    const missions: Mission[] = causes.slice(0, 5).map(c => ({
+    const missions: Mission[] = causes.slice(0, 5).map((c) => ({
       id: `C${c.id}`,
       title: c.title,
       sector: c.category?.name || 'General',
       progress: c.progress || 0,
       status: c.progress >= 100 ? 'Completed' : 'Active',
       priority: c.tag || 'Medium',
-      color: c.tag === 'URGENT' || c.tag === 'CRITICAL' ? 'text-rose-500' : 'text-amber-500',
-      bg: c.tag === 'URGENT' || c.tag === 'CRITICAL' ? 'bg-teal-500/10' : 'bg-amber-500/10',
+      color:
+        c.tag === 'URGENT' || c.tag === 'CRITICAL'
+          ? 'text-rose-500'
+          : 'text-amber-500',
+      bg:
+        c.tag === 'URGENT' || c.tag === 'CRITICAL'
+          ? 'bg-teal-500/10'
+          : 'bg-amber-500/10',
     }));
 
     // Build activities from recent data
@@ -203,8 +253,10 @@ export class DashboardService {
       ...donations.slice(0, 3).map((d, i) => ({
         id: i,
         user: {
-          name: d.donor?.firstName ? `${d.donor.firstName} ${d.donor.lastName || ''}`.trim() : 'Donor',
-          image: d.donor?.avatar || null
+          name: d.donor?.firstName
+            ? `${d.donor.firstName} ${d.donor.lastName || ''}`.trim()
+            : 'Donor',
+          image: d.donor?.avatar || null,
         },
         action: 'donated to',
         target: d.cause?.title || 'a cause',
@@ -213,14 +265,18 @@ export class DashboardService {
       ...volunteers.slice(0, 2).map((v, i) => ({
         id: i + 10,
         user: {
-          name: v.creator?.firstName ? `${v.creator.firstName} ${v.creator.lastName || ''}`.trim() : v.name || 'Volunteer',
-          image: v.creator?.avatar || null
+          name: v.creator?.firstName
+            ? `${v.creator.firstName} ${v.creator.lastName || ''}`.trim()
+            : v.name || 'Volunteer',
+          image: v.creator?.avatar || null,
         },
         action: v.status === 'pending' ? 'applied for' : 'joined',
-        target: (v.skills as string) || 'volunteer program',
+        target: v.skills || 'volunteer program',
         time: v.createdAt.toISOString(),
       })),
-    ].sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()).slice(0, 5);
+    ]
+      .sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime())
+      .slice(0, 5);
 
     return {
       stats,

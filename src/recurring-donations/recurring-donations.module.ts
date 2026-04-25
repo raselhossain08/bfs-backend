@@ -8,16 +8,11 @@ import { PaymentMethod } from '../payment-methods/entities/payment-method.entity
 import { Cause } from '../causes/entities/cause.entity';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([
-            RecurringDonation,
-            User,
-            PaymentMethod,
-            Cause,
-        ]),
-    ],
-    controllers: [RecurringDonationsController],
-    providers: [RecurringDonationsService],
-    exports: [RecurringDonationsService],
+  imports: [
+    TypeOrmModule.forFeature([RecurringDonation, User, PaymentMethod, Cause]),
+  ],
+  controllers: [RecurringDonationsController],
+  providers: [RecurringDonationsService],
+  exports: [RecurringDonationsService],
 })
 export class RecurringDonationsModule {}

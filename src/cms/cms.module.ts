@@ -6,12 +6,9 @@ import { CmsItem } from './entities/cms-item.entity';
 import { SmsModule } from '../sms/sms.module';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([CmsItem]),
-        forwardRef(() => SmsModule),
-    ],
-    controllers: [CmsController],
-    providers: [CmsService],
-    exports: [CmsService],
+  imports: [TypeOrmModule.forFeature([CmsItem]), forwardRef(() => SmsModule)],
+  controllers: [CmsController],
+  providers: [CmsService],
+  exports: [CmsService],
 })
-export class CmsModule { }
+export class CmsModule {}

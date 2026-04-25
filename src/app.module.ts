@@ -64,120 +64,132 @@ import { SuccessStory } from './success-stories/entities/success-story.entity';
 import { SuccessStoriesModule } from './success-stories/success-stories.module';
 import { DonationSection } from './donations/entities/donation-section.entity';
 import { DonationsModule } from './donations/donations.module';
-import { DonationsVerificationModule } from './donations/donations-verification.module';
 import { Goal } from './goals/entities/goal.entity';
 import { GoalsModule } from './goals/goals.module';
 import { RecurringDonation } from './recurring-donations/entities/recurring-donation.entity';
 import { RecurringDonationsModule } from './recurring-donations/recurring-donations.module';
-
+import { UploadModule } from './upload/upload.module';
+import { Testimonial } from './testimonials/entities/testimonial.entity';
+import { TestimonialsModule } from './testimonials/testimonials.module';
+import { SiteSetting } from './site-settings/entities/site-setting.entity';
+import { SiteSettingsModule } from './site-settings/site-settings.module';
 
 @Module({
-    imports: [
-        ConfigModule.forRoot({
-            isGlobal: true,
-        }),
-        // Rate limiting
-        ThrottlerModule.forRoot([
-            {
-                name: 'short',
-                ttl: 1000, // 1 second
-                limit: 3, // 3 requests per second
-            },
-            {
-                name: 'medium',
-                ttl: 10000, // 10 seconds
-                limit: 20, // 20 requests per 10 seconds
-            },
-            {
-                name: 'long',
-                ttl: 60000, // 1 minute
-                limit: 100, // 100 requests per minute
-            },
-        ]),
-        TypeOrmModule.forRootAsync({
-            imports: [ConfigModule],
-            useFactory: (configService: ConfigService) => ({
-                type: 'postgres',
-                host: configService.get<string>('DATABASE_HOST'),
-                port: configService.get<number>('DATABASE_PORT'),
-                username: configService.get<string>('DATABASE_USER'),
-                password: configService.get<string>('DATABASE_PASSWORD'),
-                database: configService.get<string>('DATABASE_NAME'),
-                entities: [
-                    User,
-                    CmsItem,
-                    ChatMessage,
-                    SupportTicket,
-                    ChatSession,
-                    ChatMessageEntity,
-                    ChatAgent,
-                    ChatAnalytics,
-                    AuditLog,
-                    Session,
-                    TwoFactorAuth,
-                    VolunteerApplication,
-                    Volunteer,
-                    Category,
-                    Article,
-                    Event,
-                    EventType,
-                    EventRegistration,
-                    Service,
-                    ServiceCategory,
-                    ServiceInquiry,
-                    Page,
-                    Section,
-                    Cause,
-                    CauseCategory,
-                    Donation,
-                    PaymentMethod,
-                    Referral,
-                    SavedCampaign,
-        Program,
-        Comment,
-        SuccessStory,
-        DonationSection,
-                    Goal,
-                    RecurringDonation,
-                ],
-                synchronize: true, // Auto-create tables (dev only)
-            }),
-            inject: [ConfigService],
-        }),
-        // Entity modules MUST be before CmsModule so their specific routes
-        // take priority over the CMS catch-all @Get(':key') route
-        CategoriesModule,
-        ArticlesModule,
-        EventsModule,
-        ServicesModule,
-        PagesModule,
-        CausesModule,
-        ProgramsModule,
-        CommentsModule,
-        SuccessStoriesModule,
-        DonationsModule,
-        EmailModule,
-        NotificationsModule,
-        SmsModule,
-        PaymentMethodsModule,
-        CmsModule,
-        DashboardModule,
-        UsersModule,
-        AuthModule,
-        SupportModule,
-        ChatModule,
-        StripeModule,
-        AdminModule,
-        AuditModule,
-        SessionsModule,
-        VolunteersModule,
-        ReferralModule,
-        SavedCampaignsModule,
-        GoalsModule,
-        RecurringDonationsModule,
-        DonationsVerificationModule,
-    ],
-    controllers: [AppController],
-    providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    // Rate limiting
+    ThrottlerModule.forRoot([
+      {
+        name: 'short',
+        ttl: 1000, // 1 second
+        limit: 3, // 3 requests per second
+      },
+      {
+        name: 'medium',
+        ttl: 10000, // 10 seconds
+        limit: 20, // 20 requests per 10 seconds
+      },
+      {
+        name: 'long',
+        ttl: 60000, // 1 minute
+        limit: 100, // 100 requests per minute
+      },
+    ]),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get<string>('DATABASE_HOST'),
+        port: configService.get<number>('DATABASE_PORT'),
+        username: configService.get<string>('DATABASE_USER'),
+        password: configService.get<string>('DATABASE_PASSWORD'),
+        database: configService.get<string>('DATABASE_NAME'),
+        ssl:
+          configService.get<string>('DATABASE_SSL') === 'true'
+            ? { rejectUnauthorized: false }
+            : false,
+        entities: [
+          User,
+          CmsItem,
+          ChatMessage,
+          SupportTicket,
+          ChatSession,
+          ChatMessageEntity,
+          ChatAgent,
+          ChatAnalytics,
+          AuditLog,
+          Session,
+          TwoFactorAuth,
+          VolunteerApplication,
+          Volunteer,
+          Category,
+          Article,
+          Event,
+          EventType,
+          EventRegistration,
+          Service,
+          ServiceCategory,
+          ServiceInquiry,
+          Page,
+          Section,
+          Cause,
+          CauseCategory,
+          Donation,
+          PaymentMethod,
+          Referral,
+          SavedCampaign,
+          Program,
+          Comment,
+          SuccessStory,
+          DonationSection,
+          Goal,
+          RecurringDonation,
+          Testimonial,
+          SiteSetting,
+        ],
+        synchronize: true, // Auto-create tables (dev only)
+      }),
+      inject: [ConfigService],
+    }),
+    // Entity modules MUST be before CmsModule so their specific routes
+    // take priority over the CMS catch-all @Get(':key') route
+    CategoriesModule,
+    ArticlesModule,
+    EventsModule,
+    ServicesModule,
+    PagesModule,
+    CausesModule,
+    ProgramsModule,
+    CommentsModule,
+    SuccessStoriesModule,
+    DonationsModule,
+    EmailModule,
+    NotificationsModule,
+    SmsModule,
+    PaymentMethodsModule,
+    CmsModule,
+    DashboardModule,
+    UsersModule,
+    AuthModule,
+    SupportModule,
+    ChatModule,
+    StripeModule,
+    AdminModule,
+    AuditModule,
+    SessionsModule,
+    VolunteersModule,
+    ReferralModule,
+    SavedCampaignsModule,
+    GoalsModule,
+    RecurringDonationsModule,
+    TestimonialsModule,
+    SiteSettingsModule,
+    // DonationsVerificationModule,
+    UploadModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

@@ -1,0 +1,70 @@
+services:
+  # Reverse proxy + TLS (Let's Encrypt) for api.birdsfly.org
+  traefik:
+    image: traefik:v3.6
+    container_name: bfs-traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "80:80"
+      - "443:443"
+    command:
+      - "--api.dashboard=false"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      # Let's Encrypt (HTTP challenge on port 80)
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.letsencrypt.acme.email=rahatulislam67777@gmail.com"
+      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesresolvers.letsencrypt.acme.caserver=https://acme-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.letsencrypt.acme.keytype=RSA2048"
+      - "--log.level=INFO"
+      - "--accesslog=true"
+      - "--accesslog.filepath=/dev/stdout"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik-letsencrypt:/letsencrypt
+    networks:
+      - web
+
+  backend:
+    image: node:22-alpine
+    container_name: bfs-backend
+    restart: unless-stopped
+    working_dir: /app
+    command: >
+      sh -lc "npm ci && npm run build && npm run start:prod"
+    env_file:
+      - ./.env
+    volumes:
+      - ./:/app
+      - backend-node-modules:/app/node_modules
+    labels:
+      - "traefik.enable=true"
+      # HTTP -> HTTPS redirect (keep port 80 free for ACME httpChallenge)
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
+      - "traefik.http.routers.backend-http.rule=Host(`api.birdsfly.org`)"
+      - "traefik.http.routers.backend-http.entrypoints=web"
+      - "traefik.http.routers.backend-http.middlewares=redirect-to-https"
+
+      - "traefik.http.routers.backend.rule=Host(`api.birdsfly.org`)"
+      - "traefik.http.routers.backend.entrypoints=websecure"
+      - "traefik.http.routers.backend.tls=true"
+      - "traefik.http.routers.backend.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.backend.service=backend"
+      - "traefik.http.services.backend.loadbalancer.server.port=5000"
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge
+
+volumes:
+  traefik-letsencrypt:
+  backend-node-modules:

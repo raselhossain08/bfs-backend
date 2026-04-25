@@ -1,0 +1,1080 @@
+{
+  "global": {
+    "siteName": "Birdsfly Sangstha",
+    "siteShortName": "BFS",
+    "legalName": "Birdsfly Sangstha (BFS)",
+    "description": "Birdsfly Sangstha (BFS) is a UK-based registered nonprofit organization committed to empowering communities through education, healthcare, climate resilience, and social welfare programs in Bangladesh and beyond.",
+    "url": "https://www.birdsfly.org",
+    "founded": "2014",
+    "defaultSeo": {
+      "metaTitle": "Birdsfly Sangstha (BFS) | Empowering Communities",
+      "metaDescription": "Birdsfly Sangstha (BFS) is a UK-based registered nonprofit organization committed to empowering communities through education, healthcare, and sustainable development programs in Bangladesh.",
+      "shareImage": "https://www.birdsfly.org/og-image.jpg",
+      "keywords": ["Birdsfly Sangstha", "BFS", "NGO", "UK charity", "Bangladesh", "education", "healthcare", "donation"]
+    },
+    "siteDescription": "Birdsfly Sangstha (BFS) - Empowering communities through education, healthcare, and sustainable development",
+    "favicon": "/favicon.ico",
+    "socialLinks": {
+      "facebook": "https://www.facebook.com/birdsfly",
+      "twitter": "https://twitter.com/birdsfly",
+      "instagram": "https://www.instagram.com/birdsfly",
+      "linkedin": "https://www.linkedin.com/company/birdsfly",
+      "youtube": "https://www.youtube.com/birdsfly"
+    }
+  },
+  "heroContent": {
+    "title": "Building a Better Tomorrow",
+    "subtitle": "Join us in our mission to empower communities through education, healthcare, and sustainable development initiatives",
+    "stats": [
+      { "label": "Lives Impacted", "value": "50,000+" },
+      { "label": "Active Projects", "value": "127" },
+      { "label": "Volunteers", "value": "2,500+" },
+      { "label": "Partner Organizations", "value": "85" }
+    ]
+  },
+  "missionVision": {
+    "mission": "To empower underprivileged communities through sustainable development programs, quality education, and accessible healthcare services.",
+    "vision": "A world where every individual has equal opportunities to thrive and contribute to society, regardless of their socioeconomic background.",
+    "values": [
+      "Integrity and Transparency",
+      "Community Empowerment",
+      "Sustainable Impact",
+      "Collaborative Partnership",
+      "Innovation and Excellence"
+    ]
+  },
+  "aboutStats": [
+    {
+      "label": "Years of Service",
+      "value": "15+",
+      "icon": "calendar",
+      "description": "Serving communities since 2009"
+    },
+    {
+      "label": "Communities Served",
+      "value": "250+",
+      "icon": "users",
+      "description": "Across rural and urban areas"
+    },
+    {
+      "label": "Success Rate",
+      "value": "94%",
+      "icon": "trending-up",
+      "description": "Project completion and impact"
+    },
+    {
+      "label": "Volunteer Hours",
+      "value": "100K+",
+      "icon": "clock",
+      "description": "Dedicated community service"
+    }
+  ],
+  "impactStats": [
+    {
+      "metric": "Children Educated",
+      "value": "12,500",
+      "change": "+18%",
+      "icon": "book-open",
+      "color": "blue"
+    },
+    {
+      "metric": "Healthcare Services",
+      "value": "35,000",
+      "change": "+25%",
+      "icon": "heart",
+      "color": "red"
+    },
+    {
+      "metric": "Clean Water Access",
+      "value": "8,200",
+      "change": "+32%",
+      "icon": "droplet",
+      "color": "cyan"
+    },
+    {
+      "metric": "Skills Training",
+      "value": "4,800",
+      "change": "+15%",
+      "icon": "briefcase",
+      "color": "green"
+    }
+  ],
+  "categories": [
+    { "name": "Education", "slug": "education" },
+    { "name": "Healthcare", "slug": "healthcare" },
+    { "name": "Environment", "slug": "environment" },
+    { "name": "Community Development", "slug": "community-development" },
+    { "name": "Women Empowerment", "slug": "women-empowerment" }
+  ],
+  "faqs": [
+    {
+      "question": "How can I donate to Birdsfly Sangstha?",
+      "answer": "You can donate through our secure online donation portal, bank transfer, or by visiting our office. We accept one-time and recurring donations. All donations are tax-deductible and you will receive a receipt for your records.",
+      "category": "Donations",
+      "order": 1,
+      "serial": "FAQ-001"
+    },
+    {
+      "question": "Are my donations tax-deductible?",
+      "answer": "Yes, Birdsfly Sangstha is a registered non-profit organization. All donations are tax-deductible under applicable tax laws. You will receive a donation receipt that can be used for tax purposes.",
+      "category": "Donations",
+      "order": 2,
+      "serial": "FAQ-002"
+    },
+    {
+      "question": "How can I volunteer with your organization?",
+      "answer": "We welcome volunteers! You can apply through our volunteer registration form on the website. We offer various opportunities including field work, administrative support, event coordination, and professional skills-based volunteering.",
+      "category": "Volunteering",
+      "order": 3,
+      "serial": "FAQ-003"
+    },
+    {
+      "question": "What areas do you work in?",
+      "answer": "We work in education, healthcare, environmental conservation, women empowerment, and community development. Our programs span across rural and urban areas, focusing on underserved communities.",
+      "category": "Programs",
+      "order": 4,
+      "serial": "FAQ-004"
+    },
+    {
+      "question": "How do you ensure transparency in fund utilization?",
+      "answer": "We maintain complete transparency through regular financial audits, annual reports, and project updates. All financial statements are published on our website and we provide detailed breakdowns of how donations are utilized.",
+      "category": "Transparency",
+      "order": 5,
+      "serial": "FAQ-005"
+    },
+    {
+      "question": "Can I sponsor a specific project or child?",
+      "answer": "Yes, we offer project-specific and child sponsorship programs. You can choose to support a particular initiative or sponsor a child's education. We provide regular updates on the progress of sponsored projects and children.",
+      "category": "Sponsorship",
+      "order": 6,
+      "serial": "FAQ-006"
+    }
+  ],
+  "events": [
+    {
+      "title": "Annual Charity Gala 2026",
+      "titleLine1": "Annual Charity",
+      "titleLine2": "Gala 2026",
+      "description": "Join us for our flagship fundraising event featuring dinner, live entertainment, and inspiring stories from our beneficiaries. All proceeds support our education and healthcare programs.",
+      "category": "Fundraising",
+      "serial": "EVT-2026-001",
+      "date": "2026-03-15",
+      "day": "15",
+      "month": "MAR",
+      "time": "6:00 PM - 10:00 PM",
+      "location": "Grand Ballroom, City Convention Center",
+      "speaker": "Dr. Sarah Ahmed, Executive Director",
+      "attendees": 350
+    },
+    {
+      "title": "Community Health Camp",
+      "titleLine1": "Community",
+      "titleLine2": "Health Camp",
+      "description": "Free health screening, medical consultations, and health awareness sessions for underserved communities. Services include general checkup, dental care, eye examination, and nutrition counseling.",
+      "category": "Healthcare",
+      "serial": "EVT-2026-002",
+      "date": "2026-02-28",
+      "day": "28",
+      "month": "FEB",
+      "time": "9:00 AM - 4:00 PM",
+      "location": "Mirpur Community Center",
+      "speaker": "Dr. Kamal Hassan, Medical Coordinator",
+      "attendees": 500
+    },
+    {
+      "title": "Youth Leadership Summit",
+      "titleLine1": "Youth Leadership",
+      "titleLine2": "Summit",
+      "description": "Empowering young leaders through workshops on leadership, social entrepreneurship, and community service. Features keynote speakers, panel discussions, and networking opportunities.",
+      "category": "Education",
+      "serial": "EVT-2026-003",
+      "date": "2026-04-20",
+      "day": "20",
+      "month": "APR",
+      "time": "10:00 AM - 5:00 PM",
+      "location": "University Auditorium",
+      "speaker": "Prof. Rahim Khan, Youth Development Expert",
+      "attendees": 200
+    },
+    {
+      "title": "Tree Plantation Drive",
+      "titleLine1": "Tree Plantation",
+      "titleLine2": "Drive",
+      "description": "Join our environmental initiative to plant 5,000 trees across the city. Volunteers will receive training, tools, and refreshments. Together we can create a greener future.",
+      "category": "Environment",
+      "serial": "EVT-2026-004",
+      "date": "2026-06-05",
+      "day": "05",
+      "month": "JUN",
+      "time": "7:00 AM - 12:00 PM",
+      "location": "Multiple locations across the city",
+      "speaker": "Environmental Team",
+      "attendees": 1000
+    }
+  ],
+  "causes": [
+    {
+      "title": "Education for Every Child",
+      "description": "Provide quality education, school supplies, and scholarships to underprivileged children. Help us ensure that every child has access to learning opportunities regardless of their economic background.",
+      "progress": 68,
+      "raised": "$34,500",
+      "goal": "$50,000",
+      "category": "Education",
+      "tag": "URGENT",
+      "icon": "book-open",
+      "tagColor": "red",
+      "gradient": "from-blue-500 to-purple-600",
+      "metric": "450 students supported",
+      "size": "large",
+      "glow": "blue",
+      "donors": 287,
+      "videoUrl": "https://example.com/education-video"
+    },
+    {
+      "title": "Clean Water Initiative",
+      "description": "Install water purification systems and wells in rural communities lacking access to clean drinking water. Your contribution can save lives and prevent waterborne diseases.",
+      "progress": 45,
+      "raised": "$22,500",
+      "goal": "$50,000",
+      "category": "Health",
+      "tag": "ACTIVE",
+      "icon": "droplet",
+      "tagColor": "blue",
+      "gradient": "from-cyan-500 to-blue-600",
+      "metric": "12 villages served",
+      "size": "medium",
+      "glow": "cyan",
+      "donors": 156
+    },
+    {
+      "title": "Women Empowerment Program",
+      "description": "Provide vocational training, microfinance, and entrepreneurship support to women from marginalized communities. Empower women to become financially independent and community leaders.",
+      "progress": 82,
+      "raised": "$41,000",
+      "goal": "$50,000",
+      "category": "Empowerment",
+      "tag": "TRENDING",
+      "icon": "users",
+      "tagColor": "purple",
+      "gradient": "from-pink-500 to-purple-600",
+      "metric": "320 women trained",
+      "size": "large",
+      "glow": "purple",
+      "donors": 412
+    },
+    {
+      "title": "Emergency Medical Fund",
+      "description": "Support critical medical treatments for patients who cannot afford healthcare. This fund covers surgeries, medications, and emergency medical procedures for those in need.",
+      "progress": 55,
+      "raised": "$27,500",
+      "goal": "$50,000",
+      "category": "Healthcare",
+      "tag": "CRITICAL",
+      "icon": "heart",
+      "tagColor": "red",
+      "gradient": "from-red-500 to-pink-600",
+      "metric": "89 patients helped",
+      "size": "medium",
+      "glow": "red",
+      "donors": 234
+    },
+    {
+      "title": "Digital Literacy Program",
+      "description": "Bridge the digital divide by providing computer training and internet access to rural youth. Equip the next generation with essential digital skills for the modern workforce.",
+      "progress": 35,
+      "raised": "$17,500",
+      "goal": "$50,000",
+      "category": "Education",
+      "tag": "NEW",
+      "icon": "monitor",
+      "tagColor": "green",
+      "gradient": "from-green-500 to-teal-600",
+      "metric": "8 computer labs established",
+      "size": "small",
+      "glow": "green",
+      "donors": 98
+    },
+    {
+      "title": "Orphan Care Program",
+      "description": "Provide shelter, education, healthcare, and emotional support to orphaned children. Give them a safe home and opportunities to build a bright future.",
+      "progress": 72,
+      "raised": "$36,000",
+      "goal": "$50,000",
+      "category": "Child Welfare",
+      "tag": "ONGOING",
+      "icon": "home",
+      "tagColor": "orange",
+      "gradient": "from-orange-500 to-red-600",
+      "metric": "125 children cared for",
+      "size": "large",
+      "glow": "orange",
+      "donors": 345
+    }
+  ],
+  "teamMembers": [
+    {
+      "name": "Dr. Sarah Ahmed",
+      "role": "Executive Director",
+      "bio": "With over 20 years of experience in non-profit management and community development, Dr. Ahmed leads our organization's strategic vision and operations.",
+      "email": "sarah.ahmed@birdsfly.org",
+      "linkedin": "https://linkedin.com/in/sarahahmed",
+      "twitter": "https://twitter.com/sarahahmed",
+      "order": 1
+    },
+    {
+      "name": "Mohammad Rahim",
+      "role": "Program Director",
+      "bio": "Mohammad oversees all field programs and ensures effective implementation of our community development initiatives across the country.",
+      "email": "m.rahim@birdsfly.org",
+      "linkedin": "https://linkedin.com/in/mrahim",
+      "order": 2
+    },
+    {
+      "name": "Fatima Khan",
+      "role": "Finance Manager",
+      "bio": "Fatima manages our financial operations with a focus on transparency and accountability, ensuring every donation is utilized effectively.",
+      "email": "fatima.khan@birdsfly.org",
+      "linkedin": "https://linkedin.com/in/fatimakhan",
+      "order": 3
+    },
+    {
+      "name": "Dr. Kamal Hassan",
+      "role": "Healthcare Coordinator",
+      "bio": "A medical professional with expertise in public health, Dr. Hassan coordinates our healthcare programs and medical camps.",
+      "email": "kamal.hassan@birdsfly.org",
+      "order": 4
+    },
+    {
+      "name": "Ayesha Rahman",
+      "role": "Education Program Lead",
+      "bio": "Ayesha designs and implements our education initiatives, working closely with schools and communities to improve learning outcomes.",
+      "email": "ayesha.rahman@birdsfly.org",
+      "linkedin": "https://linkedin.com/in/ayesharahman",
+      "order": 5
+    },
+    {
+      "name": "Tariq Ali",
+      "role": "Volunteer Coordinator",
+      "bio": "Tariq manages our volunteer programs, recruitment, and training, building a strong community of dedicated volunteers.",
+      "email": "tariq.ali@birdsfly.org",
+      "twitter": "https://twitter.com/tariqali",
+      "order": 6
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Amina Begum",
+      "role": "Program Beneficiary",
+      "organization": "Women Empowerment Program",
+      "text": "The vocational training I received changed my life. I now run my own tailoring business and can support my family. Birdsfly Sangstha gave me hope and the skills to build a better future.",
+      "rating": 5,
+      "order": 1
+    },
+    {
+      "name": "Rashid Ahmed",
+      "role": "Parent",
+      "organization": "Education Program",
+      "text": "Thanks to the scholarship program, my daughter is now attending school. The quality of education and support she receives is excellent. We are grateful for this opportunity.",
+      "rating": 5,
+      "order": 2
+    },
+    {
+      "name": "Dr. Nusrat Jahan",
+      "role": "Partner Organization Director",
+      "organization": "City Medical College",
+      "text": "Our partnership with Birdsfly Sangstha has been incredibly rewarding. Their professionalism, dedication, and impact-driven approach make them an ideal partner for community health initiatives.",
+      "rating": 5,
+      "order": 3
+    },
+    {
+      "name": "Karim Miah",
+      "role": "Village Elder",
+      "organization": "Clean Water Initiative",
+      "text": "The water purification system installed in our village has transformed our community. Waterborne diseases have decreased significantly, and our children are healthier.",
+      "rating": 5,
+      "order": 4
+    },
+    {
+      "name": "Sultana Akter",
+      "role": "Volunteer",
+      "organization": "Volunteer Program",
+      "text": "Volunteering with Birdsfly Sangstha has been the most fulfilling experience of my life. The organization is well-managed, and you can see the real impact of your efforts.",
+      "rating": 5,
+      "order": 5
+    },
+    {
+      "name": "Prof. Rahim Khan",
+      "role": "Education Consultant",
+      "organization": "National University",
+      "text": "Birdsfly Sangstha's education programs are evidence-based and highly effective. Their commitment to quality and measurable outcomes sets them apart in the non-profit sector.",
+      "rating": 5,
+      "order": 6
+    }
+  ],
+  "galleryImages": [
+    {
+      "title": "Community Health Camp",
+      "category": "Healthcare",
+      "description": "Free medical checkup and consultation at rural health camp",
+      "captureDate": "2025-12-15",
+      "location": "Mirpur, Dhaka",
+      "photographer": "Tariq Ali",
+      "order": 1
+    },
+    {
+      "title": "School Children Receiving Books",
+      "category": "Education",
+      "description": "Distribution of educational materials to underprivileged students",
+      "captureDate": "2025-11-20",
+      "location": "Gazipur District",
+      "photographer": "Ayesha Rahman",
+      "order": 2
+    },
+    {
+      "title": "Women's Vocational Training",
+      "category": "Empowerment",
+      "description": "Women learning tailoring skills at our training center",
+      "captureDate": "2025-10-08",
+      "location": "Training Center, Dhaka",
+      "photographer": "Fatima Khan",
+      "order": 3
+    },
+    {
+      "title": "Tree Plantation Drive",
+      "category": "Environment",
+      "description": "Volunteers planting trees as part of environmental initiative",
+      "captureDate": "2025-09-22",
+      "location": "Savar",
+      "photographer": "Mohammad Rahim",
+      "order": 4
+    },
+    {
+      "title": "Clean Water Well Inauguration",
+      "category": "Infrastructure",
+      "description": "Community celebrating new water well installation",
+      "captureDate": "2025-08-30",
+      "location": "Tangail District",
+      "photographer": "Dr. Kamal Hassan",
+      "order": 5
+    },
+    {
+      "title": "Youth Leadership Workshop",
+      "category": "Education",
+      "description": "Young leaders participating in leadership development program",
+      "captureDate": "2025-07-18",
+      "location": "University Campus",
+      "photographer": "Tariq Ali",
+      "order": 6
+    }
+  ],
+  "successStories": [
+    {
+      "title": "From Beneficiary to Entrepreneur",
+      "name": "Amina Begum",
+      "category": "Women Empowerment",
+      "story": "Amina joined our women's empowerment program three years ago with no source of income. Through vocational training and microfinance support, she started her own tailoring business. Today, she employs five other women from her community and has become a role model for economic independence.",
+      "impact": "5 jobs created, $15,000 annual revenue",
+      "year": "2023",
+      "order": 1
+    },
+    {
+      "title": "A Doctor's Journey",
+      "name": "Rashid Ahmed",
+      "category": "Education",
+      "story": "Rashid was one of our first scholarship recipients in 2015. Despite financial hardships, he excelled in his studies. Today, he is a medical doctor serving in rural areas, giving back to communities similar to where he came from.",
+      "impact": "Treating 200+ patients monthly",
+      "year": "2024",
+      "order": 2
+    },
+    {
+      "title": "Village Transformation",
+      "name": "Karimpur Village",
+      "category": "Community Development",
+      "story": "Karimpur was struggling with lack of clean water and basic healthcare. Through our integrated development program, we installed water systems, established a health clinic, and provided education support. The village now has zero waterborne diseases and 100% school enrollment.",
+      "impact": "500 lives improved, 100% school enrollment",
+      "year": "2025",
+      "order": 3
+    }
+  ],
+  "programs": [
+    {
+      "title": "Quality Education Initiative",
+      "description": "Providing scholarships, school supplies, and educational support to underprivileged children",
+      "category": "Education",
+      "beneficiaries": 12500,
+      "icon": "book-open",
+      "color": "blue",
+      "order": 1
+    },
+    {
+      "title": "Healthcare Access Program",
+      "description": "Free medical camps, health clinics, and emergency medical assistance for underserved communities",
+      "category": "Healthcare",
+      "beneficiaries": 35000,
+      "icon": "heart",
+      "color": "red",
+      "order": 2
+    },
+    {
+      "title": "Women Empowerment & Skills Training",
+      "description": "Vocational training, microfinance, and entrepreneurship support for women",
+      "category": "Empowerment",
+      "beneficiaries": 4800,
+      "icon": "users",
+      "color": "purple",
+      "order": 3
+    },
+    {
+      "title": "Clean Water & Sanitation",
+      "description": "Installing water purification systems and promoting hygiene practices in rural areas",
+      "category": "Infrastructure",
+      "beneficiaries": 8200,
+      "icon": "droplet",
+      "color": "cyan",
+      "order": 4
+    },
+    {
+      "title": "Environmental Conservation",
+      "description": "Tree plantation, waste management, and environmental awareness programs",
+      "category": "Environment",
+      "beneficiaries": 25000,
+      "icon": "leaf",
+      "color": "green",
+      "order": 5
+    }
+  ],
+  "timelineEvents": [
+    {
+      "year": "2009",
+      "title": "Foundation Established",
+      "description": "Birdsfly Sangstha was founded with a mission to empower underprivileged communities",
+      "category": "Milestone",
+      "order": 1
+    },
+    {
+      "year": "2012",
+      "title": "First Education Center",
+      "description": "Opened our first education center serving 200 children in rural areas",
+      "category": "Education",
+      "order": 2
+    },
+    {
+      "year": "2015",
+      "title": "Healthcare Initiative Launch",
+      "description": "Started mobile health clinics reaching remote communities",
+      "category": "Healthcare",
+      "order": 3
+    },
+    {
+      "year": "2018",
+      "title": "10,000 Lives Impacted",
+      "description": "Reached milestone of positively impacting 10,000 lives through our programs",
+      "category": "Milestone",
+      "order": 4
+    },
+    {
+      "year": "2020",
+      "title": "COVID-19 Response",
+      "description": "Launched emergency relief program supporting 5,000 families during pandemic",
+      "category": "Emergency Response",
+      "order": 5
+    },
+    {
+      "year": "2023",
+      "title": "Women Empowerment Program",
+      "description": "Initiated comprehensive women's empowerment and vocational training program",
+      "category": "Empowerment",
+      "order": 6
+    },
+    {
+      "year": "2025",
+      "title": "50,000 Lives Transformed",
+      "description": "Celebrated milestone of transforming 50,000 lives across multiple programs",
+      "category": "Milestone",
+      "order": 7
+    }
+  ],
+  "authors": [
+    {
+      "name": "Dr. Sarah Ahmed",
+      "email": "sarah.ahmed@birdsfly.org"
+    },
+    {
+      "name": "Mohammad Rahim",
+      "email": "m.rahim@birdsfly.org"
+    }
+  ],
+  "articles": [
+    {
+      "title": "The Impact of Education on Community Development",
+      "slug": "impact-of-education-on-community-development",
+      "category": { "id": 1 },
+      "author": { "id": 1 },
+      "description": "Exploring how quality education transforms communities and creates lasting social impact",
+      "cover": null,
+      "blocks": [
+        {
+          "__component": "shared.rich-text",
+          "body": "## The Power of Education\n\nEducation is the cornerstone of community development. Through our programs, we've witnessed firsthand how access to quality education can transform entire communities. When children receive proper education, they don't just improve their own lives—they become agents of change for their families and communities.\n\n## Our Approach\n\nWe focus on:\n- Providing scholarships to underprivileged children\n- Supplying essential educational materials\n- Training teachers in modern pedagogical methods\n- Creating safe and conducive learning environments\n\n## Measurable Impact\n\nOver the past five years, our education programs have achieved:\n- 95% school retention rate\n- 40% improvement in academic performance\n- 100% of scholarship recipients completing primary education"
+        }
+      ]
+    },
+    {
+      "title": "Women Empowerment: Stories of Transformation",
+      "slug": "women-empowerment-stories-of-transformation",
+      "category": { "id": 5 },
+      "author": { "id": 2 },
+      "description": "Inspiring stories of women who transformed their lives through our empowerment programs",
+      "cover": null,
+      "blocks": [
+        {
+          "__component": "shared.rich-text",
+          "body": "## Breaking Barriers\n\nOur women empowerment program has helped hundreds of women break free from the cycle of poverty and dependence. Through vocational training, microfinance, and mentorship, these women have become entrepreneurs, community leaders, and role models.\n\n## Success Stories\n\nMeet Amina, who went from having no income to running a successful tailoring business that employs five other women. Her story is just one of many that demonstrate the transformative power of empowerment.\n\n## The Ripple Effect\n\nWhen we empower one woman, we impact her entire family and community. Children receive better nutrition and education, families achieve financial stability, and communities gain strong female leaders."
+        }
+      ]
+    }
+  ],
+  "about": {
+    "title": "About Birdsfly Sangstha",
+    "blocks": [
+      {
+        "__component": "shared.rich-text",
+        "body": "## Our Story\n\nBirdsfly Sangstha was founded in 2009 with a simple yet powerful vision: to create lasting positive change in underserved communities. What started as a small group of dedicated volunteers has grown into a comprehensive organization serving over 250 communities across the country.\n\n## Our Approach\n\nWe believe in sustainable, community-led development. Our programs are designed in collaboration with the communities we serve, ensuring that solutions are culturally appropriate and locally sustainable. We focus on:\n\n- **Education**: Providing quality education and scholarships\n- **Healthcare**: Ensuring access to medical services\n- **Economic Empowerment**: Creating opportunities for financial independence\n- **Environmental Conservation**: Protecting our planet for future generations"
+      },
+      {
+        "__component": "shared.quote",
+        "title": "Dr. Sarah Ahmed, Executive Director",
+        "body": "Every individual deserves the opportunity to thrive. Our work is about creating pathways to success for those who need it most."
+      },
+      {
+        "__component": "shared.rich-text",
+        "body": "## Our Impact\n\nOver the past 15 years, we have:\n- Educated 12,500+ children\n- Provided healthcare to 35,000+ individuals\n- Trained 4,800+ women in vocational skills\n- Installed clean water systems serving 8,200+ people\n- Planted 100,000+ trees\n\n## Join Our Mission\n\nWhether through donations, volunteering, or partnerships, there are many ways to support our work and make a difference in the lives of thousands."
+      }
+    ]
+  },
+  "serviceCategories": [
+    {
+      "name": "Education & Learning",
+      "description": "Comprehensive educational programs providing quality learning opportunities, scholarships, and skill development for children and adults",
+      "icon": "book",
+      "color": "blue",
+      "order": 1
+    },
+    {
+      "name": "Healthcare & Wellness",
+      "description": "Medical services, health camps, and wellness programs ensuring accessible healthcare for underserved communities",
+      "icon": "heart",
+      "color": "rose",
+      "order": 2
+    },
+    {
+      "name": "Community Development",
+      "description": "Infrastructure projects, clean water initiatives, and sustainable development programs building stronger communities",
+      "icon": "users",
+      "color": "purple",
+      "order": 3
+    },
+    {
+      "name": "Environmental Conservation",
+      "description": "Tree plantation drives, waste management, and environmental awareness programs protecting our planet",
+      "icon": "leaf",
+      "color": "emerald",
+      "order": 4
+    },
+    {
+      "name": "Women Empowerment",
+      "description": "Vocational training, microfinance, and leadership programs empowering women to achieve economic independence",
+      "icon": "shield",
+      "color": "amber",
+      "order": 5
+    }
+  ],
+  "services": [
+    {
+      "title": "Quality Education Program",
+      "description": "Providing scholarships, school supplies, and educational support to underprivileged children ensuring every child has access to quality education",
+      "icon": "book-open",
+      "color": "blue",
+      "missionTitle": "Education for All",
+      "missionSubtitle": "Building Futures Through Learning",
+      "missionDescription": "Our education program focuses on breaking the cycle of poverty through quality education. We provide comprehensive support including scholarships, learning materials, and mentorship.",
+      "missionContent1": "We work with local schools to identify children who need support and provide them with everything they need to succeed academically. Our program includes regular monitoring and parent engagement to ensure sustained impact.",
+      "missionContent2": "Beyond academics, we focus on holistic development including life skills, digital literacy, and career guidance to prepare students for future success.",
+      "directives": [
+        "Provide scholarships to 500+ students annually",
+        "Distribute learning materials and uniforms",
+        "Conduct remedial classes and tutoring",
+        "Organize career guidance workshops",
+        "Engage parents in children's education"
+      ],
+      "order": 1
+    },
+    {
+      "title": "Healthcare Access Initiative",
+      "description": "Free medical camps, health clinics, and emergency medical assistance ensuring healthcare reaches those who need it most",
+      "icon": "heart-pulse",
+      "color": "rose",
+      "missionTitle": "Health for All",
+      "missionSubtitle": "Accessible Healthcare Services",
+      "missionDescription": "Our healthcare program brings medical services to remote and underserved communities through mobile clinics, health camps, and partnerships with medical institutions.",
+      "missionContent1": "We organize regular health camps providing free checkups, medications, and specialist consultations. Our focus areas include maternal health, child nutrition, and preventive care.",
+      "missionContent2": "Through our emergency medical fund, we support critical treatments for patients who cannot afford healthcare, covering surgeries, medications, and hospital expenses.",
+      "directives": [
+        "Conduct monthly health camps in 20+ locations",
+        "Provide free medications and treatments",
+        "Support emergency medical cases",
+        "Promote preventive healthcare awareness",
+        "Partner with hospitals for specialized care"
+      ],
+      "order": 2
+    },
+    {
+      "title": "Women Empowerment & Skills Training",
+      "description": "Vocational training, microfinance, and entrepreneurship support empowering women to achieve financial independence",
+      "icon": "users",
+      "color": "purple",
+      "missionTitle": "Empowering Women",
+      "missionSubtitle": "Creating Economic Independence",
+      "missionDescription": "Our women empowerment program provides comprehensive support for women to start their own businesses and achieve financial independence.",
+      "missionContent1": "We offer vocational training in tailoring, handicrafts, food processing, and other skills. Training is combined with business development support and access to microfinance.",
+      "missionContent2": "Graduates of our program receive ongoing mentorship and market linkage support to ensure their businesses thrive and grow.",
+      "directives": [
+        "Train 400+ women annually in vocational skills",
+        "Provide microfinance and startup capital",
+        "Offer business development training",
+        "Create market linkages for products",
+        "Build women's support networks"
+      ],
+      "order": 3
+    },
+    {
+      "title": "Clean Water & Sanitation",
+      "description": "Installing water purification systems and wells in rural communities ensuring access to clean drinking water",
+      "icon": "droplet",
+      "color": "cyan",
+      "missionTitle": "Clean Water for All",
+      "missionSubtitle": "Safe Drinking Water Access",
+      "missionDescription": "Our water program addresses the critical need for clean drinking water in rural communities through installation of wells, purification systems, and hygiene education.",
+      "missionContent1": "We conduct water quality assessments and install appropriate solutions including tube wells, filtration systems, and rainwater harvesting. Each installation includes community training on maintenance.",
+      "missionContent2": "Our hygiene awareness programs educate communities on sanitation practices, reducing waterborne diseases and improving overall health outcomes.",
+      "directives": [
+        "Install 50+ water systems annually",
+        "Conduct water quality testing",
+        "Provide hygiene education",
+        "Train communities on maintenance",
+        "Monitor long-term sustainability"
+      ],
+      "order": 4
+    },
+    {
+      "title": "Environmental Conservation",
+      "description": "Tree plantation, waste management, and environmental awareness programs protecting our planet for future generations",
+      "icon": "leaf",
+      "color": "emerald",
+      "missionTitle": "Green Future",
+      "missionSubtitle": "Environmental Protection",
+      "missionDescription": "Our environmental program focuses on tree plantation, waste management, and creating awareness about environmental conservation among communities.",
+      "missionContent1": "We organize large-scale tree plantation drives involving volunteers, schools, and communities. Our goal is to plant 50,000 trees annually in urban and rural areas.",
+      "missionContent2": "Through waste management initiatives and environmental education, we promote sustainable practices and climate action at the grassroots level.",
+      "directives": [
+        "Plant 50,000+ trees annually",
+        "Organize community clean-up drives",
+        "Conduct environmental awareness programs",
+        "Promote waste segregation and recycling",
+        "Create green spaces in urban areas"
+      ],
+      "order": 5
+    },
+    {
+      "title": "Child Welfare & Protection",
+      "description": "Providing shelter, education, healthcare, and emotional support to orphaned and vulnerable children",
+      "icon": "home",
+      "color": "orange",
+      "missionTitle": "Protecting Children",
+      "missionSubtitle": "Safe Homes, Bright Futures",
+      "missionDescription": "Our child welfare program provides comprehensive care for orphaned and vulnerable children including shelter, education, healthcare, and emotional support.",
+      "missionContent1": "We operate care homes providing safe, nurturing environments where children receive quality education, nutritious meals, healthcare, and counseling support.",
+      "missionContent2": "Our focus is on holistic development, preparing children for independent living through life skills training, career guidance, and continued support into adulthood.",
+      "directives": [
+        "Provide shelter and care for 125+ children",
+        "Ensure quality education and healthcare",
+        "Offer counseling and emotional support",
+        "Provide life skills and career training",
+        "Support transition to independent living"
+      ],
+      "order": 6
+    }
+  ],
+  "volunteers": [
+    {
+      "name": "Ahmed Rahman",
+      "role": "Field Coordinator",
+      "email": "ahmed.rahman@volunteer.bfs.org",
+      "phone": "+880 1712-345678",
+      "bio": "Ahmed has been volunteering with BFS for 5 years, coordinating field operations and community outreach programs. His dedication and leadership have been instrumental in expanding our reach.",
+      "experienceTitle": "5 Years of Impact",
+      "experienceSubtitle": "Leading Community Programs",
+      "experienceDescription": "<p>Ahmed joined BFS in 2019 and has since coordinated over 50 community programs across 15 districts. His expertise in community mobilization and program management has helped us reach thousands of beneficiaries.</p><p>He specializes in education and youth development programs, working closely with schools and community centers to create lasting impact.</p>",
+      "location": "Dhaka",
+      "socialLinks": {
+        "facebook": "https://facebook.com/ahmedrahman",
+        "linkedin": "https://linkedin.com/in/ahmedrahman"
+      },
+      "fundingPhases": [
+        { "phase": "Community Outreach", "status": "completed", "amount": "50 programs" },
+        { "phase": "Youth Development", "status": "ongoing", "amount": "25 programs" }
+      ],
+      "certificates": [
+        { "name": "Community Development Certificate", "year": "2020" },
+        { "name": "Project Management Professional", "year": "2022" }
+      ],
+      "order": 1
+    },
+    {
+      "name": "Fatima Akter",
+      "role": "Healthcare Volunteer",
+      "email": "fatima.akter@volunteer.bfs.org",
+      "phone": "+880 1723-456789",
+      "bio": "Fatima is a medical professional who volunteers her time to organize health camps and provide medical consultations in underserved communities.",
+      "experienceTitle": "Medical Expertise",
+      "experienceSubtitle": "Serving Rural Communities",
+      "experienceDescription": "<p>As a registered nurse, Fatima brings valuable medical expertise to our healthcare programs. She has organized 30+ health camps reaching over 5,000 patients.</p><p>Her compassionate approach and medical knowledge have made a significant difference in improving healthcare access for rural communities.</p>",
+      "location": "Chittagong",
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/fatimaakter"
+      },
+      "fundingPhases": [
+        { "phase": "Health Camps", "status": "completed", "amount": "30 camps" },
+        { "phase": "Medical Outreach", "status": "ongoing", "amount": "15 camps" }
+      ],
+      "certificates": [
+        { "name": "Registered Nurse", "year": "2018" },
+        { "name": "Community Health Worker", "year": "2021" }
+      ],
+      "order": 2
+    },
+    {
+      "name": "Karim Hossain",
+      "role": "Education Mentor",
+      "email": "karim.hossain@volunteer.bfs.org",
+      "phone": "+880 1734-567890",
+      "bio": "Karim is a retired teacher who mentors students in our education program, helping them excel academically and develop life skills.",
+      "experienceTitle": "Teaching Excellence",
+      "experienceSubtitle": "Mentoring Future Leaders",
+      "experienceDescription": "<p>With 35 years of teaching experience, Karim brings invaluable expertise to our education program. He mentors 50+ students, providing academic support and career guidance.</p><p>His patient approach and deep subject knowledge have helped numerous students achieve academic excellence and pursue higher education.</p>",
+      "location": "Sylhet",
+      "socialLinks": {},
+      "fundingPhases": [
+        { "phase": "Student Mentorship", "status": "ongoing", "amount": "50+ students" }
+      ],
+      "certificates": [
+        { "name": "Master of Education", "year": "1990" },
+        { "name": "Excellence in Teaching Award", "year": "2015" }
+      ],
+      "order": 3
+    },
+    {
+      "name": "Nusrat Jahan",
+      "role": "Women Empowerment Trainer",
+      "email": "nusrat.jahan@volunteer.bfs.org",
+      "phone": "+880 1745-678901",
+      "bio": "Nusrat trains women in vocational skills and entrepreneurship, helping them start their own businesses and achieve financial independence.",
+      "experienceTitle": "Empowering Women",
+      "experienceSubtitle": "Building Entrepreneurs",
+      "experienceDescription": "<p>Nusrat has trained over 200 women in tailoring, handicrafts, and business management. Her practical approach and business acumen have helped many women start successful enterprises.</p><p>She also provides ongoing mentorship and market linkage support to ensure long-term success of women entrepreneurs.</p>",
+      "location": "Rajshahi",
+      "socialLinks": {
+        "facebook": "https://facebook.com/nusratjahan",
+        "instagram": "https://instagram.com/nusratjahan"
+      },
+      "fundingPhases": [
+        { "phase": "Vocational Training", "status": "completed", "amount": "200+ women" },
+        { "phase": "Business Mentorship", "status": "ongoing", "amount": "100+ women" }
+      ],
+      "certificates": [
+        { "name": "Fashion Design Diploma", "year": "2016" },
+        { "name": "Business Development Certificate", "year": "2019" }
+      ],
+      "order": 4
+    },
+    {
+      "name": "Rahim Khan",
+      "role": "Environmental Activist",
+      "email": "rahim.khan@volunteer.bfs.org",
+      "phone": "+880 1756-789012",
+      "bio": "Rahim leads our environmental conservation programs, organizing tree plantation drives and promoting sustainable practices.",
+      "experienceTitle": "Green Warrior",
+      "experienceSubtitle": "Environmental Conservation",
+      "experienceDescription": "<p>Rahim has organized 40+ tree plantation drives, planting over 15,000 trees across the country. His passion for environmental conservation inspires volunteers and communities alike.</p><p>He also conducts environmental awareness programs in schools and communities, promoting sustainable living practices.</p>",
+      "location": "Khulna",
+      "socialLinks": {
+        "twitter": "https://twitter.com/rahimkhan",
+        "linkedin": "https://linkedin.com/in/rahimkhan"
+      },
+      "fundingPhases": [
+        { "phase": "Tree Plantation", "status": "completed", "amount": "15,000 trees" },
+        { "phase": "Environmental Education", "status": "ongoing", "amount": "50 programs" }
+      ],
+      "certificates": [
+        { "name": "Environmental Science Degree", "year": "2017" },
+        { "name": "Climate Action Certificate", "year": "2020" }
+      ],
+      "order": 5
+    },
+    {
+      "name": "Sultana Begum",
+      "role": "Community Organizer",
+      "email": "sultana.begum@volunteer.bfs.org",
+      "phone": "+880 1767-890123",
+      "bio": "Sultana mobilizes communities for various programs, building strong relationships and ensuring active participation in development initiatives.",
+      "experienceTitle": "Community Builder",
+      "experienceSubtitle": "Grassroots Mobilization",
+      "experienceDescription": "<p>Sultana has worked with 30+ communities, building trust and mobilizing residents for education, health, and development programs. Her grassroots approach ensures community ownership of initiatives.</p><p>She specializes in women's groups and youth organizations, creating platforms for community voices to be heard.</p>",
+      "location": "Barisal",
+      "socialLinks": {
+        "facebook": "https://facebook.com/sultanabegum"
+      },
+      "fundingPhases": [
+        { "phase": "Community Mobilization", "status": "ongoing", "amount": "30+ communities" }
+      ],
+      "certificates": [
+        { "name": "Community Development Certificate", "year": "2019" },
+        { "name": "Social Work Diploma", "year": "2021" }
+      ],
+      "order": 6
+    },
+    {
+      "name": "Tariq Ahmed",
+      "role": "Youth Coordinator",
+      "email": "tariq.ahmed@volunteer.bfs.org",
+      "phone": "+880 1778-901234",
+      "bio": "Tariq coordinates youth programs and leadership development initiatives, empowering young people to become change-makers in their communities.",
+      "experienceTitle": "Youth Leadership",
+      "experienceSubtitle": "Developing Future Leaders",
+      "experienceDescription": "<p>Tariq has mentored 150+ young people through leadership programs, skills training, and community service projects. His energy and vision inspire youth to take action.</p><p>He organizes youth summits, workshops, and volunteer opportunities, creating pathways for young people to contribute meaningfully to society.</p>",
+      "location": "Dhaka",
+      "socialLinks": {
+        "instagram": "https://instagram.com/tariqahmed",
+        "linkedin": "https://linkedin.com/in/tariqahmed"
+      },
+      "fundingPhases": [
+        { "phase": "Youth Programs", "status": "ongoing", "amount": "150+ youth" }
+      ],
+      "certificates": [
+        { "name": "Youth Development Certificate", "year": "2020" },
+        { "name": "Leadership Training", "year": "2022" }
+      ],
+      "order": 7
+    },
+    {
+      "name": "Ayesha Siddique",
+      "role": "Digital Literacy Trainer",
+      "email": "ayesha.siddique@volunteer.bfs.org",
+      "phone": "+880 1789-012345",
+      "bio": "Ayesha teaches computer skills and digital literacy to rural youth, bridging the digital divide and creating opportunities in the digital economy.",
+      "experienceTitle": "Digital Empowerment",
+      "experienceSubtitle": "Bridging the Digital Divide",
+      "experienceDescription": "<p>Ayesha has trained 300+ rural youth in basic computer skills, internet usage, and digital tools. Her training opens up new opportunities for employment and entrepreneurship.</p><p>She has established 5 computer labs in rural areas, providing ongoing access to technology and digital learning resources.</p>",
+      "location": "Comilla",
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/ayeshasiddique",
+        "twitter": "https://twitter.com/ayeshasiddique"
+      },
+      "fundingPhases": [
+        { "phase": "Digital Training", "status": "completed", "amount": "300+ youth" },
+        { "phase": "Computer Labs", "status": "ongoing", "amount": "5 labs" }
+      ],
+      "certificates": [
+        { "name": "Computer Science Degree", "year": "2018" },
+        { "name": "Digital Literacy Trainer", "year": "2020" }
+      ],
+      "order": 8
+    }
+  ],
+  "donations": [
+    {
+      "name": "Mohammad Ali",
+      "email": "m.ali@example.com",
+      "phone": "+880 1712-111111",
+      "amount": 5000.00,
+      "paymentMethod": "BANK TRANSFER",
+      "motivation": "Supporting education for underprivileged children",
+      "status": "completed",
+      "transactionId": "TXN-2026-001",
+      "receiptUrl": "/receipts/TXN-2026-001.pdf"
+    },
+    {
+      "name": "Fatima Rahman",
+      "email": "fatima.r@example.com",
+      "phone": "+880 1723-222222",
+      "amount": 10000.00,
+      "paymentMethod": "PAYONEER",
+      "motivation": "Healthcare support for rural communities",
+      "status": "completed",
+      "transactionId": "TXN-2026-002",
+      "receiptUrl": "/receipts/TXN-2026-002.pdf"
+    },
+    {
+      "name": "Karim Hassan",
+      "email": "k.hassan@example.com",
+      "phone": "+880 1734-333333",
+      "amount": 3000.00,
+      "paymentMethod": "OFFLINE DONATE",
+      "motivation": "Clean water initiative",
+      "status": "completed",
+      "transactionId": "TXN-2026-003"
+    },
+    {
+      "name": "Nusrat Jahan",
+      "email": "nusrat.j@example.com",
+      "phone": "+880 1745-444444",
+      "amount": 7500.00,
+      "paymentMethod": "BANK TRANSFER",
+      "motivation": "Women empowerment program",
+      "status": "pending",
+      "transactionId": "TXN-2026-004"
+    },
+    {
+      "name": "Ahmed Khan",
+      "email": "ahmed.k@example.com",
+      "phone": "+880 1756-555555",
+      "amount": 15000.00,
+      "paymentMethod": "PAYONEER",
+      "motivation": "General donation to support all programs",
+      "status": "completed",
+      "transactionId": "TXN-2026-005",
+      "receiptUrl": "/receipts/TXN-2026-005.pdf"
+    },
+    {
+      "name": "Sultana Begum",
+      "email": "sultana.b@example.com",
+      "phone": "+880 1767-666666",
+      "amount": 2000.00,
+      "paymentMethod": "OFFLINE DONATE",
+      "motivation": "Tree plantation drive",
+      "status": "completed",
+      "transactionId": "TXN-2026-006"
+    },
+    {
+      "name": "Rahim Ahmed",
+      "email": "rahim.a@example.com",
+      "phone": "+880 1778-777777",
+      "amount": 8000.00,
+      "paymentMethod": "BANK TRANSFER",
+      "motivation": "Emergency medical fund",
+      "status": "completed",
+      "transactionId": "TXN-2026-007",
+      "receiptUrl": "/receipts/TXN-2026-007.pdf"
+    },
+    {
+      "name": "Ayesha Siddique",
+      "email": "ayesha.s@example.com",
+      "phone": "+880 1789-888888",
+      "amount": 4500.00,
+      "paymentMethod": "PAYONEER",
+      "motivation": "Digital literacy program",
+      "status": "pending",
+      "transactionId": "TXN-2026-008"
+    }
+  ]
+}

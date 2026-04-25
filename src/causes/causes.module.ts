@@ -9,12 +9,12 @@ import { User } from '../users/entities/user.entity';
 import { ReferralModule } from '../referral/referral.module';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([Cause, CauseCategory, Donation, User]),
-        forwardRef(() => ReferralModule),
-    ],
-    controllers: [CausesController],
-    providers: [CausesService],
-    exports: [CausesService],
+  imports: [
+    TypeOrmModule.forFeature([Cause, CauseCategory, Donation, User]),
+    forwardRef(() => ReferralModule),
+  ],
+  controllers: [CausesController],
+  providers: [CausesService],
+  exports: [CausesService],
 })
 export class CausesModule {}

@@ -11,13 +11,13 @@ import { Donation } from '../causes/entities/donation.entity';
 import { User } from '../users/entities/user.entity';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([CmsItem, Cause, Donation, User]),
-        CmsModule,
-        EmailModule,
-    ],
-    controllers: [StripeController, StripeSessionController],
-    providers: [StripeService],
-    exports: [StripeService],
+  imports: [
+    TypeOrmModule.forFeature([CmsItem, Cause, Donation, User]),
+    CmsModule,
+    EmailModule,
+  ],
+  controllers: [StripeController, StripeSessionController],
+  providers: [StripeService],
+  exports: [StripeService],
 })
-export class StripeModule { }
+export class StripeModule {}

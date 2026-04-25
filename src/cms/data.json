@@ -1,17 +1,17 @@
 {
   "global": {
-    "siteName": "BFS Foundation",
+    "siteName": "Birdsfly Sangstha",
     "logo": null,
     "defaultSeo": {
-      "metaTitle": "BFS Foundation - Empowering Coastal Communities in Satkhira, Bangladesh",
-      "metaDescription": "BFS Foundation is a non-governmental organization based in Satkhira District, Bangladesh. Since 2022, we build resilience, sustainability, and social justice in coastal communities. Contact: 01727009448 | Bosundhora Tower, 3rd Floor, Satkhira.",
+      "metaTitle": "Birdsfly Sangstha - Empowering Coastal Communities in Satkhira, Bangladesh",
+      "metaDescription": "Birdsfly Sangstha is a non-governmental organization based in Satkhira District, Bangladesh. Since 2022, we build resilience, sustainability, and social justice in coastal communities. Contact: 01727009448 | Bosundhora Tower, 3rd Floor, Satkhira.",
       "shareImage": null
     },
     "siteDescription": "Building resilience, sustainability, and social justice in Bangladesh's coastal communities. Based in Satkhira since 2022, we work across Climate Resilience, WASH, Agriculture, Health, Education, Women Empowerment, and Environmental Conservation.",
     "favicon": null
   },
   "heroContent": {
-    "badgeText": "BFS Foundation - Since 2022",
+    "badgeText": "Birdsfly Sangstha - Since 2022",
     "title": "Building Resilience in Coastal Communities",
     "titleHighlight": "Satkhira, Bangladesh",
     "subtitle": "A non-governmental organization dedicated to sustainability, social justice, and climate resilience across 12 key sectors. Located at Bosundhora Tower, 3rd Floor, Satkhira. Contact us: 01727009448.",
@@ -34,7 +34,7 @@
   "identitySection": {
     "badge": "Who We Are",
     "title": "Empowering Coastal Communities in Satkhira",
-    "description": "BFS Foundation is a non-governmental organization based in Satkhira District, Bangladesh. We started our journey in 2022, with our office located at Bosundhora Tower, 3rd Floor, Satkhira. We are committed to building resilience, sustainability, and social justice in coastal communities. Our work spans across multiple sectors that directly impact vulnerable populations."
+    "description": "Birdsfly Sangstha is a non-governmental organization based in Satkhira District, Bangladesh. We started our journey in 2022, with our office located at Bosundhora Tower, 3rd Floor, Satkhira. We are committed to building resilience, sustainability, and social justice in coastal communities. Our work spans across multiple sectors that directly impact vulnerable populations."
   },
   "services": [
     {
@@ -199,8 +199,8 @@
     "subtitle": "Join our team of dedicated volunteers working across Satkhira's coastal communities. Together, we can build a more resilient future."
   },
   "aboutHero": {
-    "title": "BFS Foundation - Empowering Coastal Communities Since 2022",
-    "subtitle": "BFS Foundation is a non-governmental organization based in Satkhira District, Bangladesh. Our office is located at Bosundhora Tower, 3rd Floor, Satkhira. Contact us: 01727009448. We are committed to building resilience, sustainability, and social justice in coastal communities through our 12 focus areas.",
+    "title": "Birdsfly Sangstha - Empowering Coastal Communities Since 2022",
+    "subtitle": "Birdsfly Sangstha is a non-governmental organization based in Satkhira District, Bangladesh. Our office is located at Bosundhora Tower, 3rd Floor, Satkhira. Contact us: 01727009448. We are committed to building resilience, sustainability, and social justice in coastal communities through our 12 focus areas.",
     "backgroundImage": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070",
     "overlayOpacity": 60,
     "overlayColor": "bg-slate-900",
@@ -215,7 +215,7 @@
   },
   "missionVision": {
     "missionTitle": "Our Mission",
-    "missionDescription": "BFS Foundation is dedicated to building resilience, sustainability, and social justice in Bangladesh's coastal communities. We work across 12 key sectors - Climate Change & DRR, WASH, Sustainable Agriculture, Public Health, Education, Women Empowerment, Environment Conservation, Child Protection, Governance, Youth Development, Technology & Innovation, and Cyber Security - to directly impact vulnerable populations and create lasting change in Satkhira District.",
+    "missionDescription": "Birdsfly Sangstha is dedicated to building resilience, sustainability, and social justice in Bangladesh's coastal communities. We work across 12 key sectors - Climate Change & DRR, WASH, Sustainable Agriculture, Public Health, Education, Women Empowerment, Environment Conservation, Child Protection, Governance, Youth Development, Technology & Innovation, and Cyber Security - to directly impact vulnerable populations and create lasting change in Satkhira District.",
     "missionPoints": [
       { "text": "Climate Change & Disaster Risk Reduction" },
       { "text": "Water, Sanitation & Hygiene (WASH)" },
@@ -294,7 +294,7 @@
     "phone": "01727009448",
     "email": "info@birdsfly.org",
     "headquarters": {
-      "line1": "BFS Foundation",
+      "line1": "Birdsfly Sangstha",
       "line2": "Bosundhora Tower, 3rd Floor, Satkhira 9400, Bangladesh"
     },
     "social": {
@@ -302,10 +302,15 @@
       "twitter": "#",
       "instagram": "#",
       "youtube": "#"
+    },
+    "topbar": {
+      "enabled": true,
+      "donorCounterEnabled": true,
+      "donorCount": 1230
     }
   },
   "footerSection": {
-    "description": "BFS Foundation is a non-governmental organization based in Satkhira District, Bangladesh. Since 2022, we've been committed to building resilience, sustainability, and social justice in coastal communities. Located at Bosundhora Tower, 3rd Floor, Satkhira. Contact: 01727009448."
+    "description": "Birdsfly Sangstha is a non-governmental organization based in Satkhira District, Bangladesh. Since 2022, we've been committed to building resilience, sustainability, and social justice in coastal communities. Located at Bosundhora Tower, 3rd Floor, Satkhira. Contact: 01727009448."
   },
   "categories": [
     {
@@ -824,14 +829,14 @@
   "articles": [
     {
       "id": 1,
-      "title": "Launching BFS Foundation: A New Chapter for Satkhira's Coastal Communities",
+      "title": "Launching Birdsfly Sangstha: A New Chapter for Satkhira's Coastal Communities",
       "slug": "birdsfly-sangstha-launch-satkhira",
-      "description": "Introducing BFS Foundation, a new NGO based in Satkhira District, Bangladesh, committed to building resilience, sustainability, and social justice across 12 focus areas.",
-      "content": "We are excited to announce the official launch of BFS Foundation, a non-governmental organization based at Bosundhora Tower, 3rd Floor, Satkhira. Since 2022, we have been working quietly to understand the needs of our coastal communities and develop programs that create real impact.\n\nOur 12 focus areas cover the full spectrum of coastal life:\n\n1. Climate Change & Disaster Risk Reduction - Cyclone preparedness, embankment protection, coastal afforestation\n2. Water, Sanitation & Hygiene (WASH) - RO plants, rainwater harvesting, arsenic-free water\n3. Sustainable Agriculture & Food Security - Salt-tolerant crops, cage fish farming, organic fertilizers\n4. Public Health & Nutrition - Maternal health, child nutrition, disease prevention\n5. Education & Skill Development - Non-formal education, ICT training, vocational skills\n6. Women Empowerment & Gender Equality - Anti-child marriage, legal aid, entrepreneurship\n7. Environment & Biodiversity Conservation - Sundarbans protection, plastic pollution control\n8. Child Protection & Rights - Eliminating child labor, rehabilitating street children\n9. Governance & Human Rights - Access to services, transparency, land rights\n10. Youth Development & Volunteerism - Social work engagement, anti-drug campaigns\n11. Technology & Innovation - Drones in agriculture, e-learning, digital services\n12. Cyber Security Awareness - Online safety, secure digital practices\n\nWe invite you to join us in our mission. Whether through volunteering, donations, or partnerships, together we can build resilient coastal communities in Satkhira.\n\nContact us: 01727009448\nEmail: info@birdsfly.org\nAddress: Bosundhora Tower, 3rd Floor, Satkhira, Bangladesh",
+      "description": "Introducing Birdsfly Sangstha, a new NGO based in Satkhira District, Bangladesh, committed to building resilience, sustainability, and social justice across 12 focus areas.",
+      "content": "We are excited to announce the official launch of Birdsfly Sangstha, a non-governmental organization based at Bosundhora Tower, 3rd Floor, Satkhira. Since 2022, we have been working quietly to understand the needs of our coastal communities and develop programs that create real impact.\n\nOur 12 focus areas cover the full spectrum of coastal life:\n\n1. Climate Change & Disaster Risk Reduction - Cyclone preparedness, embankment protection, coastal afforestation\n2. Water, Sanitation & Hygiene (WASH) - RO plants, rainwater harvesting, arsenic-free water\n3. Sustainable Agriculture & Food Security - Salt-tolerant crops, cage fish farming, organic fertilizers\n4. Public Health & Nutrition - Maternal health, child nutrition, disease prevention\n5. Education & Skill Development - Non-formal education, ICT training, vocational skills\n6. Women Empowerment & Gender Equality - Anti-child marriage, legal aid, entrepreneurship\n7. Environment & Biodiversity Conservation - Sundarbans protection, plastic pollution control\n8. Child Protection & Rights - Eliminating child labor, rehabilitating street children\n9. Governance & Human Rights - Access to services, transparency, land rights\n10. Youth Development & Volunteerism - Social work engagement, anti-drug campaigns\n11. Technology & Innovation - Drones in agriculture, e-learning, digital services\n12. Cyber Security Awareness - Online safety, secure digital practices\n\nWe invite you to join us in our mission. Whether through volunteering, donations, or partnerships, together we can build resilient coastal communities in Satkhira.\n\nContact us: 01727009448\nEmail: info@birdsfly.org\nAddress: Bosundhora Tower, 3rd Floor, Satkhira, Bangladesh",
       "date": "2026-04-11",
       "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200",
       "author": {
-        "name": "BFS Foundation Team",
+        "name": "Birdsfly Sangstha Team",
         "image": "https://i.pravatar.cc/150?u=birdsfly",
         "role": "Founding Team"
       },
@@ -857,7 +862,7 @@
       "id": 1,
       "name": "Community Member",
       "role": "Satkhira Resident",
-      "content": "BFS Foundation has brought hope to our coastal community. Their dedication to building resilience and sustainability is truly inspiring.",
+      "content": "Birdsfly Sangstha has brought hope to our coastal community. Their dedication to building resilience and sustainability is truly inspiring.",
       "image": "https://i.pravatar.cc/150?u=community1",
       "rating": 5
     }

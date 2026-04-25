@@ -2,77 +2,77 @@ import { IsString, IsOptional, IsNumber, IsEmail, IsIn } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateCommentDto {
-    @IsString()
-    name: string;
+  @IsString()
+  name: string;
 
-    @IsEmail()
-    email: string;
+  @IsEmail()
+  email: string;
 
-    @IsString()
-    text: string;
+  @IsString()
+  text: string;
 
-    @IsNumber()
-    @IsOptional()
-    @Type(() => Number)
-    articleId?: number;
+  @IsNumber()
+  @IsOptional()
+  @Type(() => Number)
+  articleId?: number;
 
-    @IsString()
-    @IsOptional()
-    articleSlug?: string;
+  @IsString()
+  @IsOptional()
+  articleSlug?: string;
 
-    @IsString()
-    @IsOptional()
-    articleTitle?: string;
+  @IsString()
+  @IsOptional()
+  articleTitle?: string;
 }
 
 export class UpdateCommentDto {
-    @IsString()
-    @IsOptional()
-    text?: string;
+  @IsString()
+  @IsOptional()
+  text?: string;
 
-    @IsIn(['pending', 'approved', 'rejected'])
-    @IsOptional()
-    status?: 'pending' | 'approved' | 'rejected';
+  @IsIn(['pending', 'approved', 'rejected'])
+  @IsOptional()
+  status?: 'pending' | 'approved' | 'rejected';
 
-    @IsString()
-    @IsOptional()
-    replyText?: string;
+  @IsString()
+  @IsOptional()
+  replyText?: string;
 }
 
 export class ReplyCommentDto {
-    @IsString()
-    replyText: string;
+  @IsString()
+  replyText: string;
 }
 
 export class BulkCommentStatusDto {
-    ids: number[];
+  ids: number[];
 
-    @IsIn(['pending', 'approved', 'rejected'])
-    status: 'pending' | 'approved' | 'rejected';
+  @IsIn(['pending', 'approved', 'rejected'])
+  status: 'pending' | 'approved' | 'rejected';
 }
 
 export class CommentQueryDto {
-    @Type(() => Number)
-    @IsOptional()
-    page?: number = 1;
+  @Type(() => Number)
+  @IsOptional()
+  page?: number = 1;
 
-    @Type(() => Number)
-    @IsOptional()
-    limit?: number = 10;
+  @Type(() => Number)
+  @IsOptional()
+  limit?: number = 10;
 
-    @IsString()
-    @IsOptional()
-    status?: string;
+  @IsString()
+  @IsOptional()
+  status?: string;
 
-    @IsString()
-    @IsOptional()
-    search?: string;
+  @IsString()
+  @IsOptional()
+  search?: string;
 
-    @IsString()
-    @IsOptional()
-    sortBy?: string = 'createdAt';
+  @IsString()
+  @IsOptional()
+  sortBy?: string = 'createdAt';
 
-    @IsString()
-    @IsOptional()
-    sortOrder?: 'ASC' | 'DESC' = 'DESC';
+  @IsString()
+  @IsOptional()
+  sortOrder?: 'ASC' | 'DESC' = 'DESC';
 }
