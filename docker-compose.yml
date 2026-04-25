@@ -7,8 +7,8 @@ services:
     security_opt:
       - no-new-privileges:true
     ports:
-      - "8080:80"
-      - "8443:443"
+      - "8081:80"
+      - "8444:443"
     command:
       - "--api.dashboard=false"
       - "--providers.docker=true"
