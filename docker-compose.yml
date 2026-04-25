@@ -11,7 +11,8 @@ services:
       - "8444:443"
     environment:
       # Cloudflare API Token with DNS edit permission for birdsfly.org zone
-      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
+      # Paste a NEW token here (don't use the one shared in chat).
+      CF_DNS_API_TOKEN: "REPLACE_WITH_NEW_CLOUDFLARE_DNS_TOKEN"
     command:
       - "--api.dashboard=false"
       - "--providers.docker=true"
