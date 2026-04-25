@@ -50,17 +50,6 @@ export class SuccessStoriesController {
     return { data: stories };
   }
 
-  /**
-   * Get single success story by slug (public)
-   * GET /api/success-stories/:slug
-   */
-  @Get(':slug')
-  async getSuccessStoryBySlug(@Param('slug') slug: string) {
-    const story = await this.successStoriesService.findBySlug(slug);
-    await this.successStoriesService.incrementViews(story.id);
-    return { data: story };
-  }
-
   // ============ ADMIN ENDPOINTS ============
 
   /**
@@ -198,5 +187,19 @@ export class SuccessStoriesController {
       message: `${result.count} stories reordered`,
       count: result.count,
     };
+  }
+
+  // ============ PUBLIC ENDPOINTS - SLUG ROUTE ============
+  // IMPORTANT: Must come after all admin routes, otherwise "admin" is matched as a slug.
+
+  /**
+   * Get single success story by slug (public)
+   * GET /api/success-stories/:slug
+   */
+  @Get(':slug')
+  async getSuccessStoryBySlug(@Param('slug') slug: string) {
+    const story = await this.successStoriesService.findBySlug(slug);
+    await this.successStoriesService.incrementViews(story.id);
+    return { data: story };
   }
 }

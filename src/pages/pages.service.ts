@@ -3,6 +3,7 @@ import {
   Logger,
   NotFoundException,
   BadRequestException,
+  OnModuleInit,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, In } from 'typeorm';
@@ -20,7 +21,7 @@ import {
 } from './pages.dto';
 
 @Injectable()
-export class PagesService {
+export class PagesService implements OnModuleInit {
   private readonly logger = new Logger(PagesService.name);
 
   constructor(
@@ -29,6 +30,133 @@ export class PagesService {
     @InjectRepository(Section)
     private sectionRepository: Repository<Section>,
   ) {}
+
+  async onModuleInit() {
+    // Ensure core pages exist so admin CMS doesn't look "empty" on fresh DBs.
+    // This is safe to run multiple times (idempotent).
+    await this.ensureCorePagesExist();
+  }
+
+  private async ensureCorePagesExist(): Promise<void> {
+    const corePages: Array<Partial<Page> & { slug: string; title: string }> = [
+      {
+        title: 'Home',
+        slug: 'home',
+        description: 'Main landing page',
+        type: 'static',
+        status: 'published',
+        order: 1,
+        metaTitle: 'Birdsfly Foundation - Home',
+        metaDescription: 'Welcome to Birdsfly Foundation',
+      },
+      {
+        title: 'About Us',
+        slug: 'about',
+        description: 'About our organization',
+        type: 'static',
+        status: 'published',
+        order: 2,
+        metaTitle: 'About Us - Birdsfly Foundation',
+        metaDescription: 'Learn about our mission and vision',
+      },
+      {
+        title: 'Contact',
+        slug: 'contact',
+        description: 'Contact information',
+        type: 'static',
+        status: 'published',
+        order: 3,
+        metaTitle: 'Contact Us',
+        metaDescription: 'Get in touch with us',
+      },
+      {
+        title: 'Donate',
+        slug: 'donate',
+        description: 'Support our cause',
+        type: 'static',
+        status: 'published',
+        order: 4,
+        metaTitle: 'Donate - Birdsfly Foundation',
+        metaDescription: 'Support our humanitarian efforts',
+      },
+      {
+        title: 'Donation Policy',
+        slug: 'donation-policy',
+        description: 'Donation and refund policy',
+        type: 'static',
+        status: 'published',
+        order: 17,
+        metaTitle: 'Donation Policy - Birdsfly Foundation',
+        metaDescription: 'Read our donation policy',
+      },
+      {
+        title: 'Privacy Policy',
+        slug: 'privacy-policy',
+        description: 'Our privacy policy',
+        type: 'static',
+        status: 'published',
+        order: 14,
+        metaTitle: 'Privacy Policy - Birdsfly Foundation',
+        metaDescription: 'Read our privacy policy',
+      },
+      {
+        title: 'Terms & Conditions',
+        slug: 'terms',
+        description: 'Terms of service',
+        type: 'static',
+        status: 'published',
+        order: 15,
+        metaTitle: 'Terms & Conditions - Birdsfly Foundation',
+        metaDescription: 'Read our terms of service',
+      },
+      {
+        title: 'Cookie Policy',
+        slug: 'cookie-policy',
+        description: 'Cookie usage policy',
+        type: 'static',
+        status: 'published',
+        order: 16,
+        metaTitle: 'Cookie Policy - Birdsfly Foundation',
+        metaDescription: 'Learn about cookies',
+      },
+      {
+        title: 'About Trust',
+        slug: 'about-trust',
+        description: 'Trust registration details',
+        type: 'static',
+        status: 'published',
+        order: 18,
+        metaTitle: 'About Trust - Birdsfly Foundation',
+        metaDescription: 'Learn about our trust',
+      },
+      {
+        title: 'Transparency',
+        slug: 'transparency',
+        description: 'Financial transparency',
+        type: 'static',
+        status: 'published',
+        order: 19,
+        metaTitle: 'Transparency - Birdsfly Foundation',
+        metaDescription: 'View our financial reports',
+      },
+    ];
+
+    try {
+      const existing = await this.pageRepository.find({
+        select: ['id', 'slug'],
+      });
+      const existingSlugs = new Set(existing.map((p) => p.slug));
+
+      const toCreate = corePages.filter((p) => !existingSlugs.has(p.slug));
+      if (toCreate.length === 0) return;
+
+      await this.pageRepository.save(toCreate.map((p) => this.pageRepository.create(p)));
+      this.logger.log(`Seeded missing core pages: ${toCreate.map((p) => p.slug).join(', ')}`);
+    } catch (e) {
+      // Never block app start if DB is not ready during bootstrap.
+      this.logger.warn('Failed to ensure core pages exist during bootstrap');
+    }
+  }
 
   // ============ PAGE METHODS ============
 

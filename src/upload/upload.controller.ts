@@ -4,6 +4,7 @@ import {
   Delete,
   Param,
   Body,
+  Query,
   UseGuards,
   UseInterceptors,
   UploadedFile,
@@ -42,7 +43,10 @@ export class UploadController {
       },
     }),
   )
-  async uploadFile(@UploadedFile() file: Express.Multer.File) {
+  async uploadFile(
+    @UploadedFile() file: Express.Multer.File,
+    @Body('folder') folder?: string,
+  ) {
     if (!file) {
       throw new NotFoundException('No file uploaded');
     }
@@ -50,7 +54,7 @@ export class UploadController {
     try {
       const result = await this.r2UploadService.uploadMulterFile(
         file,
-        'uploads',
+        (folder || 'uploads').replace(/[^a-zA-Z0-9\-_./]/g, ''),
       );
 
       return {
@@ -81,6 +85,38 @@ export class UploadController {
     }
 
     // Security: validate key format (should be alphanumeric with dashes, slashes, dots)
+    const validKey = key.replace(/[^a-zA-Z0-9\-_./]/g, '');
+    if (validKey !== key) {
+      throw new BadRequestException('Invalid file key');
+    }
+
+    const success = await this.r2UploadService.deleteFile(validKey);
+
+    if (success) {
+      this.logger.log(`File deleted: ${validKey}`);
+      return {
+        success: true,
+        message: 'File deleted successfully',
+      };
+    } else {
+      return {
+        success: true,
+        message: 'File already deleted or not found',
+      };
+    }
+  }
+
+  /**
+   * Delete a file from R2 using query param (supports keys with slashes)
+   * Example: DELETE /upload/file?key=uploads%2F123-test.png
+   */
+  @UseGuards(AuthGuard('jwt'))
+  @Delete('file')
+  async deleteFileByQuery(@Query('key') key?: string) {
+    if (!key) {
+      throw new BadRequestException('File key is required');
+    }
+
     const validKey = key.replace(/[^a-zA-Z0-9\-_./]/g, '');
     if (validKey !== key) {
       throw new BadRequestException('Invalid file key');

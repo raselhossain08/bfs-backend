@@ -9,8 +9,6 @@ import {
   PutObjectCommand,
   DeleteObjectCommand,
   GetObjectCommand,
-  DeleteObjectsCommand,
-  ObjectIdentifier,
 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { extname } from 'path';

@@ -10,66 +10,66 @@ import {
 @Entity('success_stories')
 export class SuccessStory {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ nullable: true })
   @Index()
-  title: string;
+  title?: string;
 
   @Column({ unique: true, nullable: true })
   @Index()
-  slug: string;
+  slug?: string;
 
   @Column({ nullable: true })
-  name: string;
+  name?: string;
 
   @Column({ nullable: true })
-  category: string;
+  category?: string;
 
   @Column({ nullable: true })
-  color: string;
+  color?: string;
 
   @Column({ nullable: true })
-  region: string;
+  region?: string;
 
   @Column({ type: 'text', nullable: true })
-  story: string;
+  story?: string;
 
   @Column({ type: 'text', nullable: true })
-  fullStory: string;
+  fullStory?: string;
 
   @Column({ nullable: true })
-  impact: string;
+  impact?: string;
 
   @Column({ nullable: true })
-  year: string;
+  year?: string;
 
   @Column({ nullable: true })
-  image: string;
+  image?: string;
 
   @Column({ nullable: true })
-  videoUrl: string;
+  videoUrl?: string;
 
   @Column({ nullable: true })
-  videoType: string;
+  videoType?: string;
 
   @Column({ type: 'simple-json', nullable: true })
-  contentBlocks: any[];
+  contentBlocks?: any[];
 
   @Column({ default: 0 })
   @Index()
-  order: number;
+  order!: number;
 
   @Column({ default: 'draft' })
   @Index()
-  status: 'published' | 'draft';
+  status!: 'published' | 'draft';
 
   @Column({ default: 0 })
-  views: number;
+  views!: number;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

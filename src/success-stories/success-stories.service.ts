@@ -44,8 +44,9 @@ export class SuccessStoriesService {
 
     // Get max order
     const maxOrder = await this.successStoryRepository
-      .createQueryBuilder()
-      .select('MAX(order)', 'max')
+      .createQueryBuilder('story')
+      // "order" is a reserved keyword in Postgres; must be quoted in raw SQL.
+      .select('MAX("story"."order")', 'max')
       .getRawOne();
 
     const story = this.successStoryRepository.create({

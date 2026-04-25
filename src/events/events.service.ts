@@ -5,16 +5,7 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  Repository,
-  In,
-  Between,
-  MoreThanOrEqual,
-  LessThanOrEqual,
-  Like,
-  IsNull,
-  Not,
-} from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { Event } from './entities/event.entity';
 import { EventType } from './entities/event-type.entity';
 import { EventRegistration } from './entities/event-registration.entity';
@@ -38,7 +29,8 @@ let sectionConfig = {
   badgeText: 'Upcoming Missions',
   title: 'Tactical',
   titleHighlight: 'Operations.',
-  subtitle: 'Join our synchronized field operations and community-driven initiatives. Every event is a node in our global humanitarian network.',
+  subtitle:
+    'Join our synchronized field operations and community-driven initiatives. Every event is a node in our global humanitarian network.',
 };
 
 @Injectable()
@@ -465,26 +457,20 @@ export class EventsService {
     totalRegistrations: number;
     totalViews: number;
   }> {
-    const [
-      total,
-      upcoming,
-      ongoing,
-      completed,
-      cancelled,
-      registrations,
-      views,
-    ] = await Promise.all([
-      this.eventRepository.count(),
-      this.eventRepository.count({ where: { status: 'Upcoming' } }),
-      this.eventRepository.count({ where: { status: 'Ongoing' } }),
-      this.eventRepository.count({ where: { status: 'Completed' } }),
-      this.eventRepository.count({ where: { status: 'Cancelled' } }),
-      this.registrationRepository.count(),
-      this.eventRepository
-        .createQueryBuilder('event')
-        .select('SUM(event.views)', 'total')
-        .getRawOne(),
-    ]);
+    const [total, upcoming, ongoing, completed, cancelled, registrations] =
+      await Promise.all([
+        this.eventRepository.count(),
+        this.eventRepository.count({ where: { status: 'Upcoming' } }),
+        this.eventRepository.count({ where: { status: 'Ongoing' } }),
+        this.eventRepository.count({ where: { status: 'Completed' } }),
+        this.eventRepository.count({ where: { status: 'Cancelled' } }),
+        this.registrationRepository.count(),
+      ]);
+
+    const viewsRow = await this.eventRepository
+      .createQueryBuilder('event')
+      .select('SUM(event.views)', 'total')
+      .getRawOne<{ total: string | null }>();
 
     return {
       total,
@@ -493,7 +479,7 @@ export class EventsService {
       completed,
       cancelled,
       totalRegistrations: registrations,
-      totalViews: parseInt(views?.total || '0', 10),
+      totalViews: parseInt(viewsRow?.total ?? '0', 10) || 0,
     };
   }
 

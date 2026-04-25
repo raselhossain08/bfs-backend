@@ -1,3 +1,10 @@
+/* eslint-disable
+  @typescript-eslint/no-unsafe-assignment,
+  @typescript-eslint/no-unsafe-member-access,
+  @typescript-eslint/no-unsafe-call,
+  @typescript-eslint/no-unsafe-return,
+  @typescript-eslint/no-unsafe-argument
+*/
 import {
   Controller,
   Get,
@@ -25,7 +32,8 @@ import { CmsService } from './cms.service';
 import { EmailService } from '../email/email.service';
 import { EmailTemplates } from '../email/email.templates';
 import { SmsService } from '../sms/sms.service';
-import { existsSync, mkdirSync, unlinkSync, statSync } from 'fs';
+import twilio from 'twilio';
+import { existsSync, mkdirSync, unlinkSync } from 'fs';
 
 const uploadDir = join(process.cwd(), 'uploads');
 if (!existsSync(uploadDir)) {
@@ -68,7 +76,7 @@ export class CmsController {
       },
     }),
   )
-  async uploadFile(@UploadedFile() file: any) {
+  uploadFile(@UploadedFile() file: any) {
     if (!file) {
       throw new NotFoundException('No file uploaded');
     }
@@ -87,7 +95,7 @@ export class CmsController {
   }
 
   @Get('uploads/:filename')
-  async serveUpload(@Param('filename') filename: string, @Res() res: Response) {
+  serveUpload(@Param('filename') filename: string, @Res() res: Response) {
     const filePath = join(uploadDir, filename);
     if (!existsSync(filePath)) {
       throw new NotFoundException('File not found');
@@ -98,7 +106,7 @@ export class CmsController {
   // Delete uploaded file (admin)
   @UseGuards(AuthGuard('jwt'))
   @Delete('uploads/:filename')
-  async deleteUpload(@Param('filename') filename: string) {
+  deleteUpload(@Param('filename') filename: string) {
     // Security: prevent path traversal
     const sanitizedFilename = filename.replace(/[^\w.-]/g, '');
     if (!sanitizedFilename || sanitizedFilename !== filename) {
@@ -123,7 +131,7 @@ export class CmsController {
   // Delete multiple uploaded files (admin)
   @UseGuards(AuthGuard('jwt'))
   @Post('uploads/delete-batch')
-  async deleteBatchUploads(@Body() body: { filenames: string[] }) {
+  deleteBatchUploads(@Body() body: { filenames: string[] }) {
     const { filenames } = body;
     if (!Array.isArray(filenames) || filenames.length === 0) {
       return { success: true, message: 'No files to delete' };
@@ -149,7 +157,7 @@ export class CmsController {
       try {
         unlinkSync(filePath);
         results.push({ filename, success: true });
-      } catch (error) {
+      } catch {
         results.push({ filename, success: false, error: 'Failed to delete' });
       }
     }
@@ -378,7 +386,7 @@ export class CmsController {
   // Public endpoint to remove a subscriber by email (for unsubscribe, MUST be before :key/:id route)
   @Delete('subscribers/remove')
   async removeSubscriber(@Body() body: any) {
-    const { email, token } = body;
+    const { email } = body;
     if (!email) {
       throw new NotFoundException('Email is required');
     }
@@ -592,14 +600,14 @@ export class CmsController {
         success: true,
         message: 'You have been successfully unsubscribed from our newsletter.',
       };
-    } catch (error) {
+    } catch {
       return { success: false, message: 'Invalid unsubscribe link' };
     }
   }
 
   // Get available newsletter templates (public)
   @Get('newsletter/templates')
-  async getNewsletterTemplates() {
+  getNewsletterTemplates() {
     return { data: EmailTemplates.getNewsletterTemplates() };
   }
 
@@ -726,7 +734,6 @@ export class CmsController {
 
     // Test by checking if Twilio client can be initialized
     try {
-      const twilio = require('twilio');
       const client = twilio(
         settings.twilioAccountSid,
         settings.twilioAuthToken,
@@ -1231,7 +1238,7 @@ export class CmsController {
   // Clear cache (admin)
   @UseGuards(AuthGuard('jwt'))
   @Post('cache/clear')
-  async clearCache() {
+  clearCache() {
     // In a real implementation, this would clear Redis or other cache
     // For now, we just log the action
     this.logger.log('Cache cleared');
@@ -1520,7 +1527,7 @@ export class CmsController {
 
   // User streak data endpoint
   @Get('streak')
-  async getStreak() {
+  getStreak() {
     // Return default streak data
     return {
       data: {
@@ -1535,7 +1542,7 @@ export class CmsController {
 
   // User goals endpoint
   @Get('goals')
-  async getGoals() {
+  getGoals() {
     // Return default goals data
     return {
       data: {

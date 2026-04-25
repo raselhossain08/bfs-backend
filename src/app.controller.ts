@@ -53,10 +53,46 @@ export class AppController {
     return { data: data || {} };
   }
 
+  @UseGuards(AuthGuard('jwt'))
+  @Patch('social')
+  async updateSocial(@Body() body: any) {
+    const existing = (await this.cmsService.getData('social')) || {};
+    const updated = await this.cmsService.updateData('social', {
+      ...existing,
+      ...(body || {}),
+    });
+    return { data: updated };
+  }
+
   @Get('footerSection')
   async getFooterSection() {
     const data = await this.cmsService.getData('footerSection');
     return { data: data || {} };
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Patch('footerSection')
+  async updateFooterSection(@Body() body: any) {
+    const existing = (await this.cmsService.getData('footerSection')) || {};
+    const updated = await this.cmsService.updateData('footerSection', {
+      ...existing,
+      ...(body || {}),
+    });
+    return { data: updated };
+  }
+
+  @Get('footerLinks')
+  async getFooterLinks() {
+    const data = await this.cmsService.getData('footerLinks');
+    return { data: data || [] };
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Patch('footerLinks')
+  async updateFooterLinks(@Body() body: any) {
+    // Expect full replacement array for simplicity.
+    const updated = await this.cmsService.updateData('footerLinks', Array.isArray(body) ? body : []);
+    return { data: updated };
   }
 
   @Get('donationSection')
@@ -83,14 +119,18 @@ export class AppController {
     return { data: data || [] };
   }
 
-  @Get('services')
-  async getServices() {
+  // NOTE: CMS-backed routes must not conflict with entity modules.
+  // `/api/services` is owned by `ServicesController` (DB-backed).
+  @Get('cms/services')
+  async getCmsServices() {
     const data = await this.cmsService.getData('services');
     return { data: data || [] };
   }
 
-  @Get('events')
-  async getEvents() {
+  // NOTE: `/api/events` is owned by `EventsController` (DB-backed).
+  // Keep CMS seed/demo events available under a non-conflicting path.
+  @Get('cms/events')
+  async getCmsEvents() {
     const data = await this.cmsService.getData('events');
     return { data: data || [] };
   }
@@ -174,8 +214,9 @@ export class AppController {
     return { success: true, message: 'Testimonial deleted' };
   }
 
-  @Get('programs')
-  async getPrograms() {
+  // `/api/programs/*` is owned by `ProgramsModule` (DB-backed).
+  @Get('cms/programs')
+  async getCmsPrograms() {
     const data = await this.cmsService.getData('programs');
     return { data: data || [] };
   }
