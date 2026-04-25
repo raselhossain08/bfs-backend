@@ -20,6 +20,11 @@ interface JwtPayload {
   role: string;
 }
 
+const envCorsOrigins = (process.env.CORS_ORIGINS ?? '')
+  .split(',')
+  .map((v) => v.trim())
+  .filter(Boolean);
+
 @WebSocketGateway({
   namespace: '/chat',
   path: '/socket.io',
@@ -28,6 +33,7 @@ interface JwtPayload {
       'http://localhost:3000',
       'http://127.0.0.1:3000',
       process.env.FRONTEND_URL,
+      ...envCorsOrigins,
     ].filter(Boolean),
     credentials: true,
     methods: ['GET', 'POST'],

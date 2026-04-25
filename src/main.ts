@@ -44,6 +44,11 @@ async function bootstrap() {
   // Raw body parsing for Stripe webhooks - must be before body-parser.json()
   app.use('/api/webhooks/stripe', bodyParser.raw({ type: 'application/json' }));
 
+  const envCorsOrigins = (process.env.CORS_ORIGINS ?? '')
+    .split(',')
+    .map((v) => v.trim())
+    .filter(Boolean);
+
   // Enable CORS for frontend requests with credentials
   app.enableCors({
     origin: [
@@ -57,6 +62,7 @@ async function bootstrap() {
       'http://127.0.0.1:3001',
       'http://127.0.0.1:3002',
       process.env.FRONTEND_URL,
+      ...envCorsOrigins,
     ].filter(Boolean),
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
