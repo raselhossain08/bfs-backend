@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Verify build output exists (fails image build if dist is missing)
-RUN test -f dist/src/main.js || (echo "Build failed: dist/src/main.js not found" && exit 1)
+RUN test -f dist/main.js || (echo "Build failed: dist/main.js not found" && exit 1)
 
 # Expose backend port
 EXPOSE 5000
