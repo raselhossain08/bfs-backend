@@ -8,6 +8,10 @@ services:
     restart: unless-stopped
     env_file:
       - ./.env
-    # Expose backend only to localhost; let existing nginx handle 80/443.
-    ports:
-      - "127.0.0.1:5005:5000"
+    # nginx (abstrafikskola-nginx) will proxy to http://bfs-backend:5000
+    networks:
+      - abs_app-network
+
+networks:
+  abs_app-network:
+    external: true
