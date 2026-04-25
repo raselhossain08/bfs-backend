@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { LandingController } from './landing.controller';
 import { CmsModule } from './cms/cms.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UsersModule } from './users/users.module';
@@ -189,7 +190,7 @@ import { SiteSettingsModule } from './site-settings/site-settings.module';
     // DonationsVerificationModule,
     UploadModule,
   ],
-  controllers: [AppController],
+  controllers: [LandingController, AppController],
   providers: [AppService],
 })
 export class AppModule {}

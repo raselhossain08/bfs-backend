@@ -20,8 +20,8 @@ export class AppController {
     private readonly cmsService: CmsService,
   ) {}
 
-  @Get()
-  getHello(): string {
+  @Get('health')
+  getHealth(): string {
     return this.appService.getHello();
   }
 

@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { IoAdapter } from '@nestjs/platform-socket.io';
-import { ValidationPipe } from '@nestjs/common';
+import { RequestMethod, ValidationPipe } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import * as bodyParser from 'body-parser';
@@ -80,7 +80,12 @@ async function bootstrap() {
   app.useWebSocketAdapter(new IoAdapter(app));
 
   // Set global prefix for all routes
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix('api', {
+    exclude: [
+      { path: '/', method: RequestMethod.GET },
+      { path: '', method: RequestMethod.GET },
+    ],
+  });
 
   const port = process.env.PORT ?? 5000;
   await app.listen(port);
