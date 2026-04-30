@@ -237,13 +237,13 @@ export class DashboardService {
       sector: c.category?.name || 'General',
       progress: c.progress || 0,
       status: c.progress >= 100 ? 'Completed' : 'Active',
-      priority: c.tag || 'Medium',
+      priority: (c.tags && c.tags.length > 0) ? c.tags[0] : 'Medium',
       color:
-        c.tag === 'URGENT' || c.tag === 'CRITICAL'
+        c.tags?.includes('URGENT') || c.tags?.includes('CRITICAL')
           ? 'text-rose-500'
           : 'text-amber-500',
       bg:
-        c.tag === 'URGENT' || c.tag === 'CRITICAL'
+        c.tags?.includes('URGENT') || c.tags?.includes('CRITICAL')
           ? 'bg-teal-500/10'
           : 'bg-amber-500/10',
     }));

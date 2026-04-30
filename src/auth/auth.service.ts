@@ -320,11 +320,20 @@ export class AuthService {
     if (filteredData.email) {
       const existingUser = await this.usersService.findOne(filteredData.email);
       // Only throw error if email exists AND belongs to a different user
-      // Convert both IDs to numbers for comparison
-      if (existingUser && Number(existingUser.id) !== Number(userId)) {
-        throw new BadRequestException(
-          'An account with this email already exists.',
-        );
+      // Normalize both IDs to ensure consistent comparison
+      if (existingUser) {
+        const existingId = typeof existingUser.id === 'string' 
+          ? parseInt(existingUser.id, 10) 
+          : existingUser.id;
+        const currentId = typeof userId === 'string'
+          ? parseInt(userId, 10)
+          : userId;
+        
+        if (existingId !== currentId) {
+          throw new BadRequestException(
+            'An account with this email already exists.',
+          );
+        }
       }
     }
 

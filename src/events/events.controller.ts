@@ -35,6 +35,7 @@ import {
   EventRegistrationQueryDto,
   BulkRegistrationStatusDto,
   UpdateEventsSectionDto,
+  BulkCreateEventsDto,
 } from './dto/events.dto';
 
 /**
@@ -211,6 +212,23 @@ export class EventsController {
   async createEvent(@Body() dto: CreateEventDto) {
     const event = await this.eventsService.createEvent(dto);
     return { success: true, data: event };
+  }
+
+  /**
+   * Bulk create events (admin)
+   * POST /api/events/admin/bulk
+   */
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(...EDITOR_ROLES)
+  @Post('admin/bulk')
+  async bulkCreateEvents(@Body() dto: BulkCreateEventsDto) {
+    const result = await this.eventsService.bulkCreateEvents(dto);
+    return {
+      success: true,
+      count: result.count,
+      failed: result.failed || 0,
+      errors: result.errors || [],
+    };
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)

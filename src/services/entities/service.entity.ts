@@ -24,6 +24,9 @@ export class Service {
   slug: string;
 
   @Column({ nullable: true, type: 'text' })
+  shortDescription: string;
+
+  @Column({ nullable: true, type: 'text' })
   description: string;
 
   @Column({ nullable: true, type: 'text' })
@@ -45,6 +48,10 @@ export class Service {
   @ManyToOne(() => ServiceCategory, { nullable: true })
   @JoinColumn({ name: 'categoryId' })
   category: ServiceCategory;
+
+  // Categories (array for multiple category tags)
+  @Column({ type: 'jsonb', nullable: true })
+  categories: string[];
 
   // Mission Section
   @Column({ nullable: true })
@@ -78,8 +85,8 @@ export class Service {
   @Column({ nullable: true, type: 'text' })
   metaDescription: string;
 
-  @Column({ nullable: true })
-  metaKeywords: string;
+  @Column({ type: 'jsonb', nullable: true })
+  metaKeywords: string[];
 
   // Status & Featured & Ordering
   @Column({ default: 'active' })

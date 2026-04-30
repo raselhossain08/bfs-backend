@@ -14,6 +14,7 @@ import {
   Param,
   Body,
   NotFoundException,
+  BadRequestException,
   UseInterceptors,
   UploadedFile,
   Res,
@@ -1496,6 +1497,23 @@ export class CmsController {
   // ===== Dynamic Key Routes (MUST be after all specific routes) =====
 
   @UseGuards(AuthGuard('jwt'))
+  @Post(':key/bulk')
+  async bulkAddItems(@Param('key') key: string, @Body() body: { items: any[] }) {
+    const { items } = body;
+    if (!Array.isArray(items)) {
+      throw new BadRequestException('items must be an array');
+    }
+    const results: any[] = [];
+    for (const item of items) {
+      const result = await this.cmsService.addItem(key, item);
+      if (result) {
+        results.push(result);
+      }
+    }
+    return { data: results, count: results.length };
+  }
+
+  @UseGuards(AuthGuard('jwt'))
   @Post(':key')
   async addItem(@Param('key') key: string, @Body() body: any) {
     const result = await this.cmsService.addItem(key, body);
@@ -1525,10 +1543,9 @@ export class CmsController {
 
   // ============ USER DATA ENDPOINTS (BEFORE CATCH-ALL) ============
 
-  // User streak data endpoint
+  // User streak data endpoint - DEPRECATED, use /api/users/me/streak instead
   @Get('streak')
   getStreak() {
-    // Return default streak data
     return {
       data: {
         currentStreak: 0,
@@ -1536,22 +1553,23 @@ export class CmsController {
         lastDonationDate: null,
         weeklyGoal: 7,
         weeklyProgress: 0,
+        message: 'This endpoint is deprecated. Use /api/users/me/streak instead.',
       },
     };
   }
 
-  // User goals endpoint
+  // User goals endpoint - DEPRECATED, use /api/users/me/goals instead
   @Get('goals')
   getGoals() {
-    // Return default goals data
     return {
       data: {
-        monthlyDonationGoal: 100,
+        monthlyDonationGoal: 0,
         currentMonthDonations: 0,
-        causesSupportedGoal: 5,
+        causesSupportedGoal: 0,
         causesSupported: 0,
-        volunteerHoursGoal: 10,
+        volunteerHoursGoal: 0,
         volunteerHours: 0,
+        message: 'This endpoint is deprecated. Use /api/users/me/goals instead.',
       },
     };
   }

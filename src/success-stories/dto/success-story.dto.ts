@@ -1,5 +1,5 @@
-import { IsString, IsOptional, IsNumber, IsIn, IsArray } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsString, IsOptional, IsNumber, IsIn, IsArray, IsBoolean, ValidateNested } from 'class-validator';
+import { Type, Transform } from 'class-transformer';
 
 export class CreateSuccessStoryDto {
   @IsString()
@@ -10,33 +10,60 @@ export class CreateSuccessStoryDto {
   slug?: string;
 
   @IsString()
-  name: string;
+  @IsOptional()
+  name?: string;
 
   @IsString()
-  category: string;
+  @IsOptional()
+  shortDescription?: string;
 
   @IsString()
-  color: string;
+  @IsOptional()
+  description?: string;
 
   @IsString()
-  region: string;
-
-  @IsString()
-  story: string;
+  @IsOptional()
+  story?: string;
 
   @IsString()
   @IsOptional()
   fullStory?: string;
 
   @IsString()
-  impact: string;
+  @IsOptional()
+  category?: string;
 
   @IsString()
-  year: string;
+  @IsOptional()
+  color?: string;
+
+  @IsString()
+  @IsOptional()
+  region?: string;
+
+  @IsString()
+  @IsOptional()
+  impact?: string;
+
+  @IsString()
+  @IsOptional()
+  @Transform(({ value }) => value ? String(value) : undefined)
+  year?: string;
 
   @IsString()
   @IsOptional()
   image?: string;
+
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+    }
+    return [];
+  })
+  @IsArray()
+  @IsOptional()
+  gallery?: string[];
 
   @IsString()
   @IsOptional()
@@ -46,18 +73,53 @@ export class CreateSuccessStoryDto {
   @IsOptional()
   videoType?: string;
 
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return []; }
+    }
+    return [];
+  })
   @IsArray()
   @IsOptional()
   contentBlocks?: any[];
+
+  @Type(() => Number)
+  @IsNumber()
+  @IsOptional()
+  amount?: number;
 
   @IsNumber()
   @IsOptional()
   @Type(() => Number)
   order?: number;
 
+  @IsBoolean()
+  @IsOptional()
+  isFeatured?: boolean;
+
   @IsIn(['published', 'draft'])
   @IsOptional()
   status?: 'published' | 'draft';
+
+  @IsString()
+  @IsOptional()
+  metaTitle?: string;
+
+  @IsString()
+  @IsOptional()
+  metaDescription?: string;
+
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+    }
+    return [];
+  })
+  @IsArray()
+  @IsOptional()
+  metaKeywords?: string[];
 }
 
 export class UpdateSuccessStoryDto {
@@ -75,6 +137,22 @@ export class UpdateSuccessStoryDto {
 
   @IsString()
   @IsOptional()
+  shortDescription?: string;
+
+  @IsString()
+  @IsOptional()
+  description?: string;
+
+  @IsString()
+  @IsOptional()
+  story?: string;
+
+  @IsString()
+  @IsOptional()
+  fullStory?: string;
+
+  @IsString()
+  @IsOptional()
   category?: string;
 
   @IsString()
@@ -87,23 +165,27 @@ export class UpdateSuccessStoryDto {
 
   @IsString()
   @IsOptional()
-  story?: string;
-
-  @IsString()
-  @IsOptional()
-  fullStory?: string;
-
-  @IsString()
-  @IsOptional()
   impact?: string;
 
   @IsString()
   @IsOptional()
+  @Transform(({ value }) => value ? String(value) : undefined)
   year?: string;
 
   @IsString()
   @IsOptional()
   image?: string;
+
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+    }
+    return [];
+  })
+  @IsArray()
+  @IsOptional()
+  gallery?: string[];
 
   @IsString()
   @IsOptional()
@@ -113,18 +195,53 @@ export class UpdateSuccessStoryDto {
   @IsOptional()
   videoType?: string;
 
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return []; }
+    }
+    return [];
+  })
   @IsArray()
   @IsOptional()
   contentBlocks?: any[];
+
+  @Type(() => Number)
+  @IsNumber()
+  @IsOptional()
+  amount?: number;
 
   @IsNumber()
   @IsOptional()
   @Type(() => Number)
   order?: number;
 
+  @IsBoolean()
+  @IsOptional()
+  isFeatured?: boolean;
+
   @IsIn(['published', 'draft'])
   @IsOptional()
   status?: 'published' | 'draft';
+
+  @IsString()
+  @IsOptional()
+  metaTitle?: string;
+
+  @IsString()
+  @IsOptional()
+  metaDescription?: string;
+
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+    }
+    return [];
+  })
+  @IsArray()
+  @IsOptional()
+  metaKeywords?: string[];
 }
 
 export class SuccessStoryQueryDto {
@@ -167,4 +284,12 @@ export class BulkSuccessStoryStatusDto {
 export class ReorderSuccessStoriesDto {
   @IsArray()
   orders: { id: number; order: number }[];
+}
+
+// Bulk import DTO
+export class BulkCreateSuccessStoriesDto {
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateSuccessStoryDto)
+  items: CreateSuccessStoryDto[];
 }

@@ -5,6 +5,9 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Index,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity('comments')
@@ -44,6 +47,18 @@ export class Comment {
 
   @Column({ default: 0 })
   likes: number;
+
+  // For threaded comments
+  @Column({ nullable: true })
+  @Index()
+  parentId: number;
+
+  @ManyToOne(() => Comment, comment => comment.children, { nullable: true })
+  @JoinColumn({ name: 'parentId' })
+  parent: Comment;
+
+  @OneToMany(() => Comment, comment => comment.parent)
+  children: Comment[];
 
   @CreateDateColumn()
   createdAt: Date;

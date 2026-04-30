@@ -246,4 +246,20 @@ export class EmailService {
     const subject = `${referrerName} invites you to join Birdsfly Sangstha`;
     return this.sendEmail(to, subject, html);
   }
+
+  async sendDonationReceipt(
+    to: string,
+    data: {
+      donorName: string;
+      donationAmount: string;
+      causeName: string;
+      transactionId: string;
+      donationDate: string;
+      paymentMethod: string;
+    },
+  ): Promise<boolean> {
+    const html = EmailTemplates.getDonationReceiptHTML(data);
+    const subject = EmailTemplates.getDonationReceiptSubject();
+    return this.sendEmail(to, subject, html);
+  }
 }

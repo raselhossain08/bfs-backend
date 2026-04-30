@@ -23,6 +23,11 @@ export class CreateCommentDto {
   @IsString()
   @IsOptional()
   articleTitle?: string;
+
+  @IsNumber()
+  @IsOptional()
+  @Type(() => Number)
+  parentId?: number;
 }
 
 export class UpdateCommentDto {

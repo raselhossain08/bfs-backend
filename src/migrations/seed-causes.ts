@@ -324,7 +324,7 @@ async function seed() {
             cause.content,
             cause.image,
             categoryId,
-            cause.tag,
+            cause.tag ? [cause.tag] : [],
             cause.tagColor,
             cause.goal,
             cause.raised,

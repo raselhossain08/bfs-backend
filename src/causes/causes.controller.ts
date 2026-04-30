@@ -37,6 +37,7 @@ import {
   BulkDonationStatusDto,
   ReorderCausesDto,
   ReorderCauseCategoriesDto,
+  BulkImportCausesDto,
 } from './dto/causes.dto';
 
 /**
@@ -77,26 +78,20 @@ export class CausesController {
    */
   @Get()
   async getPublicCauses(
-    @Query('limit') limit?: string,
-    @Query('categoryId') categoryId?: string,
-    @Query('isFeatured') isFeatured?: string,
+    @Query() query: CauseQueryDto,
   ) {
-    const causes = await this.causesService.findPublicCauses({
-      limit: limit ? parseInt(limit, 10) : 10,
-      categoryId: categoryId ? parseInt(categoryId, 10) : undefined,
-      isFeatured: isFeatured === 'true' ? true : undefined,
+    const causes = await this.causesService.findAllCauses({
+      ...query,
+      status: 'active',
     });
-    return { data: causes };
+    return causes;
   }
 
-  /** @deprecated - Legacy route for backward compatibility */
   @Get('causes')
   async getPublicCausesLegacy(
-    @Query('limit') limit?: string,
-    @Query('categoryId') categoryId?: string,
-    @Query('isFeatured') isFeatured?: string,
+    @Query() query: CauseQueryDto,
   ) {
-    return this.getPublicCauses(limit, categoryId, isFeatured);
+    return this.getPublicCauses(query);
   }
 
   // ============ ADMIN ENDPOINTS - CATEGORIES ============
@@ -447,6 +442,51 @@ export class CausesController {
       success: result.success,
       message: `${result.count} causes updated`,
       count: result.count,
+    };
+  }
+
+  /**
+   * Bulk import causes (admin)
+   * POST /api/causes/admin/bulk-import
+   * Legacy: /api/admin/causes/bulk-import
+   */
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(...FULL_ADMIN_ROLES)
+  @Post('admin/bulk-import')
+  async bulkImportCauses(
+    @Body() dto: BulkImportCausesDto,
+    @Request() req: any,
+  ) {
+    const result = await this.causesService.bulkImportCauses(dto.items, req.user?.id);
+    return {
+      success: result.success,
+      imported: result.imported,
+      failed: result.failed,
+      errors: result.errors,
+      message: `${result.imported} causes imported, ${result.failed} failed`,
+    };
+  }
+
+  /** @deprecated - Legacy route for backward compatibility */
+  @UseGuards(AuthGuard('jwt'))
+  @Post('admin/causes/bulk-import')
+  async bulkImportCausesLegacy(
+    @Body() dto: BulkImportCausesDto,
+    @Request() req: any,
+  ) {
+    if (!FULL_ADMIN_ROLES.includes(req.user?.role)) {
+      return {
+        success: false,
+        message: 'Only admins can perform bulk import',
+      };
+    }
+    const result = await this.causesService.bulkImportCauses(dto.items, req.user?.id);
+    return {
+      success: result.success,
+      imported: result.imported,
+      failed: result.failed,
+      errors: result.errors,
+      message: `${result.imported} causes imported, ${result.failed} failed`,
     };
   }
 

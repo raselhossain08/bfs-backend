@@ -9,6 +9,8 @@ import {
   UseGuards,
   Request,
   ParseIntPipe,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { GoalsService } from './goals.service';
@@ -31,7 +33,7 @@ export class GoalsController {
   async getUserGoals(@Request() req: any) {
     const userId = req.user?.userId || req.user?.sub || req.user?.id;
     if (!userId) {
-      return { data: [], message: 'User not authenticated' };
+      throw new HttpException('User not authenticated', HttpStatus.UNAUTHORIZED);
     }
 
     const goals = await this.goalsService.getOrCreateDefaultGoals(userId);
@@ -39,10 +41,11 @@ export class GoalsController {
   }
 
   @Get('stats')
+  @UseGuards(AuthGuard('jwt'))
   async getGoalStats(@Request() req: any) {
     const userId = req.user?.userId || req.user?.sub || req.user?.id;
     if (!userId) {
-      return { data: null, message: 'User not authenticated' };
+      throw new HttpException('User not authenticated', HttpStatus.UNAUTHORIZED);
     }
 
     const stats = await this.goalsService.getGoalStats(userId);
@@ -50,10 +53,11 @@ export class GoalsController {
   }
 
   @Post()
+  @UseGuards(AuthGuard('jwt'))
   async createGoal(@Request() req: any, @Body() dto: CreateGoalDto) {
     const userId = req.user?.userId || req.user?.sub || req.user?.id;
     if (!userId) {
-      return { data: null, message: 'User not authenticated' };
+      throw new HttpException('User not authenticated', HttpStatus.UNAUTHORIZED);
     }
 
     const goal = await this.goalsService.createGoal(userId, dto);
@@ -61,6 +65,7 @@ export class GoalsController {
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard('jwt'))
   async updateGoal(
     @Request() req: any,
     @Param('id', ParseIntPipe) id: number,
@@ -68,7 +73,7 @@ export class GoalsController {
   ) {
     const userId = req.user?.userId || req.user?.sub || req.user?.id;
     if (!userId) {
-      return { data: null, message: 'User not authenticated' };
+      throw new HttpException('User not authenticated', HttpStatus.UNAUTHORIZED);
     }
 
     const goal = await this.goalsService.updateGoal(id, userId, dto);
@@ -76,10 +81,11 @@ export class GoalsController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard('jwt'))
   async deleteGoal(@Request() req: any, @Param('id', ParseIntPipe) id: number) {
     const userId = req.user?.userId || req.user?.sub || req.user?.id;
     if (!userId) {
-      return { data: null, message: 'User not authenticated' };
+      throw new HttpException('User not authenticated', HttpStatus.UNAUTHORIZED);
     }
 
     const result = await this.goalsService.deleteGoal(id, userId);

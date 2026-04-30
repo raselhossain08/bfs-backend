@@ -28,6 +28,8 @@ import {
   ArticleQueryDto,
   BulkArticleStatusDto,
   PublicArticleQueryDto,
+  BulkImportArticlesDto,
+  BulkArticleDto,
 } from './articles.dto';
 
 /**
@@ -43,16 +45,22 @@ export class ArticlesController {
 
   // ============ PUBLIC ENDPOINTS ============
 
-  @UseGuards(AuthGuard('jwt'), RolesGuard)
-  @Roles(...ADMIN_ROLES)
   @Get()
-  async getAdminArticles(@Query() query: ArticleQueryDto) {
-    return this.articlesService.findAll(query);
-  }
-
-  @Get('public')
   async getPublicArticles(@Query() query: PublicArticleQueryDto) {
     return this.articlesService.findPublic(query);
+  }
+
+  // Dedicated public endpoint to avoid slug conflict
+  @Get('public')
+  async getPublicArticlesList(@Query() query: PublicArticleQueryDto) {
+    return this.articlesService.findPublic(query);
+  }
+
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(...ADMIN_ROLES)
+  @Get('admin')
+  async getAdminArticles(@Query() query: ArticleQueryDto) {
+    return this.articlesService.findAll(query);
   }
 
   @Get('categories/:id/articles')
@@ -134,6 +142,53 @@ export class ArticlesController {
   async createArticle(@Body() dto: CreateArticleDto) {
     const article = await this.articlesService.create(dto);
     return { success: true, data: article };
+  }
+
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(...EDITOR_ROLES)
+  @Post('admin')
+  async createArticleAdmin(@Body() dto: CreateArticleDto) {
+    const article = await this.articlesService.create(dto);
+    return { success: true, data: article };
+  }
+
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(...FULL_ADMIN_ROLES)
+  @Post('admin/bulk-import')
+  async bulkImportArticles(@Body() body: { data: any[] } | any[]) {
+    const items = Array.isArray(body) ? body : (body.data || []);
+    const results: { success: boolean; title: string; id: number }[] = [];
+    const errors: { title: string; error: string }[] = [];
+
+    for (const item of items) {
+      if (!item.title) {
+        errors.push({ title: item.title || 'Unknown', error: 'Title is required' });
+        continue;
+      }
+
+      if (!item.slug && item.title) {
+        item.slug = item.title
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+      }
+
+      try {
+        const article = await this.articlesService.create(item);
+        results.push({ success: true, title: article.title, id: article.id });
+      } catch (error: any) {
+        errors.push({ title: item.title, error: error.message });
+      }
+    }
+
+    return {
+      success: errors.length === 0,
+      message: `Imported ${results.length} articles, ${errors.length} failed`,
+      imported: results.length,
+      failed: errors.length,
+      results,
+      errors: errors.length > 0 ? errors : undefined,
+    };
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)

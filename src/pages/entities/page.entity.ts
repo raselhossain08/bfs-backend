@@ -40,6 +40,9 @@ export class Page {
   @Column({ nullable: true, type: 'text' })
   metaDescription: string;
 
+  @Column({ type: 'jsonb', nullable: true })
+  metaKeywords: string[];
+
   @OneToMany(() => Section, (section) => section.page, { cascade: true })
   sections: Section[];
 

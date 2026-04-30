@@ -13,6 +13,7 @@ import { CauseCategory } from './entities/cause-category.entity';
 import { Donation } from './entities/donation.entity';
 import { User } from '../users/entities/user.entity';
 import { ReferralService } from '../referral/referral.service';
+import { EmailService } from '../email/email.service';
 import {
   CreateCauseDto,
   UpdateCauseDto,
@@ -45,6 +46,7 @@ export class CausesService {
     private dataSource: DataSource,
     @Inject(forwardRef(() => ReferralService))
     private referralService: ReferralService,
+    private emailService: EmailService,
   ) {}
 
   // ============ CAUSE CATEGORIES ============
@@ -268,8 +270,12 @@ export class CausesService {
       );
     }
 
-    // Apply sorting
-    queryBuilder.orderBy(`cause.${sortBy}`, sortOrder);
+    // Apply sorting with whitelist validation to prevent SQL injection
+    const validSortFields = ['id', 'title', 'raised', 'progress', 'createdAt', 'updatedAt', 'order'];
+    const safeSortBy = validSortFields.includes(sortBy) ? sortBy : 'createdAt';
+    const safeSortOrder = sortOrder.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
+    
+    queryBuilder.orderBy(`cause.${safeSortBy}`, safeSortOrder);
 
     // Apply pagination
     queryBuilder.skip(skip).take(limit);
@@ -405,6 +411,34 @@ export class CausesService {
     }
     this.logger.log(`Causes reordered`);
     return { success: true };
+  }
+
+  async bulkImportCauses(
+    items: CreateCauseDto[],
+    createdBy?: number,
+  ): Promise<{ success: boolean; imported: number; failed: number; errors: { title: string; error: string }[] }> {
+    const errors: { title: string; error: string }[] = [];
+    let imported = 0;
+    let failed = 0;
+
+    for (const item of items) {
+      try {
+        await this.createCause({
+          ...item,
+          createdBy,
+        } as any);
+        imported++;
+      } catch (error: any) {
+        failed++;
+        errors.push({
+          title: item.title || 'Unknown',
+          error: error.message || 'Failed to import cause',
+        });
+      }
+    }
+
+    this.logger.log(`Bulk import: ${imported} imported, ${failed} failed`);
+    return { success: failed === 0, imported, failed, errors };
   }
 
   async getCauseStats(): Promise<{
@@ -757,36 +791,47 @@ export class CausesService {
   }
 
   private async updateCauseStats(causeId: number): Promise<void> {
-    // Calculate total raised and donor count
-    const result = await this.donationRepository
-      .createQueryBuilder('donation')
-      .select('SUM(donation.amount)', 'totalRaised')
-      .addSelect('COUNT(DISTINCT donation.email)', 'uniqueDonors')
-      .where('donation.causeId = :causeId', { causeId })
-      .andWhere('donation.status = :status', { status: 'completed' })
-      .getRawOne();
+    try {
+      // Calculate total raised and donor count
+      const result = await this.donationRepository
+        .createQueryBuilder('donation')
+        .select('SUM(donation.amount)', 'totalRaised')
+        .addSelect('COUNT(DISTINCT donation.email)', 'uniqueDonors')
+        .where('donation.causeId = :causeId', { causeId })
+        .andWhere('donation.status = :status', { status: 'completed' })
+        .getRawOne();
 
-    const totalRaised = parseFloat(result?.totalRaised || '0');
-    const uniqueDonors = parseInt(result?.uniqueDonors || '0', 10);
+      const totalRaised = parseFloat(result?.totalRaised || '0');
+      const uniqueDonors = parseInt(result?.uniqueDonors || '0', 10);
 
-    // Get cause to calculate progress
-    const cause = await this.causeRepository.findOne({
-      where: { id: causeId },
-    });
-    const goal = parseFloat(cause?.goal?.toString() || '0');
-    const progress =
-      goal > 0 ? Math.min(100, Math.round((totalRaised / goal) * 100)) : 0;
+      // Get cause to calculate progress
+      const cause = await this.causeRepository.findOne({
+        where: { id: causeId },
+      });
 
-    // Update cause
-    await this.causeRepository.update(causeId, {
-      raised: totalRaised,
-      donors: uniqueDonors,
-      progress,
-    });
+      if (!cause) {
+        this.logger.warn(`Cause ${causeId} not found for stats update`);
+        return;
+      }
 
-    this.logger.log(
-      `Updated stats for cause ${causeId}: raised=$${totalRaised}, donors=${uniqueDonors}, progress=${progress}%`,
-    );
+      const goal = parseFloat(cause.goal?.toString() || '0');
+      const progress =
+        goal > 0 ? Math.min(100, Math.round((totalRaised / goal) * 100)) : 0;
+
+      // Update cause
+      await this.causeRepository.update(causeId, {
+        raised: totalRaised,
+        donors: uniqueDonors,
+        progress,
+      });
+
+      this.logger.log(
+        `Updated stats for cause ${causeId}: raised=$${totalRaised}, donors=${uniqueDonors}, progress=${progress}%`,
+      );
+    } catch (error) {
+      this.logger.error(`Failed to update cause stats for ${causeId}`, error);
+      // Don't rethrow - this is a stats update that shouldn't block the main flow
+    }
   }
 
   // ============ USER IMPACT ============
@@ -907,16 +952,11 @@ export class CausesService {
           ? 100
           : 0;
 
-    // Categories supported - also check causeName when cause is null
+    // Categories supported - only use actual category names, not causeName
     const categories = new Set<string>();
     for (const donation of donations) {
       if (donation.cause?.category?.name) {
         categories.add(donation.cause.category.name);
-      }
-      // Also try to get category from causeName
-      if (donation.causeName) {
-        // If causeName exists, count it as a category too
-        categories.add(donation.causeName);
       }
     }
 
@@ -1305,7 +1345,6 @@ export class CausesService {
   }
 
   async emailReceipt(donationId: number, userId: number): Promise<void> {
-    // Get donation with verification
     const donation = await this.donationRepository.findOne({
       where: { id: donationId },
       relations: ['cause', 'donor'],
@@ -1315,19 +1354,38 @@ export class CausesService {
       throw new NotFoundException('Donation not found');
     }
 
-    // Verify ownership
     if (donation.donorId !== userId) {
       throw new NotFoundException('Donation not found');
     }
 
-    // In production, you'd integrate with an email service
-    // For now, just log the action
-    this.logger.log(
-      `Email receipt requested for donation ${donationId} by user ${userId}`,
-    );
+    const donorEmail = donation.donor?.email || donation.email;
+    if (!donorEmail) {
+      throw new BadRequestException('Donor email not available');
+    }
 
-    // TODO: Integrate with email service
-    // await this.emailService.sendReceiptEmail(donation.donor.email, donation);
+    const emailSent = await this.emailService.sendDonationReceipt(donorEmail, {
+      donorName: donation.name || donation.donor?.firstName || 'Supporter',
+      donationAmount: `$${parseFloat(donation.amount.toString()).toFixed(2)}`,
+      causeName: donation.cause?.title || 'General Donation',
+      transactionId: donation.transactionId || 'N/A',
+      donationDate: new Date(donation.createdAt).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }),
+      paymentMethod: donation.paymentMethod || 'Online Payment',
+    });
+
+    if (!emailSent) {
+      this.logger.error(
+        `Failed to send donation receipt email to ${donorEmail}`,
+      );
+      throw new BadRequestException('Failed to send receipt email');
+    }
+
+    this.logger.log(
+      `Donation receipt email sent successfully to ${donorEmail}`,
+    );
   }
 
   async generateAnnualSummary(year: number, userId: number): Promise<Buffer> {

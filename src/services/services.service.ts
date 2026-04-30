@@ -23,6 +23,7 @@ import {
   BulkInquiryStatusDto,
   ReorderServicesDto,
   ReorderCategoriesDto,
+  BulkCreateServicesDto,
 } from './dto/services.dto';
 
 @Injectable()
@@ -222,6 +223,26 @@ export class ServicesService {
     this.logger.log(`Service created: ${saved.title} (id: ${saved.id})`);
 
     return this.findOneService(saved.id);
+  }
+
+  async bulkCreateServices(dto: BulkCreateServicesDto): Promise<{ count: number; failed: number; errors: { title: string; error: string }[] }> {
+    const results = { count: 0, failed: 0, errors: [] as { title: string; error: string }[] };
+
+    for (const item of dto.items) {
+      try {
+        await this.createService(item);
+        results.count++;
+      } catch (error: any) {
+        results.failed++;
+        results.errors.push({
+          title: item.title || 'Unknown',
+          error: error.message || 'Failed to create service',
+        });
+      }
+    }
+
+    this.logger.log(`Bulk created ${results.count} services, ${results.failed} failed`);
+    return results;
   }
 
   async findAllServices(query: ServiceQueryDto) {

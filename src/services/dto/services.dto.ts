@@ -5,7 +5,9 @@ import {
   IsBoolean,
   IsArray,
   IsEmail,
+  ValidateNested,
 } from 'class-validator';
+import { Type } from 'class-transformer';
 
 // Service Category DTOs
 export class CreateServiceCategoryDto {
@@ -28,6 +30,7 @@ export class CreateServiceCategoryDto {
   @IsOptional()
   color?: string;
 
+  @Type(() => Number)
   @IsNumber()
   @IsOptional()
   order?: number;
@@ -58,6 +61,7 @@ export class UpdateServiceCategoryDto {
   @IsOptional()
   color?: string;
 
+  @Type(() => Number)
   @IsNumber()
   @IsOptional()
   order?: number;
@@ -69,9 +73,13 @@ export class UpdateServiceCategoryDto {
 
 export class ServiceCategoryQueryDto {
   @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
   page?: number = 1;
 
   @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
   limit?: number = 10;
 
   @IsOptional()
@@ -87,7 +95,6 @@ export class ServiceCategoryQueryDto {
   sortOrder?: 'ASC' | 'DESC' = 'ASC';
 }
 
-// Service DTOs
 export class CreateServiceDto {
   @IsString()
   title: string;
@@ -95,6 +102,10 @@ export class CreateServiceDto {
   @IsString()
   @IsOptional()
   slug?: string;
+
+  @IsString()
+  @IsOptional()
+  shortDescription?: string;
 
   @IsString()
   @IsOptional()
@@ -119,6 +130,10 @@ export class CreateServiceDto {
   @IsNumber()
   @IsOptional()
   categoryId?: number;
+
+  @IsArray()
+  @IsOptional()
+  categories?: string[];
 
   @IsString()
   @IsOptional()
@@ -156,9 +171,9 @@ export class CreateServiceDto {
   @IsOptional()
   metaDescription?: string;
 
-  @IsString()
+  @IsArray()
   @IsOptional()
-  metaKeywords?: string;
+  metaKeywords?: string[];
 
   @IsString()
   @IsOptional()
@@ -184,6 +199,10 @@ export class UpdateServiceDto {
 
   @IsString()
   @IsOptional()
+  shortDescription?: string;
+
+  @IsString()
+  @IsOptional()
   description?: string;
 
   @IsString()
@@ -205,6 +224,10 @@ export class UpdateServiceDto {
   @IsNumber()
   @IsOptional()
   categoryId?: number;
+
+  @IsArray()
+  @IsOptional()
+  categories?: string[];
 
   @IsString()
   @IsOptional()
@@ -242,9 +265,9 @@ export class UpdateServiceDto {
   @IsOptional()
   metaDescription?: string;
 
-  @IsString()
+  @IsArray()
   @IsOptional()
-  metaKeywords?: string;
+  metaKeywords?: string[];
 
   @IsString()
   @IsOptional()
@@ -372,4 +395,12 @@ export class ReorderServicesDto {
 export class ReorderCategoriesDto {
   @IsArray()
   orders: { id: number; order: number }[];
+}
+
+// Bulk import DTO
+export class BulkCreateServicesDto {
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateServiceDto)
+  items: CreateServiceDto[];
 }

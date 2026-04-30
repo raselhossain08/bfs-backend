@@ -60,6 +60,15 @@ export interface VolunteerApplicationAdminData {
   submittedAt: string;
 }
 
+export interface DonationReceiptData {
+  donorName: string;
+  donationAmount: string;
+  causeName: string;
+  transactionId: string;
+  donationDate: string;
+  paymentMethod: string;
+}
+
 export class EmailTemplates {
   static getPasswordResetHTML(data: PasswordResetEmailData): string {
     return `
@@ -995,6 +1004,104 @@ export class EmailTemplates {
                     <tr>
                         <td style="background-color: #f9fafb; padding: 30px 40px; border-top: 1px solid #e5e7eb;">
                             <p style="margin: 0 0 10px 0; color: #6b7280; font-size: 14px; text-align: center;">Questions? Contact us at <a href="mailto:info@birdsfly.org" style="color: #0d9488; text-decoration: none;">info@birdsfly.org</a></p>
+                            <p style="margin: 0; color: #9ca3af; font-size: 12px; text-align: center;">© ${new Date().getFullYear()} Birdsfly Sangstha. All rights reserved.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+        `;
+  }
+
+  static getDonationReceiptSubject(): string {
+    return 'Your Donation Receipt - Birdsfly Sangstha';
+  }
+
+  static getDonationReceiptHTML(data: DonationReceiptData): string {
+    return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Receipt - Birdsfly Sangstha</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f5;">
+    <table role="presentation" cellspacing="0" cellpadding="0" width="100%" style="background-color: #f4f4f5; padding: 40px 20px;">
+        <tr>
+            <td align="center">
+                <table role="presentation" cellspacing="0" cellpadding="0" width="600" style="background-color: #ffffff; border-radius: 16px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
+                    <!-- Header -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%); padding: 40px 40px; text-align: center;">
+                            <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">Birdsfly Sangstha</h1>
+                            <p style="margin: 10px 0 0 0; color: rgba(255,255,255,0.9); font-size: 16px;">Donation Receipt</p>
+                        </td>
+                    </tr>
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 40px 40px;">
+                            <p style="margin: 0 0 20px 0; color: #374151; font-size: 16px; line-height: 1.6;">Dear ${data.donorName || 'Supporter'},</p>
+                            <p style="margin: 0 0 30px 0; color: #374151; font-size: 16px; line-height: 1.6;">Thank you for your generous donation! Your contribution makes a real difference in the lives of those we serve. This email serves as your official donation receipt.</p>
+                            
+                            <!-- Receipt Details Box -->
+                            <div style="background-color: #f0fdfa; border: 2px solid #0d9488; border-radius: 12px; padding: 25px; margin: 30px 0;">
+                                <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
+                                    <tr>
+                                        <td style="padding: 10px 0; border-bottom: 1px solid #ccfbf1;">
+                                            <span style="color: #6b7280; font-size: 14px;">Donation Amount:</span>
+                                        </td>
+                                        <td style="padding: 10px 0; border-bottom: 1px solid #ccfbf1; text-align: right;">
+                                            <span style="color: #0d9488; font-size: 20px; font-weight: 700;">${data.donationAmount}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px 0; border-bottom: 1px solid #ccfbf1;">
+                                            <span style="color: #6b7280; font-size: 14px;">Cause:</span>
+                                        </td>
+                                        <td style="padding: 10px 0; border-bottom: 1px solid #ccfbf1; text-align: right;">
+                                            <span style="color: #374151; font-size: 14px; font-weight: 600;">${data.causeName}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px 0; border-bottom: 1px solid #ccfbf1;">
+                                            <span style="color: #6b7280; font-size: 14px;">Transaction ID:</span>
+                                        </td>
+                                        <td style="padding: 10px 0; border-bottom: 1px solid #ccfbf1; text-align: right;">
+                                            <span style="color: #374151; font-size: 14px;">${data.transactionId}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px 0; border-bottom: 1px solid #ccfbf1;">
+                                            <span style="color: #6b7280; font-size: 14px;">Donation Date:</span>
+                                        </td>
+                                        <td style="padding: 10px 0; border-bottom: 1px solid #ccfbf1; text-align: right;">
+                                            <span style="color: #374151; font-size: 14px;">${data.donationDate}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px 0;">
+                                            <span style="color: #6b7280; font-size: 14px;">Payment Method:</span>
+                                        </td>
+                                        <td style="padding: 10px 0; text-align: right;">
+                                            <span style="color: #374151; font-size: 14px;">${data.paymentMethod}</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <p style="margin: 20px 0 0 0; color: #374151; font-size: 16px; line-height: 1.6;"><strong>Tax Information:</strong> Birdsfly Sangstha is a registered non-profit organization. Your donation may be tax-deductible to the extent allowed by law. Please consult with your tax advisor for specific guidance.</p>
+                            
+                            <p style="margin: 30px 0 0 0; color: #374151; font-size: 16px; line-height: 1.6;">Questions about your donation? Contact us at <a href="mailto:info@birdsfly.org" style="color: #0d9488; text-decoration: none;">info@birdsfly.org</a></p>
+                        </td>
+                    </tr>
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f9fafb; padding: 30px 40px; border-top: 1px solid #e5e7eb;">
+                            <p style="margin: 0 0 10px 0; color: #6b7280; font-size: 14px; text-align: center;">Birdsfly Sangstha | 123 Charity Lane, New York, NY 10001</p>
                             <p style="margin: 0; color: #9ca3af; font-size: 12px; text-align: center;">© ${new Date().getFullYear()} Birdsfly Sangstha. All rights reserved.</p>
                         </td>
                     </tr>

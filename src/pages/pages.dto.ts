@@ -53,6 +53,10 @@ export class CreatePageDto {
   @IsString()
   @MaxLength(500)
   metaDescription?: string;
+
+  @IsOptional()
+  @IsArray()
+  metaKeywords?: string[];
 }
 
 export class UpdatePageDto {
@@ -99,6 +103,10 @@ export class UpdatePageDto {
   @IsString()
   @MaxLength(500)
   metaDescription?: string;
+
+  @IsOptional()
+  @IsArray()
+  metaKeywords?: string[];
 }
 
 export class PageQueryDto {

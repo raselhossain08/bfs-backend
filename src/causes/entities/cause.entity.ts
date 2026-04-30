@@ -50,8 +50,8 @@ export class Cause {
   category: CauseCategory;
 
   // Tag/Badge
-  @Column({ nullable: true })
-  tag: string;
+  @Column({ type: 'jsonb', nullable: true })
+  tags: string[];
 
   @Column({ nullable: true })
   tagColor: string;
@@ -107,8 +107,8 @@ export class Cause {
   @Column({ nullable: true, type: 'text' })
   metaDescription: string;
 
-  @Column({ nullable: true })
-  metaKeywords: string;
+  @Column({ type: 'jsonb', nullable: true })
+  metaKeywords: string[];
 
   // Status & Featured & Ordering
   @Column({ default: 'active' })

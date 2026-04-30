@@ -5,8 +5,9 @@ import {
   IsBoolean,
   IsArray,
   IsEmail,
+  ValidateNested,
 } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Type, Transform } from 'class-transformer';
 
 // Cause Category DTOs
 export class CreateCauseCategoryDto {
@@ -117,10 +118,32 @@ export class CreateCauseDto {
   @IsOptional()
   image?: string;
 
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value ? [value] : [];
+      }
+    }
+    return [];
+  })
   @IsArray()
   @IsOptional()
   gallery?: string[];
 
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return [];
+      }
+    }
+    return [];
+  })
   @IsArray()
   @IsOptional()
   videos?: { url: string; type: string; caption?: string }[];
@@ -130,9 +153,20 @@ export class CreateCauseDto {
   @IsOptional()
   categoryId?: number;
 
-  @IsString()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value ? [value] : [];
+      }
+    }
+    return [];
+  })
+  @IsArray()
   @IsOptional()
-  tag?: string;
+  tags?: string[];
 
   @IsString()
   @IsOptional()
@@ -142,6 +176,21 @@ export class CreateCauseDto {
   @IsNumber()
   @IsOptional()
   goal?: number;
+
+  @Type(() => Number)
+  @IsNumber()
+  @IsOptional()
+  raised?: number;
+
+  @Type(() => Number)
+  @IsNumber()
+  @IsOptional()
+  donors?: number;
+
+  @Type(() => Number)
+  @IsNumber()
+  @IsOptional()
+  progress?: number;
 
   @IsString()
   @IsOptional()
@@ -187,9 +236,20 @@ export class CreateCauseDto {
   @IsOptional()
   metaDescription?: string;
 
-  @IsString()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value ? [value] : [];
+      }
+    }
+    return [];
+  })
+  @IsArray()
   @IsOptional()
-  metaKeywords?: string;
+  metaKeywords?: string[];
 
   @IsString()
   @IsOptional()
@@ -246,10 +306,32 @@ export class UpdateCauseDto {
   @IsOptional()
   image?: string;
 
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value ? [value] : [];
+      }
+    }
+    return [];
+  })
   @IsArray()
   @IsOptional()
   gallery?: string[];
 
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return [];
+      }
+    }
+    return [];
+  })
   @IsArray()
   @IsOptional()
   videos?: { url: string; type: string; caption?: string }[];
@@ -331,9 +413,20 @@ export class UpdateCauseDto {
   @IsOptional()
   metaDescription?: string;
 
-  @IsString()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value ? [value] : [];
+      }
+    }
+    return [];
+  })
+  @IsArray()
   @IsOptional()
-  metaKeywords?: string;
+  metaKeywords?: string[];
 
   @IsString()
   @IsOptional()
@@ -501,4 +594,21 @@ export class BulkDonationStatusDto {
 
   @IsString()
   status: string;
+}
+
+// Bulk Import DTO
+export class BulkImportCausesDto {
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateCauseDto)
+  items: CreateCauseDto[];
+}
+
+// Bulk Import Response
+export interface BulkImportResponse {
+  success: boolean;
+  imported: number;
+  failed: number;
+  errors?: { title: string; error: string }[];
+  data?: any[];
 }

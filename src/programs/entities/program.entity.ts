@@ -42,13 +42,16 @@ export class Program {
   color: string;
 
   @Column({ nullable: true })
+  categoryId: number;
+
+  @Column({ nullable: true })
   category: string;
 
   @Column({ nullable: true })
   location: string;
 
-  @Column({ nullable: true, type: 'text' })
-  beneficiaries: string;
+  @Column({ nullable: true, type: 'int' })
+  beneficiaries: number;
 
   @Column({ nullable: true })
   impact: string;
@@ -86,8 +89,8 @@ export class Program {
   @Column({ nullable: true, type: 'text' })
   metaDescription: string;
 
-  @Column({ nullable: true })
-  metaKeywords: string;
+  @Column({ type: 'jsonb', nullable: true })
+  metaKeywords: string[];
 
   @Column({ default: 'active' })
   status: string;

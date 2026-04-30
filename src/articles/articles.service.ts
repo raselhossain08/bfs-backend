@@ -28,6 +28,11 @@ export class ArticlesService {
   ) {}
 
   async create(dto: CreateArticleDto): Promise<Article> {
+    // Generate slug if not provided
+    if (!dto.slug && dto.title) {
+      dto.slug = this.generateSlug(dto.title);
+    }
+
     // Check for duplicate slug
     const existingSlug = await this.articleRepository.findOne({
       where: { slug: dto.slug },
@@ -445,5 +450,14 @@ export class ArticlesService {
       headers: headers.join(','),
       rows: rows.map((row) => row.join(',')),
     };
+  }
+
+  // ============ HELPERS ============
+
+  private generateSlug(title: string): string {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
   }
 }

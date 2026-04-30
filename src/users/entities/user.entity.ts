@@ -129,6 +129,13 @@ export class User {
   @Column({ default: true })
   allowOtpLogin: boolean;
 
+  // Password attempt lockout
+  @Column({ default: 0 })
+  failedLoginAttempts: number;
+
+  @Column({ type: 'timestamp', nullable: true })
+  lockedUntil: Date;
+
   // Relationships
   @OneToMany(() => Donation, (donation) => donation.donor, { cascade: true })
   donations: Donation[];

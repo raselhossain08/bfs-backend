@@ -83,9 +83,13 @@ export class ProgramsService {
           program.metaDescription ||
           program.shortDescription ||
           program.description,
-        keywords: program.metaKeywords
-          ? program.metaKeywords.split(',').map((k) => k.trim())
-          : [],
+        keywords: (() => {
+          if (Array.isArray(program.metaKeywords)) return program.metaKeywords;
+          if (typeof program.metaKeywords === 'string' && program.metaKeywords) {
+            return (program.metaKeywords as string).split(',').map((k: string) => k.trim());
+          }
+          return [];
+        })(),
       },
       createdAt: program.createdAt,
       updatedAt: program.updatedAt,

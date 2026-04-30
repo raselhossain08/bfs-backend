@@ -5,7 +5,7 @@ import {
   Logger,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, DataSource } from 'typeorm';
 import Stripe from 'stripe';
 import { PaymentMethod } from './entities/payment-method.entity';
 import {
@@ -26,6 +26,7 @@ export class PaymentMethodsService {
     private paymentMethodRepository: Repository<PaymentMethod>,
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    private readonly dataSource: DataSource,
   ) {
     // Initialize Stripe with secret key
     const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -228,54 +229,76 @@ export class PaymentMethodsService {
    * Delete a payment method
    */
   async remove(userId: number, id: number): Promise<{ success: boolean }> {
-    if (!this.stripe) {
-      throw new Error(
-        'Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.',
-      );
-    }
+    return await this.dataSource.transaction(async (manager) => {
+      if (!this.stripe) {
+        throw new Error(
+          'Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.',
+        );
+      }
 
-    const paymentMethod = await this.findOne(userId, id);
-
-    // Detach from Stripe Customer
-    try {
-      await this.stripe.paymentMethods.detach(
-        paymentMethod.stripePaymentMethodId,
-      );
-    } catch (error) {
-      this.logger.warn(
-        `Failed to detach payment method from Stripe: ${error.message}`,
-      );
-      // Continue with deletion even if Stripe detach fails
-    }
-
-    // If this was the default, set another one as default
-    if (paymentMethod.isDefault) {
-      const nextDefault = await this.paymentMethodRepository.findOne({
-        where: { userId },
-        order: { createdAt: 'ASC' },
+      const paymentMethod = await manager.findOne(PaymentMethod, {
+        where: { id, userId },
       });
 
-      if (nextDefault) {
-        nextDefault.isDefault = true;
-        await this.paymentMethodRepository.save(nextDefault);
+      if (!paymentMethod) {
+        throw new NotFoundException('Payment method not found');
+      }
 
-        // Update Stripe default
-        if (nextDefault.stripeCustomerId) {
-          await this.stripe.customers
-            .update(nextDefault.stripeCustomerId, {
-              invoice_settings: {
-                default_payment_method: nextDefault.stripePaymentMethodId,
-              },
-            })
-            .catch(() => {}); // Ignore errors
+      // Detach from Stripe Customer (with proper error handling)
+      let stripeDetachFailed = false;
+      try {
+        await this.stripe.paymentMethods.detach(
+          paymentMethod.stripePaymentMethodId,
+        );
+      } catch (error) {
+        this.logger.error(
+          `Failed to detach payment method from Stripe: ${error.message}`,
+          error.stack,
+        );
+        stripeDetachFailed = true;
+        // Don't rollback - Stripe failure shouldn't block local deletion
+        // But log it for manual review
+      }
+
+      // If this was the default, set another one as default
+      if (paymentMethod.isDefault) {
+        const nextDefault = await manager.findOne(PaymentMethod, {
+          where: { userId },
+          order: { createdAt: 'ASC' },
+        });
+
+        if (nextDefault) {
+          nextDefault.isDefault = true;
+          await manager.save(PaymentMethod, nextDefault);
+
+          // Update Stripe default (best effort)
+          if (nextDefault.stripeCustomerId) {
+            try {
+              await this.stripe.customers.update(
+                nextDefault.stripeCustomerId,
+                {
+                  invoice_settings: {
+                    default_payment_method: nextDefault.stripePaymentMethodId,
+                  },
+                },
+              );
+            } catch (error) {
+              this.logger.warn(
+                `Failed to update default payment method in Stripe: ${error.message}`,
+              );
+            }
+          }
         }
       }
-    }
 
-    await this.paymentMethodRepository.remove(paymentMethod);
+      await manager.remove(PaymentMethod, paymentMethod);
 
-    this.logger.log(`Removed payment method ${id} for user ${userId}`);
-    return { success: true };
+      this.logger.log(
+        `Removed payment method ${id} for user ${userId}${stripeDetachFailed ? ' (Stripe detach failed - manual review needed)' : ''}`,
+      );
+      
+      return { success: true };
+    });
   }
 
   /**

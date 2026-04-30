@@ -36,6 +36,7 @@ import {
   BulkInquiryStatusDto,
   ReorderServicesDto,
   ReorderCategoriesDto,
+  BulkCreateServicesDto,
 } from './dto/services.dto';
 
 /**
@@ -341,6 +342,24 @@ export class ServicesController {
   async createService(@Body() dto: CreateServiceDto) {
     const service = await this.servicesService.createService(dto);
     return { success: true, data: service };
+  }
+
+  /**
+   * Bulk create services (admin)
+   * POST /api/services/admin/bulk
+   * Legacy: /api/admin/services/bulk
+   */
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(...EDITOR_ROLES)
+  @Post('admin/bulk')
+  async bulkCreateServices(@Body() dto: BulkCreateServicesDto) {
+    const result = await this.servicesService.bulkCreateServices(dto);
+    return {
+      success: true,
+      count: result.count,
+      failed: result.failed || 0,
+      errors: result.errors || [],
+    };
   }
 
   /** @deprecated - Legacy route for backward compatibility */

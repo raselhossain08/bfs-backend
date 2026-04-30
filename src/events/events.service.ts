@@ -5,7 +5,7 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, In } from 'typeorm';
+import { Repository, In, DataSource } from 'typeorm';
 import { Event } from './entities/event.entity';
 import { EventType } from './entities/event-type.entity';
 import { EventRegistration } from './entities/event-registration.entity';
@@ -22,6 +22,7 @@ import {
   EventRegistrationQueryDto,
   BulkRegistrationStatusDto,
   UpdateEventsSectionDto,
+  BulkCreateEventsDto,
 } from './dto/events.dto';
 
 // In-memory section config (will be persisted to database)
@@ -44,6 +45,7 @@ export class EventsService {
     private eventTypeRepository: Repository<EventType>,
     @InjectRepository(EventRegistration)
     private registrationRepository: Repository<EventRegistration>,
+    private readonly dataSource: DataSource,
   ) {}
 
   // ============ EVENT TYPES ============
@@ -190,20 +192,25 @@ export class EventsService {
     }
 
     // Validate event type if provided
+    let eventTypeName = dto.eventTypeName;
+    let eventTypeId = dto.eventTypeId;
     if (dto.eventTypeId) {
       const eventType = await this.eventTypeRepository.findOne({
         where: { id: dto.eventTypeId },
       });
-      if (!eventType) {
-        throw new NotFoundException(
-          `Event type with id ${dto.eventTypeId} not found`,
-        );
+      if (eventType) {
+        eventTypeName = eventType.name;
+      } else {
+        // Event type not found, remove the ID to avoid FK constraint error
+        eventTypeId = undefined;
       }
     }
 
     const event = this.eventRepository.create({
       ...dto,
       slug,
+      eventTypeId,
+      eventTypeName: eventTypeName || dto.eventTypeName,
       startDate: dto.startDate ? new Date(dto.startDate) : undefined,
       endDate: dto.endDate ? new Date(dto.endDate) : undefined,
       registrationDeadline: dto.registrationDeadline
@@ -219,6 +226,26 @@ export class EventsService {
     this.logger.log(`Event created: ${saved.title} (id: ${saved.id})`);
 
     return this.findOneEvent(saved.id);
+  }
+
+  async bulkCreateEvents(dto: BulkCreateEventsDto): Promise<{ count: number; failed: number; errors: { title: string; error: string }[] }> {
+    const results = { count: 0, failed: 0, errors: [] as { title: string; error: string }[] };
+
+    for (const item of dto.items) {
+      try {
+        await this.createEvent(item);
+        results.count++;
+      } catch (error: any) {
+        results.failed++;
+        results.errors.push({
+          title: item.title || 'Unknown',
+          error: error.message || 'Failed to create event',
+        });
+      }
+    }
+
+    this.logger.log(`Bulk created ${results.count} events, ${results.failed} failed`);
+    return results;
   }
 
   async findAllEvents(query: EventQueryDto) {
@@ -535,46 +562,58 @@ export class EventsService {
     if (!dto.eventId) {
       throw new BadRequestException('Event ID is required');
     }
-    const event = await this.findOneEvent(dto.eventId);
 
-    if (event.requiresRegistration && event.maxAttendees) {
-      const currentCount = await this.registrationRepository.count({
-        where: {
-          eventId: dto.eventId,
-          status: In(['registered', 'confirmed']),
-        },
+    // Use transaction to prevent race conditions
+    return await this.dataSource.transaction(async (manager) => {
+      const event = await manager.findOne(Event, {
+        where: { id: dto.eventId },
+        lock: { mode: 'pessimistic_write' }, // Lock the row
       });
 
-      if (currentCount + (dto.numberOfAttendees ?? 1) > event.maxAttendees) {
-        throw new BadRequestException(
-          `Event is at capacity. ${event.maxAttendees - currentCount} spots remaining.`,
-        );
+      if (!event) {
+        throw new NotFoundException('Event not found');
       }
-    }
 
-    if (event.registrationDeadline && new Date() > event.registrationDeadline) {
-      throw new BadRequestException('Registration deadline has passed');
-    }
+      if (event.requiresRegistration && event.maxAttendees) {
+        const currentCount = await manager.count(EventRegistration, {
+          where: {
+            eventId: dto.eventId,
+            status: In(['registered', 'confirmed']),
+          },
+        });
 
-    const registration = this.registrationRepository.create({
-      ...dto,
-      status: 'registered',
+        if (currentCount + (dto.numberOfAttendees ?? 1) > event.maxAttendees) {
+          throw new BadRequestException(
+            `Event is at capacity. ${event.maxAttendees - currentCount} spots remaining.`,
+          );
+        }
+      }
+
+      if (event.registrationDeadline && new Date() > event.registrationDeadline) {
+        throw new BadRequestException('Registration deadline has passed');
+      }
+
+      const registration = manager.create(EventRegistration, {
+        ...dto,
+        status: 'registered',
+      });
+
+      const saved = await manager.save(registration);
+
+      // Update current attendees count
+      await manager.increment(
+        Event,
+        { id: dto.eventId },
+        'currentAttendees',
+        dto.numberOfAttendees || 1,
+      );
+
+      this.logger.log(
+        `Registration created for event ${dto.eventId}: ${saved.name}`,
+      );
+
+      return saved;
     });
-
-    const saved = await this.registrationRepository.save(registration);
-
-    // Update current attendees count
-    await this.eventRepository.increment(
-      { id: dto.eventId },
-      'currentAttendees',
-      dto.numberOfAttendees || 1,
-    );
-
-    this.logger.log(
-      `Registration created for event ${dto.eventId}: ${saved.name}`,
-    );
-
-    return saved;
   }
 
   async findAllRegistrations(query: EventRegistrationQueryDto) {
@@ -639,34 +678,67 @@ export class EventsService {
     id: number,
     dto: UpdateEventRegistrationDto,
   ): Promise<EventRegistration> {
-    const registration = await this.findOneRegistration(id);
+    return await this.dataSource.transaction(async (manager) => {
+      const registration = await manager.findOne(EventRegistration, {
+        where: { id },
+        relations: ['event'],
+      });
 
-    const oldStatus = registration.status;
-    Object.assign(registration, dto);
+      if (!registration) {
+        throw new NotFoundException(`Registration with id ${id} not found`);
+      }
 
-    const saved = await this.registrationRepository.save(registration);
+      const oldStatus = registration.status;
+      const oldAttendees = registration.numberOfAttendees;
+      Object.assign(registration, dto);
 
-    // Update attendee count if status changed
-    if (dto.status && dto.status !== oldStatus) {
-      const attendeeDiff =
-        dto.status === 'cancelled'
-          ? -registration.numberOfAttendees
-          : oldStatus === 'cancelled'
-            ? registration.numberOfAttendees
-            : 0;
+      const saved = await manager.save(registration);
 
-      if (attendeeDiff !== 0) {
-        await this.eventRepository.increment(
+      // Update attendee count if status or numberOfAttendees changed
+      if (dto.status && dto.status !== oldStatus) {
+        const activeStatuses = ['registered', 'confirmed'];
+        const wasActive = activeStatuses.includes(oldStatus);
+        const isActive = activeStatuses.includes(dto.status);
+
+        let attendeeDiff = 0;
+        if (wasActive && !isActive) {
+          // Was active, now inactive (cancelled/completed)
+          attendeeDiff = -oldAttendees;
+        } else if (!wasActive && isActive) {
+          // Was inactive, now active
+          attendeeDiff = dto.numberOfAttendees || oldAttendees;
+        } else if (wasActive && isActive && dto.numberOfAttendees !== oldAttendees) {
+          // Both active but attendee count changed
+          attendeeDiff = (dto.numberOfAttendees || 0) - oldAttendees;
+        }
+
+        if (attendeeDiff !== 0) {
+          await manager.increment(
+            Event,
+            { id: registration.eventId },
+            'currentAttendees',
+            attendeeDiff,
+          );
+        }
+      } else if (
+        !dto.status &&
+        dto.numberOfAttendees !== undefined &&
+        dto.numberOfAttendees !== oldAttendees
+      ) {
+        // Only attendee count changed (status same)
+        const attendeeDiff = dto.numberOfAttendees - oldAttendees;
+        await manager.increment(
+          Event,
           { id: registration.eventId },
           'currentAttendees',
           attendeeDiff,
         );
       }
-    }
 
-    this.logger.log(`Registration updated: ${saved.id}`);
+      this.logger.log(`Registration updated: ${saved.id}`);
 
-    return saved;
+      return saved;
+    });
   }
 
   async bulkUpdateRegistrationStatus(

@@ -3,9 +3,10 @@ import {
   Logger,
   BadRequestException,
   NotFoundException,
+  ForbiddenException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, Like, In } from 'typeorm';
+import { Repository, Like, In, DataSource } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { User } from '../users/entities/user.entity';
 import {
@@ -34,6 +35,7 @@ export class AdminService {
     @InjectRepository(User)
     private usersRepository: Repository<User>,
     private readonly auditService: AuditService,
+    private readonly dataSource: DataSource,
   ) {}
 
   private sanitizeUser(user: User) {
@@ -345,26 +347,28 @@ export class AdminService {
     actorId: number,
     request?: Request,
   ): Promise<{ success: boolean; count: number }> {
-    const users = await this.usersRepository.find({ where: { id: In(ids) } });
+    return await this.dataSource.transaction(async (manager) => {
+      const users = await manager.find(User, { where: { id: In(ids) } });
 
-    if (users.length === 0) {
-      throw new NotFoundException('No users found');
-    }
+      if (users.length === 0) {
+        throw new NotFoundException('No users found');
+      }
 
-    await this.usersRepository.update({ id: In(ids) }, { status });
+      await manager.update(User, { id: In(ids) }, { status });
 
-    // Audit log
-    await this.auditService.log({
-      action: AuditAction.BULK_STATUS_CHANGE,
-      entityType: 'user',
-      entityId: 0, // Multiple entities
-      actorId,
-      newValues: { ids, status },
-      description: `Bulk status change to ${status} for ${ids.length} users`,
-      request,
+      // Audit log
+      await this.auditService.log({
+        action: AuditAction.BULK_STATUS_CHANGE,
+        entityType: 'user',
+        entityId: 0,
+        actorId,
+        newValues: { ids, status },
+        description: `Bulk status change to ${status} for ${ids.length} users`,
+        request,
+      });
+
+      return { success: true, count: users.length };
     });
-
-    return { success: true, count: users.length };
   }
 
   async bulkUpdateRole(
@@ -377,26 +381,37 @@ export class AdminService {
       throw new BadRequestException('Invalid admin role');
     }
 
-    const users = await this.usersRepository.find({ where: { id: In(ids) } });
+    return await this.dataSource.transaction(async (manager) => {
+      const users = await manager.find(User, { where: { id: In(ids) } });
 
-    if (users.length === 0) {
-      throw new NotFoundException('No users found');
-    }
+      if (users.length === 0) {
+        throw new NotFoundException('No users found');
+      }
 
-    await this.usersRepository.update({ id: In(ids) }, { role });
+      // Prevent demoting super_admin unless actor is super_admin
+      const superAdmins = users.filter(u => u.role === 'super_admin');
+      if (superAdmins.length > 0 && role !== 'super_admin') {
+        const actor = await manager.findOne(User, { where: { id: actorId } });
+        if (!actor || actor.role !== 'super_admin') {
+          throw new ForbiddenException('Only super_admin can change super_admin roles');
+        }
+      }
 
-    // Audit log
-    await this.auditService.log({
-      action: AuditAction.BULK_ROLE_CHANGE,
-      entityType: 'user',
-      entityId: 0,
-      actorId,
-      newValues: { ids, role },
-      description: `Bulk role change to ${role} for ${ids.length} users`,
-      request,
+      await manager.update(User, { id: In(ids) }, { role });
+
+      // Audit log
+      await this.auditService.log({
+        action: AuditAction.BULK_ROLE_CHANGE,
+        entityType: 'user',
+        entityId: 0,
+        actorId,
+        newValues: { ids, role },
+        description: `Bulk role change to ${role} for ${ids.length} users`,
+        request,
+      });
+
+      return { success: true, count: users.length };
     });
-
-    return { success: true, count: users.length };
   }
 
   async bulkDelete(
@@ -404,26 +419,37 @@ export class AdminService {
     actorId: number,
     request?: Request,
   ): Promise<{ success: boolean; count: number }> {
-    const users = await this.usersRepository.find({ where: { id: In(ids) } });
+    return await this.dataSource.transaction(async (manager) => {
+      const users = await manager.find(User, { where: { id: In(ids) } });
 
-    if (users.length === 0) {
-      throw new NotFoundException('No users found');
-    }
+      if (users.length === 0) {
+        throw new NotFoundException('No users found');
+      }
 
-    await this.usersRepository.delete({ id: In(ids) });
+      // Prevent deleting super_admin unless actor is super_admin
+      const superAdmins = users.filter(u => u.role === 'super_admin');
+      if (superAdmins.length > 0) {
+        const actor = await manager.findOne(User, { where: { id: actorId } });
+        if (!actor || actor.role !== 'super_admin') {
+          throw new ForbiddenException('Only super_admin can delete super_admin accounts');
+        }
+      }
 
-    // Audit log
-    await this.auditService.log({
-      action: AuditAction.BULK_DELETE,
-      entityType: 'user',
-      entityId: 0,
-      actorId,
-      oldValues: { ids },
-      description: `Bulk deleted ${ids.length} users`,
-      request,
+      await manager.delete(User, { id: In(ids) });
+
+      // Audit log
+      await this.auditService.log({
+        action: AuditAction.BULK_DELETE,
+        entityType: 'user',
+        entityId: 0,
+        actorId,
+        oldValues: { ids },
+        description: `Bulk deleted ${ids.length} users`,
+        request,
+      });
+
+      return { success: true, count: users.length };
     });
-
-    return { success: true, count: users.length };
   }
 
   // Password reset
@@ -476,9 +502,12 @@ export class AdminService {
     actorId: number,
     request?: Request,
   ): Promise<{ data: User[]; format: string }> {
+    // Enforce export limit to prevent performance issues
+    const EXPORT_LIMIT = 10000;
     const users = await this.usersRepository.find({
       where: { role: In(this.adminRoles) },
       order: { createdAt: 'DESC' },
+      take: EXPORT_LIMIT,
       select: [
         'id',
         'firstName',
@@ -498,7 +527,7 @@ export class AdminService {
       entityType: 'user',
       entityId: 0,
       actorId,
-      description: `Exported ${users.length} users as ${format.toUpperCase()}`,
+      description: `Exported ${users.length} users as ${format.toUpperCase()} (limit: ${EXPORT_LIMIT})`,
       request,
     });
 

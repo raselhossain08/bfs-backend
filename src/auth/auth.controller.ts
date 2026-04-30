@@ -10,9 +10,12 @@ import {
   HttpStatus,
   Patch,
   Delete,
+  BadRequestException,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service.js';
+import { RegisterDto } from './dto/register.dto';
+import { LoginDto } from './dto/login.dto';
 import { SendOtpDto } from './dto/send-otp.dto';
 import { VerifyOtpDto } from './dto/verify-otp.dto';
 import type { Response } from 'express';
@@ -62,11 +65,21 @@ function clearAuthCookies(res: Response) {
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @UseGuards(AuthGuard('local'))
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  async login(@Request() req: any, @Res({ passthrough: true }) res: Response) {
-    const result = await this.authService.login(req.user);
+  async login(
+    @Body() loginDto: LoginDto,
+    @Request() req: any,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const user = await this.authService.validateUser(
+      loginDto.email,
+      loginDto.password,
+    );
+    if (!user) {
+      throw new BadRequestException('Invalid email or password');
+    }
+    const result = await this.authService.login(user);
     setAuthCookies(res, result.access_token, result.refresh_token);
     return {
       user: result.user,
@@ -77,10 +90,10 @@ export class AuthController {
 
   @Post('register')
   async register(
-    @Body() body: any,
+    @Body() registerDto: RegisterDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const result = await this.authService.register(body);
+    const result = await this.authService.register(registerDto);
     setAuthCookies(res, result.access_token, result.refresh_token);
     return {
       user: result.user,

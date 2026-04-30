@@ -69,10 +69,39 @@ export class CommentsService {
   }
 
   async findByArticleSlug(slug: string) {
-    return this.commentRepository.find({
+    // Get all approved comments for this article
+    const allComments = await this.commentRepository.find({
       where: { articleSlug: slug, status: 'approved' },
-      order: { createdAt: 'DESC' },
+      order: { createdAt: 'ASC' },
+      relations: ['children'],
     });
+
+    // Build tree structure
+    return this.buildCommentTree(allComments);
+  }
+
+  private buildCommentTree(comments: Comment[]): Comment[] {
+    const commentMap = new Map<number, Comment & { children?: Comment[] }>();
+    const rootComments: (Comment & { children?: Comment[] })[] = [];
+
+    // Initialize map with all comments
+    comments.forEach(comment => {
+      commentMap.set(comment.id, { ...comment, children: [] });
+    });
+
+    // Build tree
+    comments.forEach(comment => {
+      const commentWithChildren = commentMap.get(comment.id)!;
+      if (comment.parentId && commentMap.has(comment.parentId)) {
+        const parent = commentMap.get(comment.parentId)!;
+        if (!parent.children) parent.children = [];
+        parent.children.push(commentWithChildren);
+      } else {
+        rootComments.push(commentWithChildren);
+      }
+    });
+
+    return rootComments;
   }
 
   async findById(id: number): Promise<Comment> {

@@ -10,16 +10,18 @@ import {
   MaxLength,
   IsUrl,
 } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Type, Transform } from 'class-transformer';
 
 export class CreateArticleDto {
+  @Transform(({ value }) => String(value))
   @IsString()
-  @MinLength(2)
+  @MinLength(1)
   @MaxLength(500)
   title: string;
 
+  @Transform(({ value }) => String(value))
   @IsString()
-  @MinLength(2)
+  @MinLength(1)
   @MaxLength(500)
   slug: string;
 
@@ -68,6 +70,10 @@ export class CreateArticleDto {
   featured?: boolean;
 
   @IsOptional()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return JSON.stringify(value);
+    return String(value);
+  })
   @IsString()
   tags?: string;
 
@@ -91,6 +97,10 @@ export class CreateArticleDto {
   publishedAt?: string;
 
   @IsOptional()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return JSON.stringify(value);
+    return value;
+  })
   @IsString()
   contentBlocks?: string;
 
@@ -99,20 +109,26 @@ export class CreateArticleDto {
   videoUrl?: string;
 
   @IsOptional()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return JSON.stringify(value);
+    return value;
+  })
   @IsString()
   images?: string;
 }
 
 export class UpdateArticleDto {
   @IsOptional()
+  @Transform(({ value }) => value !== undefined ? String(value) : value)
   @IsString()
-  @MinLength(2)
+  @MinLength(1)
   @MaxLength(500)
   title?: string;
 
   @IsOptional()
+  @Transform(({ value }) => value !== undefined ? String(value) : value)
   @IsString()
-  @MinLength(2)
+  @MinLength(1)
   @MaxLength(500)
   slug?: string;
 
@@ -161,6 +177,10 @@ export class UpdateArticleDto {
   featured?: boolean;
 
   @IsOptional()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return JSON.stringify(value);
+    return String(value);
+  })
   @IsString()
   tags?: string;
 
@@ -184,16 +204,24 @@ export class UpdateArticleDto {
   publishedAt?: string;
 
   @IsOptional()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return JSON.stringify(value);
+    return value;
+  })
   @IsString()
-  contentBlocks?: string; // JSON stringified array of ContentBlock
+  contentBlocks?: string;
 
   @IsOptional()
   @IsString()
   videoUrl?: string;
 
   @IsOptional()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return JSON.stringify(value);
+    return value;
+  })
   @IsString()
-  images?: string; // JSON stringified array of image URLs
+  images?: string;
 }
 
 export class ArticleQueryDto {
@@ -274,4 +302,107 @@ export class BulkArticleStatusDto {
 
   @IsEnum(['draft', 'published', 'archived'])
   status: string;
+}
+
+export class BulkImportArticlesDto {
+  @IsArray()
+  data: BulkArticleDto[];
+}
+
+export class BulkArticleDto {
+  @IsOptional()
+  @Transform(({ value }) => value !== undefined && value !== null ? String(value) : undefined)
+  @IsString()
+  title?: string;
+
+  @IsOptional()
+  @Transform(({ value }) => value !== undefined && value !== null ? String(value) : undefined)
+  @IsString()
+  slug?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(2000)
+  description?: string;
+
+  @IsOptional()
+  @IsString()
+  content?: string;
+
+  @IsOptional()
+  @IsUrl()
+  image?: string;
+
+  @IsOptional()
+  @IsString()
+  author?: string;
+
+  @IsOptional()
+  @IsUrl()
+  authorImage?: string;
+
+  @IsOptional()
+  @IsString()
+  authorBio?: string;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  categoryId?: number;
+
+  @IsOptional()
+  @IsEnum(['draft', 'published', 'archived'])
+  status?: string;
+
+  @IsOptional()
+  @Type(() => Boolean)
+  @IsBoolean()
+  featured?: boolean;
+
+  @IsOptional()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return JSON.stringify(value);
+    return String(value);
+  })
+  @IsString()
+  tags?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  metaTitle?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(500)
+  metaDescription?: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  keywords?: string[];
+
+  @IsOptional()
+  @IsDateString()
+  publishedAt?: string;
+
+  @IsOptional()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return JSON.stringify(value);
+    return value;
+  })
+  @IsString()
+  contentBlocks?: string;
+
+  @IsOptional()
+  @IsString()
+  videoUrl?: string;
+
+  @IsOptional()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return JSON.stringify(value);
+    return value;
+  })
+  @IsString()
+  images?: string;
 }

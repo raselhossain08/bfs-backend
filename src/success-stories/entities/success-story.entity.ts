@@ -24,6 +24,12 @@ export class SuccessStory {
   name?: string;
 
   @Column({ nullable: true })
+  shortDescription?: string;
+
+  @Column({ type: 'text', nullable: true })
+  description?: string;
+
+  @Column({ nullable: true })
   category?: string;
 
   @Column({ nullable: true })
@@ -47,6 +53,9 @@ export class SuccessStory {
   @Column({ nullable: true })
   image?: string;
 
+  @Column({ type: 'jsonb', nullable: true })
+  gallery?: string[];
+
   @Column({ nullable: true })
   videoUrl?: string;
 
@@ -64,8 +73,23 @@ export class SuccessStory {
   @Index()
   status!: 'published' | 'draft';
 
+  @Column({ default: false })
+  isFeatured!: boolean;
+
+  @Column({ type: 'decimal', precision: 12, scale: 2, nullable: true })
+  amount?: number;
+
   @Column({ default: 0 })
   views!: number;
+
+  @Column({ nullable: true })
+  metaTitle?: string;
+
+  @Column({ nullable: true, type: 'text' })
+  metaDescription?: string;
+
+  @Column({ type: 'jsonb', nullable: true })
+  metaKeywords?: string[];
 
   @CreateDateColumn()
   createdAt!: Date;

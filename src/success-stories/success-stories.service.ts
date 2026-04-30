@@ -13,6 +13,7 @@ import {
   SuccessStoryQueryDto,
   BulkSuccessStoryStatusDto,
   ReorderSuccessStoriesDto,
+  BulkCreateSuccessStoriesDto,
 } from './dto/success-story.dto';
 
 @Injectable()
@@ -59,6 +60,26 @@ export class SuccessStoriesService {
     const saved = await this.successStoryRepository.save(story);
     this.logger.log(`Success story created: ${saved.title} (id: ${saved.id})`);
     return saved;
+  }
+
+  async bulkCreate(dto: BulkCreateSuccessStoriesDto): Promise<{ count: number; failed: number; errors: { title: string; error: string }[] }> {
+    const results = { count: 0, failed: 0, errors: [] as { title: string; error: string }[] };
+
+    for (const item of dto.items) {
+      try {
+        await this.create(item);
+        results.count++;
+      } catch (error: any) {
+        results.failed++;
+        results.errors.push({
+          title: item.title || 'Unknown',
+          error: error.message || 'Failed to create success story',
+        });
+      }
+    }
+
+    this.logger.log(`Bulk created ${results.count} success stories, ${results.failed} failed`);
+    return results;
   }
 
   async findAll(query: SuccessStoryQueryDto) {

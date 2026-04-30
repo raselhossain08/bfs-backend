@@ -16,12 +16,16 @@ import { ReferralModule } from '../referral/referral.module';
     ConfigModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        secret:
-          configService.get<string>('JWT_SECRET') ||
-          'super-secret-key-change-this-in-production',
-        signOptions: { expiresIn: '60m' },
-      }),
+      useFactory: async (configService: ConfigService) => {
+        const secret = configService.get<string>('JWT_SECRET');
+        if (!secret) {
+          throw new Error('JWT_SECRET environment variable is required');
+        }
+        return {
+          secret,
+          signOptions: { expiresIn: '60m' },
+        };
+      },
       inject: [ConfigService],
     }),
     forwardRef(() => ReferralModule),

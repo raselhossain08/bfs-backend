@@ -7,7 +7,7 @@ import {
   IsArray,
   IsDate,
 } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Type, Transform } from 'class-transformer';
 
 export class CreateProgramDto {
   @IsString()
@@ -17,45 +17,10 @@ export class CreateProgramDto {
   @IsString()
   slug?: string;
 
+  @Type(() => Number)
+  @IsNumber()
   @IsOptional()
-  @IsString()
-  shortDescription?: string;
-
-  @IsOptional()
-  @IsString()
-  description?: string;
-
-  @IsOptional()
-  @IsString()
-  content?: string;
-
-  @IsOptional()
-  @IsString()
-  image?: string;
-
-  @IsOptional()
-  @IsArray()
-  gallery?: string[];
-
-  @IsOptional()
-  @IsString()
-  icon?: string;
-
-  @IsOptional()
-  @IsString()
-  color?: string;
-
-  @IsOptional()
-  @IsString()
-  category?: string;
-
-  @IsOptional()
-  @IsString()
-  location?: string;
-
-  @IsOptional()
-  @IsString()
-  beneficiaries?: string;
+  beneficiaries?: number;
 
   @IsOptional()
   @IsString()
@@ -65,14 +30,14 @@ export class CreateProgramDto {
   @IsString()
   metric?: string;
 
-  @IsOptional()
   @Type(() => Number)
   @IsNumber()
+  @IsOptional()
   goal?: number;
 
-  @IsOptional()
   @Type(() => Number)
   @IsNumber()
+  @IsOptional()
   raised?: number;
 
   @IsOptional()
@@ -85,8 +50,15 @@ export class CreateProgramDto {
   @Type(() => Date)
   endDate?: Date;
 
-  @IsOptional()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return []; }
+    }
+    return [];
+  })
   @IsArray()
+  @IsOptional()
   milestones?: { title: string; date: string; status: string }[];
 
   @IsOptional()
@@ -97,8 +69,15 @@ export class CreateProgramDto {
   @IsString()
   videoType?: string;
 
-  @IsOptional()
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return []; }
+    }
+    return [];
+  })
   @IsArray()
+  @IsOptional()
   contentBlocks?: any[];
 
   @IsOptional()
@@ -109,9 +88,16 @@ export class CreateProgramDto {
   @IsString()
   metaDescription?: string;
 
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+    }
+    return [];
+  })
+  @IsArray()
   @IsOptional()
-  @IsString()
-  metaKeywords?: string;
+  metaKeywords?: string[];
 
   @IsOptional()
   @IsEnum(['active', 'completed', 'pending', 'on-hold', 'draft'])
@@ -172,8 +158,9 @@ export class UpdateProgramDto {
   location?: string;
 
   @IsOptional()
-  @IsString()
-  beneficiaries?: string;
+  @Type(() => Number)
+  @IsNumber()
+  beneficiaries?: number;
 
   @IsOptional()
   @IsString()

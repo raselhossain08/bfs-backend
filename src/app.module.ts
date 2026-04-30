@@ -150,7 +150,7 @@ import { SiteSettingsModule } from './site-settings/site-settings.module';
           Testimonial,
           SiteSetting,
         ],
-        synchronize: true, // Auto-create tables (dev only)
+        synchronize: false, // Disabled - use migrations for schema changes
       }),
       inject: [ConfigService],
     }),

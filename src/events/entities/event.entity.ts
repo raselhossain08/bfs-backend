@@ -27,6 +27,9 @@ export class Event {
   description: string;
 
   @Column({ nullable: true, type: 'text' })
+  shortDescription: string;
+
+  @Column({ nullable: true, type: 'text' })
   content: string;
 
   @Column({ type: 'timestamp' })
@@ -101,6 +104,9 @@ export class Event {
 
   @Column({ nullable: true, type: 'text' })
   metaDescription: string;
+
+  @Column({ type: 'jsonb', nullable: true })
+  metaKeywords: string[];
 
   @Column({ default: 0 })
   views: number;

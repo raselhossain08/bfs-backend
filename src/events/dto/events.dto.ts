@@ -8,8 +8,9 @@ import {
   IsEmail,
   Min,
   IsArray,
+  ValidateNested,
 } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Type, Transform } from 'class-transformer';
 
 // Event Types DTOs
 export class CreateEventTypeDto {
@@ -114,9 +115,27 @@ export class CreateEventDto {
   @IsOptional()
   content?: string;
 
+  @Transform(({ value }) => {
+    if (value instanceof Date) return value.toISOString();
+    if (typeof value === 'string') {
+      // Handle both date-only (YYYY-MM-DD) and full ISO strings
+      const date = new Date(value);
+      if (!isNaN(date.getTime())) return date.toISOString();
+    }
+    return value;
+  })
   @IsDateString()
   startDate: string;
 
+  @Transform(({ value }) => {
+    if (!value) return undefined;
+    if (value instanceof Date) return value.toISOString();
+    if (typeof value === 'string') {
+      const date = new Date(value);
+      if (!isNaN(date.getTime())) return date.toISOString();
+    }
+    return value;
+  })
   @IsDateString()
   @IsOptional()
   endDate?: string;
@@ -137,6 +156,13 @@ export class CreateEventDto {
   @IsOptional()
   image?: string;
 
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+    }
+    return [];
+  })
   @IsArray()
   @IsOptional()
   gallery?: string[];
@@ -167,6 +193,11 @@ export class CreateEventDto {
   @IsOptional()
   maxAttendees?: number;
 
+  @Type(() => Number)
+  @IsNumber()
+  @IsOptional()
+  currentAttendees?: number;
+
   @Type(() => Boolean)
   @IsBoolean()
   @IsOptional()
@@ -193,6 +224,13 @@ export class CreateEventDto {
   @IsOptional()
   organizerPhone?: string;
 
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return []; }
+    }
+    return [];
+  })
   @IsArray()
   @IsOptional()
   contentBlocks?: any[];
@@ -204,6 +242,17 @@ export class CreateEventDto {
   @IsString()
   @IsOptional()
   metaDescription?: string;
+
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+    }
+    return [];
+  })
+  @IsArray()
+  @IsOptional()
+  metaKeywords?: string[];
 }
 
 export class UpdateEventDto {
@@ -218,6 +267,10 @@ export class UpdateEventDto {
   @IsString()
   @IsOptional()
   description?: string;
+
+  @IsString()
+  @IsOptional()
+  shortDescription?: string;
 
   @IsString()
   @IsOptional()
@@ -247,6 +300,13 @@ export class UpdateEventDto {
   @IsOptional()
   image?: string;
 
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+    }
+    return [];
+  })
   @IsArray()
   @IsOptional()
   gallery?: string[];
@@ -276,6 +336,11 @@ export class UpdateEventDto {
   @IsNumber()
   @IsOptional()
   maxAttendees?: number;
+
+  @Type(() => Number)
+  @IsNumber()
+  @IsOptional()
+  currentAttendees?: number;
 
   @Type(() => Boolean)
   @IsBoolean()
@@ -474,6 +539,14 @@ export class BulkRegistrationStatusDto {
 
   @IsString()
   status: string;
+}
+
+// Bulk import DTO
+export class BulkCreateEventsDto {
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateEventDto)
+  items: CreateEventDto[];
 }
 
 // Section Config DTOs

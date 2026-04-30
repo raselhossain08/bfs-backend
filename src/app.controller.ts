@@ -12,6 +12,8 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { AppService } from './app.service';
 import { CmsService } from './cms/cms.service';
+import { RolesGuard } from './common/guards/roles.guard';
+import { Roles } from './common/decorators/roles.decorator';
 
 @Controller()
 export class AppController {
@@ -36,7 +38,8 @@ export class AppController {
     return { data: data || {} };
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin', 'super_admin')
   @Patch('contactSettings')
   async updateContactSettings(@Body() body: any) {
     const existing = (await this.cmsService.getData('contactSettings')) || {};
@@ -53,7 +56,8 @@ export class AppController {
     return { data: data || {} };
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin', 'super_admin')
   @Patch('social')
   async updateSocial(@Body() body: any) {
     const existing = (await this.cmsService.getData('social')) || {};
@@ -70,7 +74,8 @@ export class AppController {
     return { data: data || {} };
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin', 'super_admin')
   @Patch('footerSection')
   async updateFooterSection(@Body() body: any) {
     const existing = (await this.cmsService.getData('footerSection')) || {};
@@ -87,7 +92,8 @@ export class AppController {
     return { data: data || [] };
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin', 'super_admin')
   @Patch('footerLinks')
   async updateFooterLinks(@Body() body: any) {
     // Expect full replacement array for simplicity.
@@ -113,11 +119,8 @@ export class AppController {
     return { data: data || {} };
   }
 
-  @Get('causes')
-  async getCauses() {
-    const data = await this.cmsService.getData('causes');
-    return { data: data || [] };
-  }
+  // NOTE: /api/causes is handled by CausesController (DB-backed entity)
+  // Do NOT add @Get('causes') here - it conflicts with the entity controller
 
   // NOTE: CMS-backed routes must not conflict with entity modules.
   // `/api/services` is owned by `ServicesController` (DB-backed).
@@ -171,6 +174,8 @@ export class AppController {
     return { data: data || [] };
   }
 
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin', 'super_admin')
   @Post('testimonials')
   async createTestimonial(@Body() body: any) {
     const testimonials = (await this.cmsService.getData('testimonials')) || [];
@@ -186,6 +191,8 @@ export class AppController {
     return { data: updated };
   }
 
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin', 'super_admin')
   @Put('testimonials/:id')
   async updateTestimonial(@Param('id') id: string, @Body() body: any) {
     const testimonials = (await this.cmsService.getData('testimonials')) || [];
@@ -196,6 +203,8 @@ export class AppController {
     return { data: updated.find((t: any) => t.id === id) };
   }
 
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin', 'super_admin')
   @Patch('testimonials/:id')
   async patchTestimonial(@Param('id') id: string, @Body() body: any) {
     const testimonials = (await this.cmsService.getData('testimonials')) || [];
@@ -206,6 +215,8 @@ export class AppController {
     return { data: updated.find((t: any) => t.id === id) };
   }
 
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin', 'super_admin')
   @Delete('testimonials/:id')
   async deleteTestimonial(@Param('id') id: string) {
     const testimonials = (await this.cmsService.getData('testimonials')) || [];
@@ -233,7 +244,8 @@ export class AppController {
     return { data: data || [] };
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin', 'super_admin')
   @Patch('navigation')
   async updateNavigation(@Body() body: any) {
     const updated = await this.cmsService.updateData('navigation', body);

@@ -56,11 +56,13 @@ export class UsersService {
     userId: number,
     dto: ChangePasswordDto,
   ): Promise<{ success: boolean; message: string }> {
-    // Get user with password
+    // Get user with password and failed attempts
     const user = await this.usersRepository
       .createQueryBuilder('user')
       .where('user.id = :id', { id: userId })
       .addSelect('user.password')
+      .addSelect('user.failedLoginAttempts')
+      .addSelect('user.lockedUntil')
       .getOne();
 
     if (!user) {
@@ -73,11 +75,46 @@ export class UsersService {
       );
     }
 
+    // Check if account is locked
+    if (user.lockedUntil && new Date() < user.lockedUntil) {
+      const lockTimeRemaining = Math.ceil(
+        (user.lockedUntil.getTime() - Date.now()) / 60000,
+      );
+      throw new UnauthorizedException(
+        `Account is locked. Try again in ${lockTimeRemaining} minutes.`,
+      );
+    }
+
     // Verify current password
     const isMatch = await bcrypt.compare(dto.currentPassword, user.password);
     if (!isMatch) {
+      // Increment failed attempts
+      const failedAttempts = (user.failedLoginAttempts || 0) + 1;
+      
+      // Lock account after 5 failed attempts
+      if (failedAttempts >= 5) {
+        const lockedUntil = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
+        await this.usersRepository.update(userId, {
+          failedLoginAttempts: failedAttempts,
+          lockedUntil,
+        });
+        throw new UnauthorizedException(
+          'Too many failed attempts. Account locked for 15 minutes.',
+        );
+      }
+      
+      await this.usersRepository.update(userId, {
+        failedLoginAttempts: failedAttempts,
+      });
+      
       throw new UnauthorizedException('Current password is incorrect');
     }
+
+    // Password correct - reset failed attempts
+    await this.usersRepository.update(userId, {
+      failedLoginAttempts: 0,
+      lockedUntil: undefined as any,
+    });
 
     // Hash new password
     const hashedPassword = await bcrypt.hash(dto.newPassword, 12);

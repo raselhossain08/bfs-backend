@@ -25,6 +25,7 @@ import {
   SuccessStoryQueryDto,
   BulkSuccessStoryStatusDto,
   ReorderSuccessStoriesDto,
+  BulkCreateSuccessStoriesDto,
 } from './dto/success-story.dto';
 
 /**
@@ -139,6 +140,23 @@ export class SuccessStoriesController {
   async deleteSuccessStory(@Param('id') id: string) {
     await this.successStoriesService.delete(parseInt(id, 10));
     return { success: true, message: 'Success story deleted' };
+  }
+
+  /**
+   * Bulk create success stories (admin)
+   * POST /api/success-stories/admin/bulk
+   */
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(...EDITOR_ROLES)
+  @Post('admin/bulk')
+  async bulkCreateSuccessStories(@Body() dto: BulkCreateSuccessStoriesDto) {
+    const result = await this.successStoriesService.bulkCreate(dto);
+    return {
+      success: true,
+      count: result.count,
+      failed: result.failed || 0,
+      errors: result.errors || [],
+    };
   }
 
   /**
