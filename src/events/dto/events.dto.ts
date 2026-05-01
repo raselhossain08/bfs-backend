@@ -113,6 +113,10 @@ export class CreateEventDto {
 
   @IsString()
   @IsOptional()
+  shortDescription?: string;
+
+  @IsString()
+  @IsOptional()
   content?: string;
 
   @Transform(({ value }) => {
@@ -379,6 +383,17 @@ export class UpdateEventDto {
   @IsString()
   @IsOptional()
   metaDescription?: string;
+
+  @Transform(({ value }) => {
+    if (Array.isArray(value)) return value;
+    if (typeof value === 'string') {
+      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+    }
+    return [];
+  })
+  @IsArray()
+  @IsOptional()
+  metaKeywords?: string[];
 }
 
 export class EventQueryDto {

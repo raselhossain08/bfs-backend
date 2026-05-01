@@ -6,6 +6,7 @@ import {
   MinLength,
   IsArray,
   IsIn,
+  IsNumber,
 } from 'class-validator';
 
 export enum UserRole {
@@ -116,10 +117,4 @@ export class BulkDeleteDto {
   @IsArray()
   @IsNumber({}, { each: true })
   ids: number[];
-}
-
-function IsNumber(arg0: {}, arg1: { each: boolean }) {
-  return function (target: any, propertyKey: string) {
-    // Validation logic
-  };
 }

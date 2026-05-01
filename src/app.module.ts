@@ -74,6 +74,9 @@ import { Testimonial } from './testimonials/entities/testimonial.entity';
 import { TestimonialsModule } from './testimonials/testimonials.module';
 import { SiteSetting } from './site-settings/entities/site-setting.entity';
 import { SiteSettingsModule } from './site-settings/site-settings.module';
+import { AlertTemplate } from './alerts/entities/alert-template.entity';
+import { AlertBroadcast } from './alerts/entities/alert-broadcast.entity';
+import { AlertsModule } from './alerts/alerts.module';
 
 @Module({
   imports: [
@@ -149,6 +152,8 @@ import { SiteSettingsModule } from './site-settings/site-settings.module';
           RecurringDonation,
           Testimonial,
           SiteSetting,
+          AlertTemplate,
+          AlertBroadcast,
         ],
         synchronize: false, // Disabled - use migrations for schema changes
       }),
@@ -187,6 +192,7 @@ import { SiteSettingsModule } from './site-settings/site-settings.module';
     RecurringDonationsModule,
     TestimonialsModule,
     SiteSettingsModule,
+    AlertsModule,
     // DonationsVerificationModule,
     UploadModule,
   ],

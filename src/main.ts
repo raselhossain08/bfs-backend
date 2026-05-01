@@ -5,6 +5,7 @@ import { RequestMethod, ValidationPipe } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import * as bodyParser from 'body-parser';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -86,6 +87,33 @@ async function bootstrap() {
       { path: '', method: RequestMethod.GET },
     ],
   });
+
+  // Setup Swagger documentation
+  const config = new DocumentBuilder()
+    .setTitle('Birdsfly API')
+    .setDescription('The Birdsfly Sangstha API documentation')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .addTag('Auth', 'Authentication endpoints')
+    .addTag('Users', 'User management')
+    .addTag('Causes', 'Causes and donations')
+    .addTag('Articles', 'News articles')
+    .addTag('Events', 'Events and registrations')
+    .addTag('Services', 'Services and inquiries')
+    .addTag('Programs', 'Programs')
+    .addTag('Volunteers', 'Volunteer applications')
+    .addTag('Pages', 'CMS pages')
+    .addTag('Comments', 'Comments')
+    .addTag('Success Stories', 'Success stories')
+    .addTag('Testimonials', 'Testimonials')
+    .addTag('Dashboard', 'Dashboard stats')
+    .addTag('Admin', 'Admin operations')
+    .addTag('Support', 'Support tickets')
+    .addTag('Chat', 'Live chat')
+    .addTag('Stripe', 'Payments')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api/docs', app, document);
 
   const port = process.env.PORT ?? 5000;
   await app.listen(port);
