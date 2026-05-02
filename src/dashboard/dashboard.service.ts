@@ -237,7 +237,7 @@ export class DashboardService {
       sector: c.category?.name || 'General',
       progress: c.progress || 0,
       status: c.progress >= 100 ? 'Completed' : 'Active',
-      priority: (c.tags && c.tags.length > 0) ? c.tags[0] : 'Medium',
+      priority: c.tags && c.tags.length > 0 ? c.tags[0] : 'Medium',
       color:
         c.tags?.includes('URGENT') || c.tags?.includes('CRITICAL')
           ? 'text-rose-500'

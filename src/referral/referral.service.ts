@@ -38,27 +38,31 @@ export class ReferralService {
 
     // Generate unique code: prefix + random string
     const prefix = user.firstName?.substring(0, 3).toUpperCase() || 'REF';
-    
+
     // Try up to 10 times to generate unique code
     for (let i = 0; i < 10; i++) {
       const code = `${prefix}${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
-      
+
       // Check uniqueness
       const existing = await this.userRepository.findOne({
         where: { referralCode: code },
       });
-      
+
       if (!existing) {
         user.referralCode = code;
         await this.userRepository.save(user);
         return code;
       }
     }
-    
+
     // If we get here, we failed to generate a unique code after 10 attempts
     // This is extremely unlikely but we handle it gracefully
-    this.logger.error(`Failed to generate unique referral code for user ${userId} after 10 attempts`);
-    throw new Error('Failed to generate unique referral code. Please try again.');
+    this.logger.error(
+      `Failed to generate unique referral code for user ${userId} after 10 attempts`,
+    );
+    throw new Error(
+      'Failed to generate unique referral code. Please try again.',
+    );
   }
 
   /**
@@ -159,7 +163,10 @@ export class ReferralService {
         `Recorded donation for referral ${referral.id}: $${amount}`,
       );
     } catch (error) {
-      this.logger.error(`Failed to record donation for referral user ${userId}`, error);
+      this.logger.error(
+        `Failed to record donation for referral user ${userId}`,
+        error,
+      );
       // Don't rethrow - this is stats tracking that shouldn't block the donation flow
     }
   }

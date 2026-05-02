@@ -18,7 +18,9 @@ export class EventRegistration {
   @Column()
   eventId: number;
 
-  @ManyToOne(() => Event, (event) => event.registrations, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Event, (event) => event.registrations, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'eventId' })
   event: Event;
 

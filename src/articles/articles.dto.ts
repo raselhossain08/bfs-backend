@@ -119,14 +119,14 @@ export class CreateArticleDto {
 
 export class UpdateArticleDto {
   @IsOptional()
-  @Transform(({ value }) => value !== undefined ? String(value) : value)
+  @Transform(({ value }) => (value !== undefined ? String(value) : value))
   @IsString()
   @MinLength(1)
   @MaxLength(500)
   title?: string;
 
   @IsOptional()
-  @Transform(({ value }) => value !== undefined ? String(value) : value)
+  @Transform(({ value }) => (value !== undefined ? String(value) : value))
   @IsString()
   @MinLength(1)
   @MaxLength(500)
@@ -311,12 +311,16 @@ export class BulkImportArticlesDto {
 
 export class BulkArticleDto {
   @IsOptional()
-  @Transform(({ value }) => value !== undefined && value !== null ? String(value) : undefined)
+  @Transform(({ value }) =>
+    value !== undefined && value !== null ? String(value) : undefined,
+  )
   @IsString()
   title?: string;
 
   @IsOptional()
-  @Transform(({ value }) => value !== undefined && value !== null ? String(value) : undefined)
+  @Transform(({ value }) =>
+    value !== undefined && value !== null ? String(value) : undefined,
+  )
   @IsString()
   slug?: string;
 

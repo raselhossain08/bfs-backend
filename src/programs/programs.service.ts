@@ -44,7 +44,7 @@ export class ProgramsService {
 
   transformProgram(program: Program) {
     const progress = this.calculateProgress(program.raised, program.goal);
-    
+
     return {
       id: program.id,
       title: program.title,
@@ -85,8 +85,13 @@ export class ProgramsService {
           program.description,
         keywords: (() => {
           if (Array.isArray(program.metaKeywords)) return program.metaKeywords;
-          if (typeof program.metaKeywords === 'string' && program.metaKeywords) {
-            return (program.metaKeywords as string).split(',').map((k: string) => k.trim());
+          if (
+            typeof program.metaKeywords === 'string' &&
+            program.metaKeywords
+          ) {
+            return (program.metaKeywords as string)
+              .split(',')
+              .map((k: string) => k.trim());
           }
           return [];
         })(),
@@ -241,12 +246,16 @@ export class ProgramsService {
 
   // ============ CATEGORY MANAGEMENT ============
 
-  async createCategory(dto: CreateProgramCategoryDto): Promise<ProgramCategory> {
+  async createCategory(
+    dto: CreateProgramCategoryDto,
+  ): Promise<ProgramCategory> {
     const slug = dto.slug || this.generateSlug(dto.name);
-    
+
     const existing = await this.categoryRepository.findOne({ where: { slug } });
     if (existing) {
-      throw new BadRequestException(`Category with slug '${slug}' already exists`);
+      throw new BadRequestException(
+        `Category with slug '${slug}' already exists`,
+      );
     }
 
     const category = this.categoryRepository.create({
@@ -260,22 +269,22 @@ export class ProgramsService {
   async findAllCategories(query: ProgramCategoryQueryDto) {
     const { page = 1, limit = 50, status, search } = query;
     const skip = (page - 1) * limit;
-    
+
     const qb = this.categoryRepository.createQueryBuilder('category');
-    
+
     if (status && status !== 'all') {
       qb.andWhere('category.status = :status', { status });
     }
     if (search) {
       qb.andWhere(
         '(category.name ILIKE :search OR category.description ILIKE :search)',
-        { search: `%${search}%` }
+        { search: `%${search}%` },
       );
     }
-    
+
     qb.orderBy('category.order', 'ASC').skip(skip).take(limit);
     const [data, total] = await qb.getManyAndCount();
-    
+
     return {
       data,
       total,
@@ -300,36 +309,41 @@ export class ProgramsService {
     return category;
   }
 
-  async updateCategory(id: number, dto: UpdateProgramCategoryDto): Promise<ProgramCategory> {
+  async updateCategory(
+    id: number,
+    dto: UpdateProgramCategoryDto,
+  ): Promise<ProgramCategory> {
     const category = await this.findOneCategory(id);
-    
+
     if (dto.slug && dto.slug !== category.slug) {
       const existing = await this.categoryRepository.findOne({
         where: { slug: dto.slug },
       });
       if (existing) {
-        throw new BadRequestException(`Category with slug '${dto.slug}' already exists`);
+        throw new BadRequestException(
+          `Category with slug '${dto.slug}' already exists`,
+        );
       }
     }
-    
+
     Object.assign(category, dto);
     return this.categoryRepository.save(category);
   }
 
   async removeCategory(id: number): Promise<void> {
     const category = await this.findOneCategory(id);
-    
+
     // Check if any programs are using this category
     const programsCount = await this.programRepository.count({
       where: { category: category.name },
     });
-    
+
     if (programsCount > 0) {
       throw new BadRequestException(
         `Cannot delete category. ${programsCount} programs are using this category.`,
       );
     }
-    
+
     await this.categoryRepository.remove(category);
   }
 

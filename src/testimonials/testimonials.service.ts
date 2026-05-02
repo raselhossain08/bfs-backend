@@ -107,7 +107,7 @@ export class TestimonialsService {
 
   async reorder(dto: ReorderTestimonialsDto) {
     const { ids } = dto;
-    
+
     for (let i = 0; i < ids.length; i++) {
       await this.testimonialRepository.update(ids[i], { order: i });
     }

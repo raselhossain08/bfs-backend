@@ -31,7 +31,9 @@ async function checkDatabase() {
       console.log(`  - ${col.column_name}: ${col.data_type}`);
     });
 
-    const shortDescExists = result.some((col: any) => col.column_name === 'shortDescription');
+    const shortDescExists = result.some(
+      (col: any) => col.column_name === 'shortDescription',
+    );
     if (!shortDescExists) {
       console.log('\nshortDescription column is missing! Adding it...');
       await dataSource.query(`

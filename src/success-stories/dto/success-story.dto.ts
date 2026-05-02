@@ -1,4 +1,12 @@
-import { IsString, IsOptional, IsNumber, IsIn, IsArray, IsBoolean, ValidateNested } from 'class-validator';
+import {
+  IsString,
+  IsOptional,
+  IsNumber,
+  IsIn,
+  IsArray,
+  IsBoolean,
+  ValidateNested,
+} from 'class-validator';
 import { Type, Transform } from 'class-transformer';
 
 export class CreateSuccessStoryDto {
@@ -47,7 +55,7 @@ export class CreateSuccessStoryDto {
 
   @IsString()
   @IsOptional()
-  @Transform(({ value }) => value ? String(value) : undefined)
+  @Transform(({ value }) => (value ? String(value) : undefined))
   year?: string;
 
   @IsString()
@@ -57,7 +65,11 @@ export class CreateSuccessStoryDto {
   @Transform(({ value }) => {
     if (Array.isArray(value)) return value;
     if (typeof value === 'string') {
-      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value ? [value] : [];
+      }
     }
     return [];
   })
@@ -76,7 +88,11 @@ export class CreateSuccessStoryDto {
   @Transform(({ value }) => {
     if (Array.isArray(value)) return value;
     if (typeof value === 'string') {
-      try { return JSON.parse(value); } catch { return []; }
+      try {
+        return JSON.parse(value);
+      } catch {
+        return [];
+      }
     }
     return [];
   })
@@ -113,7 +129,11 @@ export class CreateSuccessStoryDto {
   @Transform(({ value }) => {
     if (Array.isArray(value)) return value;
     if (typeof value === 'string') {
-      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value ? [value] : [];
+      }
     }
     return [];
   })
@@ -169,7 +189,7 @@ export class UpdateSuccessStoryDto {
 
   @IsString()
   @IsOptional()
-  @Transform(({ value }) => value ? String(value) : undefined)
+  @Transform(({ value }) => (value ? String(value) : undefined))
   year?: string;
 
   @IsString()
@@ -179,7 +199,11 @@ export class UpdateSuccessStoryDto {
   @Transform(({ value }) => {
     if (Array.isArray(value)) return value;
     if (typeof value === 'string') {
-      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value ? [value] : [];
+      }
     }
     return [];
   })
@@ -198,7 +222,11 @@ export class UpdateSuccessStoryDto {
   @Transform(({ value }) => {
     if (Array.isArray(value)) return value;
     if (typeof value === 'string') {
-      try { return JSON.parse(value); } catch { return []; }
+      try {
+        return JSON.parse(value);
+      } catch {
+        return [];
+      }
     }
     return [];
   })
@@ -235,7 +263,11 @@ export class UpdateSuccessStoryDto {
   @Transform(({ value }) => {
     if (Array.isArray(value)) return value;
     if (typeof value === 'string') {
-      try { return JSON.parse(value); } catch { return value ? [value] : []; }
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value ? [value] : [];
+      }
     }
     return [];
   })

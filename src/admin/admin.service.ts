@@ -20,6 +20,7 @@ import {
 import { AuditService } from '../audit/audit.service';
 import { AuditAction } from '../audit/audit-log.entity';
 import { Request } from 'express';
+import { SafeUser } from '../common/types/auth.types';
 
 @Injectable()
 export class AdminService {
@@ -38,26 +39,28 @@ export class AdminService {
     private readonly dataSource: DataSource,
   ) {}
 
-  private sanitizeUser(user: User) {
+  private sanitizeUser(user: User): SafeUser {
     const {
-      password,
-      resetToken,
-      resetTokenExpiry,
-      refreshToken,
-      otpLoginCode,
-      otpLoginExpiry,
-      otpAttemptsResetAt,
-      twoFactorSecret,
-      twoFactorBackupCodes,
+      password: _pw,
+      resetToken: _rt,
+      resetTokenExpiry: _rte,
+      refreshToken: _rft,
+      otpLoginCode: _olc,
+      otpLoginExpiry: _ole,
+      otpAttemptsResetAt: _oar,
+      twoFactorSecret: _tfs,
+      twoFactorBackupCodes: _tfbc,
       ...safe
     } = user;
-    return safe;
+    // Mark sensitive fields as intentionally excluded from the safe object
+    void [_pw, _rt, _rte, _rft, _olc, _ole, _oar, _tfs, _tfbc];
+    return safe as SafeUser;
   }
 
-  async findAll(query?: AdminListQueryDto): Promise<any[]> {
+  async findAll(query?: AdminListQueryDto): Promise<SafeUser[]> {
     if (query?.search) {
       const searchTerm = `%${query.search}%`;
-      const where: any = {};
+      const where: { role?: string; status?: string } = {};
       if (query?.role) {
         where.role = query.role;
       }
@@ -76,7 +79,7 @@ export class AdminService {
         .then((users) => users.map((u) => this.sanitizeUser(u)));
     }
 
-    const where: any = {};
+    const where: { role?: string; status?: string } = {};
     if (query?.role) {
       where.role = query.role;
     }
@@ -92,7 +95,7 @@ export class AdminService {
       .then((users) => users.map((u) => this.sanitizeUser(u)));
   }
 
-  async findOne(id: number): Promise<any> {
+  async findOne(id: number): Promise<SafeUser> {
     const user = await this.usersRepository.findOne({ where: { id } });
     if (!user) {
       throw new NotFoundException('User not found');
@@ -104,7 +107,7 @@ export class AdminService {
     dto: CreateAdminDto,
     actorId: number,
     request?: Request,
-  ): Promise<any> {
+  ): Promise<SafeUser> {
     // Check if email already exists
     const existing = await this.usersRepository.findOne({
       where: { email: dto.email },
@@ -116,7 +119,7 @@ export class AdminService {
     }
 
     // Validate role is an admin role
-    if (!this.adminRoles.includes(dto.role as any)) {
+    if (!this.adminRoles.includes(dto.role)) {
       throw new BadRequestException('Invalid admin role');
     }
 
@@ -167,7 +170,7 @@ export class AdminService {
     dto: UpdateAdminDto,
     actorId: number,
     request?: Request,
-  ): Promise<any> {
+  ): Promise<SafeUser> {
     const user = await this.usersRepository.findOne({ where: { id } });
     if (!user) {
       throw new NotFoundException('User not found');
@@ -189,7 +192,7 @@ export class AdminService {
     }
 
     // Validate role if changing
-    if (dto.role && !this.adminRoles.includes(dto.role as any)) {
+    if (dto.role && !this.adminRoles.includes(dto.role)) {
       throw new BadRequestException('Invalid admin role');
     }
 
@@ -247,7 +250,7 @@ export class AdminService {
     dto: UpdateRoleDto,
     actorId: number,
     request?: Request,
-  ): Promise<any> {
+  ): Promise<SafeUser> {
     const user = await this.usersRepository.findOne({ where: { id } });
     if (!user) {
       throw new NotFoundException('User not found');
@@ -256,7 +259,7 @@ export class AdminService {
     const oldRole = user.role;
 
     // Validate role is an admin role
-    if (!this.adminRoles.includes(dto.role as any)) {
+    if (!this.adminRoles.includes(dto.role)) {
       throw new BadRequestException('Invalid admin role');
     }
 
@@ -284,7 +287,7 @@ export class AdminService {
     dto: UpdateStatusDto,
     actorId: number,
     request?: Request,
-  ): Promise<any> {
+  ): Promise<SafeUser> {
     const user = await this.usersRepository.findOne({ where: { id } });
     if (!user) {
       throw new NotFoundException('User not found');
@@ -377,7 +380,7 @@ export class AdminService {
     actorId: number,
     request?: Request,
   ): Promise<{ success: boolean; count: number }> {
-    if (!this.adminRoles.includes(role as any)) {
+    if (!this.adminRoles.includes(role as UserRole)) {
       throw new BadRequestException('Invalid admin role');
     }
 
@@ -389,11 +392,13 @@ export class AdminService {
       }
 
       // Prevent demoting super_admin unless actor is super_admin
-      const superAdmins = users.filter(u => u.role === 'super_admin');
+      const superAdmins = users.filter((u) => u.role === 'super_admin');
       if (superAdmins.length > 0 && role !== 'super_admin') {
         const actor = await manager.findOne(User, { where: { id: actorId } });
         if (!actor || actor.role !== 'super_admin') {
-          throw new ForbiddenException('Only super_admin can change super_admin roles');
+          throw new ForbiddenException(
+            'Only super_admin can change super_admin roles',
+          );
         }
       }
 
@@ -427,11 +432,13 @@ export class AdminService {
       }
 
       // Prevent deleting super_admin unless actor is super_admin
-      const superAdmins = users.filter(u => u.role === 'super_admin');
+      const superAdmins = users.filter((u) => u.role === 'super_admin');
       if (superAdmins.length > 0) {
         const actor = await manager.findOne(User, { where: { id: actorId } });
         if (!actor || actor.role !== 'super_admin') {
-          throw new ForbiddenException('Only super_admin can delete super_admin accounts');
+          throw new ForbiddenException(
+            'Only super_admin can delete super_admin accounts',
+          );
         }
       }
 
@@ -523,7 +530,7 @@ export class AdminService {
 
     // Audit log
     await this.auditService.log({
-      action: 'user_export' as any,
+      action: AuditAction.USER_EXPORT,
       entityType: 'user',
       entityId: 0,
       actorId,

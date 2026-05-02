@@ -274,14 +274,11 @@ export class PaymentMethodsService {
           // Update Stripe default (best effort)
           if (nextDefault.stripeCustomerId) {
             try {
-              await this.stripe.customers.update(
-                nextDefault.stripeCustomerId,
-                {
-                  invoice_settings: {
-                    default_payment_method: nextDefault.stripePaymentMethodId,
-                  },
+              await this.stripe.customers.update(nextDefault.stripeCustomerId, {
+                invoice_settings: {
+                  default_payment_method: nextDefault.stripePaymentMethodId,
                 },
-              );
+              });
             } catch (error) {
               this.logger.warn(
                 `Failed to update default payment method in Stripe: ${error.message}`,
@@ -296,7 +293,7 @@ export class PaymentMethodsService {
       this.logger.log(
         `Removed payment method ${id} for user ${userId}${stripeDetachFailed ? ' (Stripe detach failed - manual review needed)' : ''}`,
       );
-      
+
       return { success: true };
     });
   }

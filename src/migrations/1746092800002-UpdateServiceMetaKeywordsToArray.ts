@@ -12,13 +12,18 @@ export class UpdateServiceMetaKeywordsToArray1746092800002 implements MigrationI
     `);
 
     // If it's text/varchar, convert to JSONB
-    if (columnInfo.length > 0 && (columnInfo[0].data_type === 'text' || columnInfo[0].data_type === 'character varying' || columnInfo[0].data_type === 'character varying')) {
+    if (
+      columnInfo.length > 0 &&
+      (columnInfo[0].data_type === 'text' ||
+        columnInfo[0].data_type === 'character varying' ||
+        columnInfo[0].data_type === 'character varying')
+    ) {
       // Add new jsonb column
       await queryRunner.query(`
         ALTER TABLE "service" 
         ADD COLUMN IF NOT EXISTS "metaKeywords_new" JSONB DEFAULT '[]'::jsonb;
       `);
-      
+
       // Convert existing data
       await queryRunner.query(`
         UPDATE "service" 
@@ -28,12 +33,12 @@ export class UpdateServiceMetaKeywordsToArray1746092800002 implements MigrationI
           ELSE '[]'::jsonb 
         END
       `);
-      
+
       // Drop old column
       await queryRunner.query(`
         ALTER TABLE "service" DROP COLUMN "metaKeywords";
       `);
-      
+
       // Rename new column
       await queryRunner.query(`
         ALTER TABLE "service" RENAME COLUMN "metaKeywords_new" TO "metaKeywords";
@@ -54,17 +59,17 @@ export class UpdateServiceMetaKeywordsToArray1746092800002 implements MigrationI
       ALTER TABLE "service" 
       ADD COLUMN IF NOT EXISTS "metaKeywords_new" TEXT DEFAULT NULL;
     `);
-    
+
     await queryRunner.query(`
       UPDATE "service" 
       SET "metaKeywords_new" = array_to_string(ARRAY(SELECT jsonb_array_elements_text("metaKeywords")), ',')
       WHERE "metaKeywords" IS NOT NULL;
     `);
-    
+
     await queryRunner.query(`
       ALTER TABLE "service" DROP COLUMN "metaKeywords";
     `);
-    
+
     await queryRunner.query(`
       ALTER TABLE "service" RENAME COLUMN "metaKeywords_new" TO "metaKeywords";
     `);

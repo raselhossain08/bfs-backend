@@ -19,13 +19,13 @@ async function checkAndUpdateUser() {
     // First check if user exists
     const checkResult = await connection.query(
       `SELECT * FROM "user" WHERE email = $1`,
-      ['raselhossain8666@gmail.com']
+      ['raselhossain8666@gmail.com'],
     );
 
     if (checkResult.length === 0) {
       console.log('User not found. Listing all users:');
       const allUsers = await connection.query(
-        `SELECT id, email, role, "firstName", "lastName" FROM "user" LIMIT 10`
+        `SELECT id, email, role, "firstName", "lastName" FROM "user" LIMIT 10`,
       );
       console.table(allUsers);
       await connection.close();
@@ -37,7 +37,7 @@ async function checkAndUpdateUser() {
     // Update user role
     const updateResult = await connection.query(
       `UPDATE "user" SET role = 'super_admin' WHERE email = $1 RETURNING *`,
-      ['raselhossain8666@gmail.com']
+      ['raselhossain8666@gmail.com'],
     );
 
     console.log('✅ User updated successfully!');

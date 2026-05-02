@@ -85,12 +85,12 @@ export class CommentsService {
     const rootComments: (Comment & { children?: Comment[] })[] = [];
 
     // Initialize map with all comments
-    comments.forEach(comment => {
+    comments.forEach((comment) => {
       commentMap.set(comment.id, { ...comment, children: [] });
     });
 
     // Build tree
-    comments.forEach(comment => {
+    comments.forEach((comment) => {
       const commentWithChildren = commentMap.get(comment.id)!;
       if (comment.parentId && commentMap.has(comment.parentId)) {
         const parent = commentMap.get(comment.parentId)!;

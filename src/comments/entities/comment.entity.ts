@@ -53,11 +53,11 @@ export class Comment {
   @Index()
   parentId: number;
 
-  @ManyToOne(() => Comment, comment => comment.children, { nullable: true })
+  @ManyToOne(() => Comment, (comment) => comment.children, { nullable: true })
   @JoinColumn({ name: 'parentId' })
   parent: Comment;
 
-  @OneToMany(() => Comment, comment => comment.parent)
+  @OneToMany(() => Comment, (comment) => comment.parent)
   children: Comment[];
 
   @CreateDateColumn()

@@ -1,10 +1,3 @@
-/* eslint-disable
-  @typescript-eslint/no-unsafe-assignment,
-  @typescript-eslint/no-unsafe-member-access,
-  @typescript-eslint/no-unsafe-call,
-  @typescript-eslint/no-unsafe-return,
-  @typescript-eslint/no-unsafe-argument
-*/
 import {
   Controller,
   Get,
@@ -1498,7 +1491,10 @@ export class CmsController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post(':key/bulk')
-  async bulkAddItems(@Param('key') key: string, @Body() body: { items: any[] }) {
+  async bulkAddItems(
+    @Param('key') key: string,
+    @Body() body: { items: any[] },
+  ) {
     const { items } = body;
     if (!Array.isArray(items)) {
       throw new BadRequestException('items must be an array');
@@ -1553,7 +1549,8 @@ export class CmsController {
         lastDonationDate: null,
         weeklyGoal: 7,
         weeklyProgress: 0,
-        message: 'This endpoint is deprecated. Use /api/users/me/streak instead.',
+        message:
+          'This endpoint is deprecated. Use /api/users/me/streak instead.',
       },
     };
   }
@@ -1569,7 +1566,8 @@ export class CmsController {
         causesSupported: 0,
         volunteerHoursGoal: 0,
         volunteerHours: 0,
-        message: 'This endpoint is deprecated. Use /api/users/me/goals instead.',
+        message:
+          'This endpoint is deprecated. Use /api/users/me/goals instead.',
       },
     };
   }

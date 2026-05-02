@@ -17,15 +17,21 @@ async function fixOrphanedCategories() {
     });
 
     // Check if category with id 1 exists
-    const category1 = await connection.query('SELECT * FROM cause_category WHERE id = 1');
+    const category1 = await connection.query(
+      'SELECT * FROM cause_category WHERE id = 1',
+    );
     console.log('Category with id 1:', category1);
 
     // Check causes that reference categoryId 1
-    const causesWithCat1 = await connection.query('SELECT id, title, categoryId FROM cause WHERE categoryId = 1');
+    const causesWithCat1 = await connection.query(
+      'SELECT id, title, categoryId FROM cause WHERE categoryId = 1',
+    );
     console.log('Causes referencing category 1:', causesWithCat1);
 
     // Check all categories
-    const allCategories = await connection.query('SELECT id, name FROM cause_category ORDER BY id');
+    const allCategories = await connection.query(
+      'SELECT id, name FROM cause_category ORDER BY id',
+    );
     console.log('All categories:', allCategories);
 
     // Check causes with invalid categoryId

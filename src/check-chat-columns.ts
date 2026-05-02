@@ -23,7 +23,7 @@ async function checkChatColumns() {
       'live_chat_sessions',
       'live_chat_messages',
       'live_chat_agents',
-      'live_chat_analytics'
+      'live_chat_analytics',
     ];
 
     for (const table of tables) {

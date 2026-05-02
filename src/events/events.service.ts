@@ -228,8 +228,16 @@ export class EventsService {
     return this.findOneEvent(saved.id);
   }
 
-  async bulkCreateEvents(dto: BulkCreateEventsDto): Promise<{ count: number; failed: number; errors: { title: string; error: string }[] }> {
-    const results = { count: 0, failed: 0, errors: [] as { title: string; error: string }[] };
+  async bulkCreateEvents(dto: BulkCreateEventsDto): Promise<{
+    count: number;
+    failed: number;
+    errors: { title: string; error: string }[];
+  }> {
+    const results = {
+      count: 0,
+      failed: 0,
+      errors: [] as { title: string; error: string }[],
+    };
 
     for (const item of dto.items) {
       try {
@@ -244,7 +252,9 @@ export class EventsService {
       }
     }
 
-    this.logger.log(`Bulk created ${results.count} events, ${results.failed} failed`);
+    this.logger.log(
+      `Bulk created ${results.count} events, ${results.failed} failed`,
+    );
     return results;
   }
 
@@ -589,7 +599,10 @@ export class EventsService {
         }
       }
 
-      if (event.registrationDeadline && new Date() > event.registrationDeadline) {
+      if (
+        event.registrationDeadline &&
+        new Date() > event.registrationDeadline
+      ) {
         throw new BadRequestException('Registration deadline has passed');
       }
 
@@ -707,7 +720,11 @@ export class EventsService {
         } else if (!wasActive && isActive) {
           // Was inactive, now active
           attendeeDiff = dto.numberOfAttendees || oldAttendees;
-        } else if (wasActive && isActive && dto.numberOfAttendees !== oldAttendees) {
+        } else if (
+          wasActive &&
+          isActive &&
+          dto.numberOfAttendees !== oldAttendees
+        ) {
           // Both active but attendee count changed
           attendeeDiff = (dto.numberOfAttendees || 0) - oldAttendees;
         }

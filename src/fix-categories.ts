@@ -17,15 +17,21 @@ async function fixCategories() {
     });
 
     // Check current categories
-    const categories = await connection.query('SELECT id, name FROM cause_category');
+    const categories = await connection.query(
+      'SELECT id, name FROM cause_category',
+    );
     console.log('Current categories:', categories);
 
     // Check causes with their categoryId
-    const causes = await connection.query('SELECT id, title, "categoryId" FROM cause');
+    const causes = await connection.query(
+      'SELECT id, title, "categoryId" FROM cause',
+    );
     console.log('Current causes with categoryId:', causes);
 
     // If category with id 1 doesn't exist, create it
-    const cat1 = await connection.query('SELECT * FROM cause_category WHERE id = 1');
+    const cat1 = await connection.query(
+      'SELECT * FROM cause_category WHERE id = 1',
+    );
     if (cat1.length === 0) {
       console.log('Creating category with id 1...');
       await connection.query(`
@@ -38,7 +44,9 @@ async function fixCategories() {
     }
 
     // Check if there are any causes with NULL categoryId that should be assigned
-    const causesNullCat = await connection.query('SELECT id, title FROM cause WHERE "categoryId" IS NULL');
+    const causesNullCat = await connection.query(
+      'SELECT id, title FROM cause WHERE "categoryId" IS NULL',
+    );
     if (causesNullCat.length > 0) {
       console.log(`Found ${causesNullCat.length} causes with NULL categoryId`);
     }

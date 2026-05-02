@@ -152,7 +152,9 @@ export class StripeService {
             `Auto-registered donor ${session.donorEmail} as user ID: ${donorId}`,
           );
         } else {
-          this.logger.error(`Auto-registration failed for ${session.donorEmail}`);
+          this.logger.error(
+            `Auto-registration failed for ${session.donorEmail}`,
+          );
         }
       }
 
@@ -175,47 +177,50 @@ export class StripeService {
       } as Donation);
 
       const savedDonation = await manager.save(donation);
-    this.logger.log(
-      `Donation created: ID=${savedDonation.id}, Amount=${savedDonation.amount} ${savedDonation.currency}, Donor=${savedDonation.donorId ? `User ${savedDonation.donorId}` : 'Anonymous'}`,
-    );
+      this.logger.log(
+        `Donation created: ID=${savedDonation.id}, Amount=${savedDonation.amount} ${savedDonation.currency}, Donor=${savedDonation.donorId ? `User ${savedDonation.donorId}` : 'Anonymous'}`,
+      );
 
-    // Update cause statistics if linked to a cause
-    if (savedDonation.causeId) {
-      await this.updateCauseStats(savedDonation.causeId);
-    }
+      // Update cause statistics if linked to a cause
+      if (savedDonation.causeId) {
+        await this.updateCauseStats(savedDonation.causeId);
+      }
 
-    // Send credentials email if auto-registered
-    if (autoRegisteredUser) {
-      const donationAmount = `${savedDonation.currency} ${savedDonation.amount.toFixed(2)}`;
-      this.sendCredentialsEmail(
-        autoRegisteredUser.email,
-        autoRegisteredUser.plainPassword,
-        autoRegisteredUser.name,
-        donationAmount,
-        savedDonation.causeName || 'General Support',
-      ).catch((err) => {
-        this.logger.error(
-          `Failed to send credentials email to ${autoRegisteredUser.email}: ${err.message}`,
-          err.stack,
-        );
-      });
-    } else if (isExistingUser && session.donorEmail) {
-      // Send thank you email to existing users
-      this.sendThankYouEmail(
-        session.donorEmail,
-        session.donorName || 'Valued Donor',
-        `${savedDonation.currency} ${savedDonation.amount.toFixed(2)}`,
-        savedDonation.causeName || 'General Support',
-      ).catch((err) => {
-        this.logger.error(
-          `Failed to send thank you email to ${session.donorEmail}: ${err.message}`,
-        );
-      });
-    }
+      // Send credentials email if auto-registered
+      if (autoRegisteredUser) {
+        const donationAmount = `${savedDonation.currency} ${savedDonation.amount.toFixed(2)}`;
+        this.sendCredentialsEmail(
+          autoRegisteredUser.email,
+          autoRegisteredUser.plainPassword,
+          autoRegisteredUser.name,
+          donationAmount,
+          savedDonation.causeName || 'General Support',
+        ).catch((err) => {
+          this.logger.error(
+            `Failed to send credentials email to ${autoRegisteredUser.email}: ${err.message}`,
+            err.stack,
+          );
+        });
+      } else if (isExistingUser && session.donorEmail) {
+        // Send thank you email to existing users
+        this.sendThankYouEmail(
+          session.donorEmail,
+          session.donorName || 'Valued Donor',
+          `${savedDonation.currency} ${savedDonation.amount.toFixed(2)}`,
+          savedDonation.causeName || 'General Support',
+        ).catch((err) => {
+          this.logger.error(
+            `Failed to send thank you email to ${session.donorEmail}: ${err.message}`,
+          );
+        });
+      }
 
       // Update cause statistics if linked to a cause (in same transaction)
       if (savedDonation.causeId) {
-        await this.updateCauseStatsInTransaction(savedDonation.causeId, manager);
+        await this.updateCauseStatsInTransaction(
+          savedDonation.causeId,
+          manager,
+        );
       }
 
       // Send credentials email if auto-registered (outside transaction - async)

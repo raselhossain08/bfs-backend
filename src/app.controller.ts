@@ -97,7 +97,10 @@ export class AppController {
   @Patch('footerLinks')
   async updateFooterLinks(@Body() body: any) {
     // Expect full replacement array for simplicity.
-    const updated = await this.cmsService.updateData('footerLinks', Array.isArray(body) ? body : []);
+    const updated = await this.cmsService.updateData(
+      'footerLinks',
+      Array.isArray(body) ? body : [],
+    );
     return { data: updated };
   }
 

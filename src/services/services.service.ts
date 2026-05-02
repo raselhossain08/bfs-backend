@@ -225,8 +225,16 @@ export class ServicesService {
     return this.findOneService(saved.id);
   }
 
-  async bulkCreateServices(dto: BulkCreateServicesDto): Promise<{ count: number; failed: number; errors: { title: string; error: string }[] }> {
-    const results = { count: 0, failed: 0, errors: [] as { title: string; error: string }[] };
+  async bulkCreateServices(dto: BulkCreateServicesDto): Promise<{
+    count: number;
+    failed: number;
+    errors: { title: string; error: string }[];
+  }> {
+    const results = {
+      count: 0,
+      failed: 0,
+      errors: [] as { title: string; error: string }[],
+    };
 
     for (const item of dto.items) {
       try {
@@ -241,7 +249,9 @@ export class ServicesService {
       }
     }
 
-    this.logger.log(`Bulk created ${results.count} services, ${results.failed} failed`);
+    this.logger.log(
+      `Bulk created ${results.count} services, ${results.failed} failed`,
+    );
     return results;
   }
 

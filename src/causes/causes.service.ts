@@ -271,10 +271,18 @@ export class CausesService {
     }
 
     // Apply sorting with whitelist validation to prevent SQL injection
-    const validSortFields = ['id', 'title', 'raised', 'progress', 'createdAt', 'updatedAt', 'order'];
+    const validSortFields = [
+      'id',
+      'title',
+      'raised',
+      'progress',
+      'createdAt',
+      'updatedAt',
+      'order',
+    ];
     const safeSortBy = validSortFields.includes(sortBy) ? sortBy : 'createdAt';
     const safeSortOrder = sortOrder.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
-    
+
     queryBuilder.orderBy(`cause.${safeSortBy}`, safeSortOrder);
 
     // Apply pagination
@@ -416,7 +424,12 @@ export class CausesService {
   async bulkImportCauses(
     items: CreateCauseDto[],
     createdBy?: number,
-  ): Promise<{ success: boolean; imported: number; failed: number; errors: { title: string; error: string }[] }> {
+  ): Promise<{
+    success: boolean;
+    imported: number;
+    failed: number;
+    errors: { title: string; error: string }[];
+  }> {
     const errors: { title: string; error: string }[] = [];
     let imported = 0;
     let failed = 0;

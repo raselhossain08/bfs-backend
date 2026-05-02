@@ -13,7 +13,9 @@ export class SiteSettingsService {
   ) {}
 
   async getSetting(key: string): Promise<SiteSetting | null> {
-    return this.siteSettingsRepository.findOne({ where: { key, isActive: true } });
+    return this.siteSettingsRepository.findOne({
+      where: { key, isActive: true },
+    });
   }
 
   async getSettingValue(key: string): Promise<any> {
@@ -26,7 +28,11 @@ export class SiteSettingsService {
     }
   }
 
-  async setSetting(key: string, value: any, group?: string): Promise<SiteSetting> {
+  async setSetting(
+    key: string,
+    value: any,
+    group?: string,
+  ): Promise<SiteSetting> {
     let setting = await this.siteSettingsRepository.findOne({ where: { key } });
 
     const valueStr =

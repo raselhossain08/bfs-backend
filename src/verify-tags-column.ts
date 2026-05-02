@@ -26,14 +26,14 @@ async function verifyAndFixTagsColumn() {
 
     if (result.length === 0) {
       console.log('Tags column not found. Adding it now...');
-      
+
       // Add tags column
       await connection.query(`
         ALTER TABLE cause 
         ADD COLUMN "tags" text NULL
       `);
       console.log('✓ Added tags column');
-      
+
       // Migrate old tag data
       await connection.query(`
         UPDATE cause 
@@ -56,7 +56,7 @@ async function verifyAndFixTagsColumn() {
       WHERE table_name = 'cause'
       ORDER BY ordinal_position
     `);
-    
+
     console.log('\nCause table columns:');
     allColumns.forEach((col: any) => {
       console.log(`  - ${col.column_name}: ${col.data_type}`);

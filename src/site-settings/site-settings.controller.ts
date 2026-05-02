@@ -45,7 +45,11 @@ export class SiteSettingsController {
   @Roles(...ADMIN_ROLES)
   @Post()
   async setSetting(@Body() body: { key: string; value: any; group?: string }) {
-    const data = await this.siteSettingsService.setSetting(body.key, body.value, body.group);
+    const data = await this.siteSettingsService.setSetting(
+      body.key,
+      body.value,
+      body.group,
+    );
     return { success: true, data };
   }
 

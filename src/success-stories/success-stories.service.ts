@@ -62,8 +62,16 @@ export class SuccessStoriesService {
     return saved;
   }
 
-  async bulkCreate(dto: BulkCreateSuccessStoriesDto): Promise<{ count: number; failed: number; errors: { title: string; error: string }[] }> {
-    const results = { count: 0, failed: 0, errors: [] as { title: string; error: string }[] };
+  async bulkCreate(dto: BulkCreateSuccessStoriesDto): Promise<{
+    count: number;
+    failed: number;
+    errors: { title: string; error: string }[];
+  }> {
+    const results = {
+      count: 0,
+      failed: 0,
+      errors: [] as { title: string; error: string }[],
+    };
 
     for (const item of dto.items) {
       try {
@@ -78,7 +86,9 @@ export class SuccessStoriesService {
       }
     }
 
-    this.logger.log(`Bulk created ${results.count} success stories, ${results.failed} failed`);
+    this.logger.log(
+      `Bulk created ${results.count} success stories, ${results.failed} failed`,
+    );
     return results;
   }
 

@@ -5,8 +5,10 @@ export class SeedEventTypes1746093200000 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     // Check if event_type table exists and has data
-    const count = await queryRunner.query('SELECT COUNT(*) as count FROM event_type');
-    
+    const count = await queryRunner.query(
+      'SELECT COUNT(*) as count FROM event_type',
+    );
+
     if (count[0].count === '0' || count[0].count === 0) {
       // Insert default event types
       await queryRunner.query(`

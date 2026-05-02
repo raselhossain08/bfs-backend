@@ -9,12 +9,12 @@ export class RenameCauseTagToTags1746067200000 implements MigrationInterface {
       ALTER TABLE "cause" 
       ALTER COLUMN "tag" TYPE TEXT USING "tag"::TEXT;
     `);
-    
+
     await queryRunner.query(`
       ALTER TABLE "cause" 
       ADD COLUMN IF NOT EXISTS "tags" JSONB DEFAULT '[]'::jsonb;
     `);
-    
+
     // Copy data from tag to tags (as array)
     await queryRunner.query(`
       UPDATE "cause" 
@@ -24,7 +24,7 @@ export class RenameCauseTagToTags1746067200000 implements MigrationInterface {
         ELSE '[]'::jsonb 
       END
     `);
-    
+
     // Drop the old tag column
     await queryRunner.query(`
       ALTER TABLE "cause" DROP COLUMN IF EXISTS "tag";
@@ -37,14 +37,14 @@ export class RenameCauseTagToTags1746067200000 implements MigrationInterface {
       ALTER TABLE "cause" 
       ADD COLUMN IF NOT EXISTS "tag" TEXT DEFAULT NULL;
     `);
-    
+
     // Copy data from tags back to tag (first element or null)
     await queryRunner.query(`
       UPDATE "cause" 
       SET "tag" = (("tags"->0)::text)
       WHERE "tags" IS NOT NULL AND jsonb_array_length("tags") > 0;
     `);
-    
+
     // Drop the tags column
     await queryRunner.query(`
       ALTER TABLE "cause" DROP COLUMN IF EXISTS "tags";

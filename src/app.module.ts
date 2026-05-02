@@ -23,7 +23,6 @@ import { CategoriesModule } from './categories/categories.module';
 import { ArticlesModule } from './articles/articles.module';
 import { EventsModule } from './events/events.module';
 import { ServicesModule } from './services/services.module';
-import { PagesModule } from './pages/pages.module';
 import { CausesModule } from './causes/causes.module';
 import { User } from './users/entities/user.entity';
 import { CmsItem } from './cms/entities/cms-item.entity';
@@ -46,8 +45,6 @@ import { EventRegistration } from './events/entities/event-registration.entity';
 import { Service } from './services/entities/service.entity';
 import { ServiceCategory } from './services/entities/service-category.entity';
 import { ServiceInquiry } from './services/entities/service-inquiry.entity';
-import { Page } from './pages/entities/page.entity';
-import { Section } from './pages/entities/section.entity';
 import { Cause } from './causes/entities/cause.entity';
 import { CauseCategory } from './causes/entities/cause-category.entity';
 import { PaymentMethod } from './payment-methods/entities/payment-method.entity';
@@ -136,8 +133,6 @@ import { AlertsModule } from './alerts/alerts.module';
           Service,
           ServiceCategory,
           ServiceInquiry,
-          Page,
-          Section,
           Cause,
           CauseCategory,
           Donation,
@@ -165,7 +160,6 @@ import { AlertsModule } from './alerts/alerts.module';
     ArticlesModule,
     EventsModule,
     ServicesModule,
-    PagesModule,
     CausesModule,
     ProgramsModule,
     CommentsModule,

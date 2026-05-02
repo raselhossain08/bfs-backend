@@ -156,13 +156,16 @@ export class ArticlesController {
   @Roles(...FULL_ADMIN_ROLES)
   @Post('admin/bulk-import')
   async bulkImportArticles(@Body() body: { data: any[] } | any[]) {
-    const items = Array.isArray(body) ? body : (body.data || []);
+    const items = Array.isArray(body) ? body : body.data || [];
     const results: { success: boolean; title: string; id: number }[] = [];
     const errors: { title: string; error: string }[] = [];
 
     for (const item of items) {
       if (!item.title) {
-        errors.push({ title: item.title || 'Unknown', error: 'Title is required' });
+        errors.push({
+          title: item.title || 'Unknown',
+          error: 'Title is required',
+        });
         continue;
       }
 

@@ -31,18 +31,15 @@ async function checkArticlesColumns() {
       console.log(`  - ${col.column_name}: ${col.data_type}`);
     });
 
-    const requiredColumns = [
-      'shortDescription',
-      'metaKeywords'
-    ];
+    const requiredColumns = ['shortDescription', 'metaKeywords'];
 
-    const missingColumns = requiredColumns.filter(col => 
-      !result.some((r: any) => r.column_name === col)
+    const missingColumns = requiredColumns.filter(
+      (col) => !result.some((r: any) => r.column_name === col),
     );
 
     if (missingColumns.length > 0) {
       console.log(`\nMissing columns: ${missingColumns.join(', ')}`);
-      
+
       for (const col of missingColumns) {
         if (col === 'shortDescription') {
           await dataSource.query(`

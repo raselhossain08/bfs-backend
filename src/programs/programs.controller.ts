@@ -127,8 +127,14 @@ export class ProgramsController {
   @Patch('admin/categories/:id')
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(...EDITOR_ROLES)
-  async updateCategory(@Param('id') id: string, @Body() dto: UpdateProgramCategoryDto) {
-    const category = await this.programsService.updateCategory(parseInt(id, 10), dto);
+  async updateCategory(
+    @Param('id') id: string,
+    @Body() dto: UpdateProgramCategoryDto,
+  ) {
+    const category = await this.programsService.updateCategory(
+      parseInt(id, 10),
+      dto,
+    );
     return { data: category };
   }
 

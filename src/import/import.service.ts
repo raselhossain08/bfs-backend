@@ -34,13 +34,13 @@ export class ImportService {
    */
   private parseCSV(buffer: Buffer): any[] {
     const content = buffer.toString('utf-8');
-    const lines = content.split('\n').filter(line => line.trim());
-    
+    const lines = content.split('\n').filter((line) => line.trim());
+
     if (lines.length === 0) return [];
-    
+
     const headers = this.parseCSVLine(lines[0]);
     const results: any[] = [];
-    
+
     for (let i = 1; i < lines.length; i++) {
       const values = this.parseCSVLine(lines[i]);
       const row: any = {};
@@ -49,7 +49,7 @@ export class ImportService {
       });
       results.push(row);
     }
-    
+
     return results;
   }
 
@@ -60,10 +60,10 @@ export class ImportService {
     const result: string[] = [];
     let current = '';
     let inQuotes = false;
-    
+
     for (let i = 0; i < line.length; i++) {
       const char = line[i];
-      
+
       if (char === '"') {
         if (inQuotes && line[i + 1] === '"') {
           current += '"';
@@ -95,15 +95,10 @@ export class ImportService {
 
     try {
       const results = this.parseCSV(fileBuffer);
-      await this.processImport(
-        entityType,
-        results,
-        userId,
-        (c, e) => {
-          count = c;
-          errors.push(...e);
-        },
-      );
+      await this.processImport(entityType, results, userId, (c, e) => {
+        count = c;
+        errors.push(...e);
+      });
 
       return { success: true, count, errors };
     } catch (error) {
@@ -365,7 +360,9 @@ export class ImportService {
       metaTitle: data.metaTitle,
       metaDescription: data.metaDescription,
       metaKeywords: metaKeywords || [],
-      beneficiaries: data.beneficiaries ? parseInt(data.beneficiaries, 10) : null,
+      beneficiaries: data.beneficiaries
+        ? parseInt(data.beneficiaries, 10)
+        : null,
       currency: data.currency || 'USD',
       contentBlocks: contentBlocks || [],
       createdBy: userId,
@@ -389,22 +386,38 @@ export class ImportService {
 
     let gallery = data.gallery;
     if (typeof gallery === 'string') {
-      try { gallery = JSON.parse(gallery); } catch { gallery = gallery ? [gallery] : []; }
+      try {
+        gallery = JSON.parse(gallery);
+      } catch {
+        gallery = gallery ? [gallery] : [];
+      }
     }
 
     let milestones = data.milestones;
     if (typeof milestones === 'string') {
-      try { milestones = JSON.parse(milestones); } catch { milestones = []; }
+      try {
+        milestones = JSON.parse(milestones);
+      } catch {
+        milestones = [];
+      }
     }
 
     let contentBlocks = data.contentBlocks;
     if (typeof contentBlocks === 'string') {
-      try { contentBlocks = JSON.parse(contentBlocks); } catch { contentBlocks = []; }
+      try {
+        contentBlocks = JSON.parse(contentBlocks);
+      } catch {
+        contentBlocks = [];
+      }
     }
 
     let metaKeywords = data.metaKeywords;
     if (typeof metaKeywords === 'string') {
-      try { metaKeywords = JSON.parse(metaKeywords); } catch { metaKeywords = metaKeywords ? [metaKeywords] : []; }
+      try {
+        metaKeywords = JSON.parse(metaKeywords);
+      } catch {
+        metaKeywords = metaKeywords ? [metaKeywords] : [];
+      }
     }
 
     const program = manager.create('Program', {
@@ -419,7 +432,9 @@ export class ImportService {
       color: data.color,
       category: data.category,
       location: data.location,
-      beneficiaries: data.beneficiaries ? parseInt(data.beneficiaries, 10) : null,
+      beneficiaries: data.beneficiaries
+        ? parseInt(data.beneficiaries, 10)
+        : null,
       impact: data.impact,
       metric: data.metric,
       goal: data.goal ? parseFloat(data.goal) : null,
@@ -455,17 +470,29 @@ export class ImportService {
 
     let gallery = data.gallery;
     if (typeof gallery === 'string') {
-      try { gallery = JSON.parse(gallery); } catch { gallery = gallery ? [gallery] : []; }
+      try {
+        gallery = JSON.parse(gallery);
+      } catch {
+        gallery = gallery ? [gallery] : [];
+      }
     }
 
     let contentBlocks = data.contentBlocks;
     if (typeof contentBlocks === 'string') {
-      try { contentBlocks = JSON.parse(contentBlocks); } catch { contentBlocks = []; }
+      try {
+        contentBlocks = JSON.parse(contentBlocks);
+      } catch {
+        contentBlocks = [];
+      }
     }
 
     let metaKeywords = data.metaKeywords;
     if (typeof metaKeywords === 'string') {
-      try { metaKeywords = JSON.parse(metaKeywords); } catch { metaKeywords = metaKeywords ? [metaKeywords] : []; }
+      try {
+        metaKeywords = JSON.parse(metaKeywords);
+      } catch {
+        metaKeywords = metaKeywords ? [metaKeywords] : [];
+      }
     }
 
     const event = manager.create('Event', {
@@ -483,9 +510,15 @@ export class ImportService {
       startDate: data.startDate ? new Date(data.startDate) : null,
       endDate: data.endDate ? new Date(data.endDate) : null,
       maxAttendees: data.maxAttendees ? parseInt(data.maxAttendees, 10) : null,
-      currentAttendees: data.currentAttendees ? parseInt(data.currentAttendees, 10) : 0,
-      requiresRegistration: data.requiresRegistration === 'true' || data.requiresRegistration === true,
-      registrationDeadline: data.registrationDeadline ? new Date(data.registrationDeadline) : null,
+      currentAttendees: data.currentAttendees
+        ? parseInt(data.currentAttendees, 10)
+        : 0,
+      requiresRegistration:
+        data.requiresRegistration === 'true' ||
+        data.requiresRegistration === true,
+      registrationDeadline: data.registrationDeadline
+        ? new Date(data.registrationDeadline)
+        : null,
       organizerName: data.organizerName,
       organizerEmail: data.organizerEmail,
       organizerPhone: data.organizerPhone,
@@ -517,32 +550,58 @@ export class ImportService {
 
     let skills = data.skills;
     if (typeof skills === 'string') {
-      try { skills = JSON.parse(skills); } catch { skills = skills ? skills.split(',').map((s: string) => s.trim()) : []; }
+      try {
+        skills = JSON.parse(skills);
+      } catch {
+        skills = skills ? skills.split(',').map((s: string) => s.trim()) : [];
+      }
     }
 
     let languages = data.languages;
     if (typeof languages === 'string') {
-      try { languages = JSON.parse(languages); } catch { languages = languages ? languages.split(',').map((s: string) => s.trim()) : []; }
+      try {
+        languages = JSON.parse(languages);
+      } catch {
+        languages = languages
+          ? languages.split(',').map((s: string) => s.trim())
+          : [];
+      }
     }
 
     let fundingPhases = data.fundingPhases;
     if (typeof fundingPhases === 'string') {
-      try { fundingPhases = JSON.parse(fundingPhases); } catch { fundingPhases = []; }
+      try {
+        fundingPhases = JSON.parse(fundingPhases);
+      } catch {
+        fundingPhases = [];
+      }
     }
 
     let blocks = data.blocks;
     if (typeof blocks === 'string') {
-      try { blocks = JSON.parse(blocks); } catch { blocks = []; }
+      try {
+        blocks = JSON.parse(blocks);
+      } catch {
+        blocks = [];
+      }
     }
 
     let socialLinks = data.socialLinks;
     if (typeof socialLinks === 'string') {
-      try { socialLinks = JSON.parse(socialLinks); } catch { socialLinks = {}; }
+      try {
+        socialLinks = JSON.parse(socialLinks);
+      } catch {
+        socialLinks = {};
+      }
     }
 
     let seo = data.seo;
     if (typeof seo === 'string') {
-      try { seo = JSON.parse(seo); } catch { seo = {}; }
+      try {
+        seo = JSON.parse(seo);
+      } catch {
+        seo = {};
+      }
     }
 
     const volunteer = manager.create('Volunteer', {
@@ -588,27 +647,47 @@ export class ImportService {
 
     let gallery = data.gallery;
     if (typeof gallery === 'string') {
-      try { gallery = JSON.parse(gallery); } catch { gallery = gallery ? [gallery] : []; }
+      try {
+        gallery = JSON.parse(gallery);
+      } catch {
+        gallery = gallery ? [gallery] : [];
+      }
     }
 
     let directives = data.directives;
     if (typeof directives === 'string') {
-      try { directives = JSON.parse(directives); } catch { directives = []; }
+      try {
+        directives = JSON.parse(directives);
+      } catch {
+        directives = [];
+      }
     }
 
     let contentBlocks = data.contentBlocks;
     if (typeof contentBlocks === 'string') {
-      try { contentBlocks = JSON.parse(contentBlocks); } catch { contentBlocks = []; }
+      try {
+        contentBlocks = JSON.parse(contentBlocks);
+      } catch {
+        contentBlocks = [];
+      }
     }
 
     let metaKeywords = data.metaKeywords;
     if (typeof metaKeywords === 'string') {
-      try { metaKeywords = JSON.parse(metaKeywords); } catch { metaKeywords = metaKeywords ? [metaKeywords] : []; }
+      try {
+        metaKeywords = JSON.parse(metaKeywords);
+      } catch {
+        metaKeywords = metaKeywords ? [metaKeywords] : [];
+      }
     }
 
     let categories = data.categories;
     if (typeof categories === 'string') {
-      try { categories = JSON.parse(categories); } catch { categories = []; }
+      try {
+        categories = JSON.parse(categories);
+      } catch {
+        categories = [];
+      }
     }
 
     const service = manager.create('Service', {
@@ -654,17 +733,29 @@ export class ImportService {
 
     let gallery = data.gallery;
     if (typeof gallery === 'string') {
-      try { gallery = JSON.parse(gallery); } catch { gallery = gallery ? [gallery] : []; }
+      try {
+        gallery = JSON.parse(gallery);
+      } catch {
+        gallery = gallery ? [gallery] : [];
+      }
     }
 
     let contentBlocks = data.contentBlocks;
     if (typeof contentBlocks === 'string') {
-      try { contentBlocks = JSON.parse(contentBlocks); } catch { contentBlocks = []; }
+      try {
+        contentBlocks = JSON.parse(contentBlocks);
+      } catch {
+        contentBlocks = [];
+      }
     }
 
     let metaKeywords = data.metaKeywords;
     if (typeof metaKeywords === 'string') {
-      try { metaKeywords = JSON.parse(metaKeywords); } catch { metaKeywords = metaKeywords ? [metaKeywords] : []; }
+      try {
+        metaKeywords = JSON.parse(metaKeywords);
+      } catch {
+        metaKeywords = metaKeywords ? [metaKeywords] : [];
+      }
     }
 
     const story = manager.create('SuccessStory', {
@@ -710,7 +801,11 @@ export class ImportService {
 
     let metaKeywords = data.metaKeywords;
     if (typeof metaKeywords === 'string') {
-      try { metaKeywords = JSON.parse(metaKeywords); } catch { metaKeywords = metaKeywords ? [metaKeywords] : []; }
+      try {
+        metaKeywords = JSON.parse(metaKeywords);
+      } catch {
+        metaKeywords = metaKeywords ? [metaKeywords] : [];
+      }
     }
 
     const page = manager.create('Page', {
@@ -732,10 +827,7 @@ export class ImportService {
   /**
    * Update cause stats (helper method)
    */
-  private async updateCauseStats(
-    manager: any,
-    causeId: number,
-  ): Promise<void> {
+  private async updateCauseStats(manager: any, causeId: number): Promise<void> {
     const result = await manager
       .createQueryBuilder('Donation', 'donation')
       .select('SUM(donation.amount)', 'totalRaised')

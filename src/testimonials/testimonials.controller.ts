@@ -13,7 +13,11 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { TestimonialsService } from './testimonials.service';
 import { RolesGuard } from '../common/guards/roles.guard';
-import { Roles, FULL_ADMIN_ROLES, EDITOR_ROLES } from '../common/decorators/roles.decorator';
+import {
+  Roles,
+  FULL_ADMIN_ROLES,
+  EDITOR_ROLES,
+} from '../common/decorators/roles.decorator';
 import {
   CreateTestimonialDto,
   UpdateTestimonialDto,
@@ -71,7 +75,10 @@ export class TestimonialsController {
   @Patch('admin/:id')
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(...FULL_ADMIN_ROLES, ...EDITOR_ROLES)
-  async update(@Param('id') id: string, @Body() updateDto: UpdateTestimonialDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateDto: UpdateTestimonialDto,
+  ) {
     return this.testimonialsService.update(Number(id), updateDto);
   }
 

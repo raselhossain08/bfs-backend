@@ -147,9 +147,7 @@ export class EventsController {
   }
 
   @Get('featured')
-  async getFeaturedEvents(
-    @Query('limit') limit?: string,
-  ) {
+  async getFeaturedEvents(@Query('limit') limit?: string) {
     const events = await this.eventsService.findPublicEvents({
       limit: limit ? parseInt(limit, 10) : 5,
       isFeatured: true,

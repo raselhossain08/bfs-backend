@@ -11,9 +11,8 @@ const AppDataSource = new DataSource({
   username: process.env.DATABASE_USER || 'postgres',
   password: process.env.DATABASE_PASSWORD || '',
   database: process.env.DATABASE_NAME || 'bfs',
-  ssl: process.env.DATABASE_SSL === 'true'
-    ? { rejectUnauthorized: false }
-    : false,
+  ssl:
+    process.env.DATABASE_SSL === 'true' ? { rejectUnauthorized: false } : false,
   entities: [],
   migrations: [],
   synchronize: false,
@@ -23,11 +22,11 @@ async function runMigrations() {
   try {
     await AppDataSource.initialize();
     console.log('Database connected');
-    
+
     // Run the migration directly using queryRunner
     const queryRunner = AppDataSource.createQueryRunner();
     await queryRunner.connect();
-    
+
     console.log('Adding failedLoginAttempts column...');
     const failedLoginColumnInfo = await queryRunner.query(`
       SELECT column_name 
@@ -61,7 +60,7 @@ async function runMigrations() {
     } else {
       console.log('✓ lockedUntil column already exists');
     }
-    
+
     await queryRunner.release();
     await AppDataSource.destroy();
     console.log('Migration completed successfully!');

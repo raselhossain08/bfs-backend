@@ -172,7 +172,9 @@ export class AuthService {
       // Auto-login: generate tokens
       const payload = { email: user.email, sub: user.id, role: user.role };
       const accessToken = this.jwtService.sign(payload, { expiresIn: '15m' });
-      const newRefreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
+      const newRefreshToken = this.jwtService.sign(payload, {
+        expiresIn: '7d',
+      });
 
       // Store hashed refresh token in DB
       const hashedRefreshToken = await bcrypt.hash(newRefreshToken, 10);
@@ -322,13 +324,13 @@ export class AuthService {
       // Only throw error if email exists AND belongs to a different user
       // Normalize both IDs to ensure consistent comparison
       if (existingUser) {
-        const existingId = typeof existingUser.id === 'string' 
-          ? parseInt(existingUser.id, 10) 
-          : existingUser.id;
-        const currentId = typeof userId === 'string'
-          ? parseInt(userId, 10)
-          : userId;
-        
+        const existingId =
+          typeof existingUser.id === 'string'
+            ? parseInt(existingUser.id, 10)
+            : existingUser.id;
+        const currentId =
+          typeof userId === 'string' ? parseInt(userId, 10) : userId;
+
         if (existingId !== currentId) {
           throw new BadRequestException(
             'An account with this email already exists.',

@@ -6,7 +6,7 @@ dotenv.config();
 
 async function runMigration() {
   console.log('Running support ticket migration...');
-  
+
   const dataSource = new DataSource({
     type: 'postgres',
     host: process.env.DATABASE_HOST || 'localhost',
@@ -24,7 +24,7 @@ async function runMigration() {
 
     const queryRunner = dataSource.createQueryRunner();
     const migration = new CreateSupportTicketTable1746100800000();
-    
+
     await migration.up(queryRunner);
     console.log('Migration completed: support_ticket tables created');
 

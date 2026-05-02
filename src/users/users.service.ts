@@ -90,7 +90,7 @@ export class UsersService {
     if (!isMatch) {
       // Increment failed attempts
       const failedAttempts = (user.failedLoginAttempts || 0) + 1;
-      
+
       // Lock account after 5 failed attempts
       if (failedAttempts >= 5) {
         const lockedUntil = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
@@ -102,11 +102,11 @@ export class UsersService {
           'Too many failed attempts. Account locked for 15 minutes.',
         );
       }
-      
+
       await this.usersRepository.update(userId, {
         failedLoginAttempts: failedAttempts,
       });
-      
+
       throw new UnauthorizedException('Current password is incorrect');
     }
 

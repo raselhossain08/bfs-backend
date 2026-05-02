@@ -16,6 +16,7 @@ export enum AuditAction {
   USER_ROLE_CHANGE = 'user_role_change',
   USER_STATUS_CHANGE = 'user_status_change',
   USER_PASSWORD_RESET = 'user_password_reset',
+  USER_EXPORT = 'user_export',
 
   // Auth actions
   AUTH_LOGIN = 'auth_login',

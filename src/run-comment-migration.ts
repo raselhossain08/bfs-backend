@@ -19,7 +19,7 @@ async function runMigration() {
 
     const migration = new AddCommentParentIdColumn1777579921967();
     await migration.up(connection.createQueryRunner());
-    
+
     console.log('Migration completed successfully!');
     await connection.close();
     process.exit(0);

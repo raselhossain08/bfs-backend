@@ -77,9 +77,7 @@ export class CausesController {
    * GET /api/causes
    */
   @Get()
-  async getPublicCauses(
-    @Query() query: CauseQueryDto,
-  ) {
+  async getPublicCauses(@Query() query: CauseQueryDto) {
     const causes = await this.causesService.findAllCauses({
       ...query,
       status: 'active',
@@ -88,9 +86,7 @@ export class CausesController {
   }
 
   @Get('causes')
-  async getPublicCausesLegacy(
-    @Query() query: CauseQueryDto,
-  ) {
+  async getPublicCausesLegacy(@Query() query: CauseQueryDto) {
     return this.getPublicCauses(query);
   }
 
@@ -457,7 +453,10 @@ export class CausesController {
     @Body() dto: BulkImportCausesDto,
     @Request() req: any,
   ) {
-    const result = await this.causesService.bulkImportCauses(dto.items, req.user?.id);
+    const result = await this.causesService.bulkImportCauses(
+      dto.items,
+      req.user?.id,
+    );
     return {
       success: result.success,
       imported: result.imported,
@@ -480,7 +479,10 @@ export class CausesController {
         message: 'Only admins can perform bulk import',
       };
     }
-    const result = await this.causesService.bulkImportCauses(dto.items, req.user?.id);
+    const result = await this.causesService.bulkImportCauses(
+      dto.items,
+      req.user?.id,
+    );
     return {
       success: result.success,
       imported: result.imported,

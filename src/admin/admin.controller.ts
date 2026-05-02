@@ -12,7 +12,9 @@ import {
   Request,
   Res,
 } from '@nestjs/common';
-import type { Response } from 'express';
+import type { Response, Request as ExpressRequest } from 'express';
+import { UserRole, UserStatus } from './admin.dto';
+import { AuthUser } from '../common/types/auth.types';
 import { AuthGuard } from '@nestjs/passport';
 import { AdminService } from './admin.service';
 import { AuditService } from '../audit/audit.service';
@@ -37,18 +39,21 @@ export class AdminController {
   ) {}
 
   // Helper to check if user has admin role
-  private isAdmin(user: any): boolean {
+  private isAdmin(user: AuthUser): boolean {
     return ['super_admin', 'admin', 'editor', 'manager'].includes(user.role);
   }
 
   // Helper to check if user is super admin
-  private isSuperAdmin(user: any): boolean {
+  private isSuperAdmin(user: AuthUser): boolean {
     return user.role === 'super_admin';
   }
 
   // Get all admin users
   @Get('users')
-  async findAll(@Request() req: any, @Query() query: AdminListQueryDto) {
+  async findAll(
+    @Request() req: ExpressRequest & { user: AuthUser },
+    @Query() query: AdminListQueryDto,
+  ) {
     if (!this.isAdmin(req.user)) {
       return { data: [] };
     }
@@ -58,7 +63,7 @@ export class AdminController {
 
   // Get admin user statistics
   @Get('users/stats')
-  async getStats(@Request() req: any) {
+  async getStats(@Request() req: ExpressRequest & { user: AuthUser }) {
     if (!this.isAdmin(req.user)) {
       return {
         data: {
@@ -79,7 +84,7 @@ export class AdminController {
   // Export users
   @Get('users/export')
   async exportUsers(
-    @Request() req: any,
+    @Request() req: ExpressRequest & { user: AuthUser },
     @Query('format') format: 'csv' | 'json' = 'json',
     @Res() res: Response,
   ) {
@@ -141,7 +146,10 @@ export class AdminController {
 
   // Get single admin user by ID
   @Get('users/:id')
-  async findOne(@Request() req: any, @Param('id') id: string) {
+  async findOne(
+    @Request() req: ExpressRequest & { user: AuthUser },
+    @Param('id') id: string,
+  ) {
     if (!this.isAdmin(req.user)) {
       return { data: null };
     }
@@ -151,7 +159,10 @@ export class AdminController {
 
   // Create new admin user
   @Post('users')
-  async create(@Request() req: any, @Body() dto: CreateAdminDto) {
+  async create(
+    @Request() req: ExpressRequest & { user: AuthUser },
+    @Body() dto: CreateAdminDto,
+  ) {
     if (!this.isSuperAdmin(req.user)) {
       return {
         success: false,
@@ -170,7 +181,7 @@ export class AdminController {
   // Update admin user
   @Patch('users/:id')
   async update(
-    @Request() req: any,
+    @Request() req: ExpressRequest & { user: AuthUser },
     @Param('id') id: string,
     @Body() dto: UpdateAdminDto,
   ) {
@@ -198,7 +209,7 @@ export class AdminController {
   // Update user role
   @Patch('users/:id/role')
   async updateRole(
-    @Request() req: any,
+    @Request() req: ExpressRequest & { user: AuthUser },
     @Param('id') id: string,
     @Body() dto: UpdateRoleDto,
   ) {
@@ -210,7 +221,7 @@ export class AdminController {
     }
 
     // Prevent demoting yourself
-    if (req.user.id === parseInt(id, 10) && dto.role !== 'super_admin') {
+    if (req.user.id === parseInt(id, 10) && dto.role !== UserRole.SUPER_ADMIN) {
       return {
         success: false,
         message: 'You cannot demote yourself from super admin',
@@ -233,7 +244,7 @@ export class AdminController {
   // Update user status (active/inactive)
   @Patch('users/:id/status')
   async updateStatus(
-    @Request() req: any,
+    @Request() req: ExpressRequest & { user: AuthUser },
     @Param('id') id: string,
     @Body() dto: UpdateStatusDto,
   ) {
@@ -245,7 +256,7 @@ export class AdminController {
     }
 
     // Prevent deactivating yourself
-    if (req.user.id === parseInt(id, 10) && dto.status !== 'active') {
+    if (req.user.id === parseInt(id, 10) && dto.status !== UserStatus.ACTIVE) {
       return {
         success: false,
         message: 'You cannot deactivate your own account',
@@ -267,7 +278,10 @@ export class AdminController {
 
   // Initiate password reset for user
   @Post('users/:id/reset-password')
-  async initiatePasswordReset(@Request() req: any, @Param('id') id: string) {
+  async initiatePasswordReset(
+    @Request() req: ExpressRequest & { user: AuthUser },
+    @Param('id') id: string,
+  ) {
     if (!this.isSuperAdmin(req.user)) {
       return {
         success: false,
@@ -285,7 +299,10 @@ export class AdminController {
 
   // Delete admin user
   @Delete('users/:id')
-  async remove(@Request() req: any, @Param('id') id: string) {
+  async remove(
+    @Request() req: ExpressRequest & { user: AuthUser },
+    @Param('id') id: string,
+  ) {
     if (!this.isSuperAdmin(req.user)) {
       return {
         success: false,
@@ -312,7 +329,10 @@ export class AdminController {
 
   // Bulk status update
   @Post('users/bulk/status')
-  async bulkUpdateStatus(@Request() req: any, @Body() dto: BulkUpdateDto) {
+  async bulkUpdateStatus(
+    @Request() req: ExpressRequest & { user: AuthUser },
+    @Body() dto: BulkUpdateDto,
+  ) {
     if (!this.isSuperAdmin(req.user)) {
       return {
         success: false,
@@ -343,7 +363,10 @@ export class AdminController {
 
   // Bulk role update
   @Post('users/bulk/role')
-  async bulkUpdateRole(@Request() req: any, @Body() dto: BulkUpdateDto) {
+  async bulkUpdateRole(
+    @Request() req: ExpressRequest & { user: AuthUser },
+    @Body() dto: BulkUpdateDto,
+  ) {
     if (!this.isSuperAdmin(req.user)) {
       return {
         success: false,
@@ -374,7 +397,10 @@ export class AdminController {
 
   // Bulk delete
   @Post('users/bulk/delete')
-  async bulkDelete(@Request() req: any, @Body() dto: BulkDeleteDto) {
+  async bulkDelete(
+    @Request() req: ExpressRequest & { user: AuthUser },
+    @Body() dto: BulkDeleteDto,
+  ) {
     if (!this.isSuperAdmin(req.user)) {
       return {
         success: false,
@@ -406,7 +432,7 @@ export class AdminController {
 
   @Get('audit-logs')
   async getAuditLogs(
-    @Request() req: any,
+    @Request() req: ExpressRequest & { user: AuthUser },
     @Query('page') page?: string,
     @Query('limit') limit?: string,
     @Query('action') action?: string,
@@ -433,7 +459,7 @@ export class AdminController {
   }
 
   @Get('audit-logs/stats')
-  async getAuditLogStats(@Request() req: any) {
+  async getAuditLogStats(@Request() req: ExpressRequest & { user: AuthUser }) {
     if (!this.isAdmin(req.user)) {
       return { data: null };
     }
